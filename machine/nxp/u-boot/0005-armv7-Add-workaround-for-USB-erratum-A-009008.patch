@@ -1,7 +1,7 @@
 From 41ebbd74d090e7b796106cfabbbbd153a458d07e Mon Sep 17 00:00:00 2001
 From: Suresh Gupta <suresh.gupta@freescale.com>
 Date: Thu, 13 Oct 2016 20:39:56 +0530
-Subject: [PATCH 005/155] armv7: Add workaround for USB erratum A-009008
+Subject: [PATCH 005/211] armv7: Add workaround for USB erratum A-009008
 
 USB High Speed (HS) EYE Height Adjustment
 This patch is adding the erratum for LS1021.
@@ -9,13 +9,13 @@ This patch is adding the erratum for LS1021.
 Signed-off-by: Sriram Dash <sriram.dash@nxp.com>
 Signed-off-by: yinbo.zhu <yinbo.zhu@nxp.com>
 ---
- arch/arm/cpu/armv7/ls102xa/Kconfig                |  2 ++
- arch/arm/cpu/armv7/ls102xa/soc.c                  | 12 ++++++++++++
- arch/arm/include/asm/arch-ls102xa/immap_ls102xa.h |  4 ++++
- 3 files changed, 18 insertions(+)
+ arch/arm/cpu/armv7/ls102xa/Kconfig                |    2 ++
+ arch/arm/cpu/armv7/ls102xa/soc.c                  |   12 ++++++++++++
+ arch/arm/include/asm/arch-ls102xa/immap_ls102xa.h |    4 ++++
+ 3 files changed, 18 insertions(+), 0 deletions(-)
 
 diff --git a/arch/arm/cpu/armv7/ls102xa/Kconfig b/arch/arm/cpu/armv7/ls102xa/Kconfig
-index b61f3cdcde..df539e9763 100644
+index b61f3cd..df539e9 100644
 --- a/arch/arm/cpu/armv7/ls102xa/Kconfig
 +++ b/arch/arm/cpu/armv7/ls102xa/Kconfig
 @@ -14,6 +14,8 @@ config ARCH_LS1021A
@@ -28,7 +28,7 @@ index b61f3cdcde..df539e9763 100644
  menu "LS102xA architecture"
  	depends on ARCH_LS1021A
 diff --git a/arch/arm/cpu/armv7/ls102xa/soc.c b/arch/arm/cpu/armv7/ls102xa/soc.c
-index b84a1a686a..e046049549 100644
+index b84a1a6..e046049 100644
 --- a/arch/arm/cpu/armv7/ls102xa/soc.c
 +++ b/arch/arm/cpu/armv7/ls102xa/soc.c
 @@ -60,6 +60,16 @@ unsigned int get_soc_major_rev(void)
@@ -58,7 +58,7 @@ index b84a1a686a..e046049549 100644
  }
  
 diff --git a/arch/arm/include/asm/arch-ls102xa/immap_ls102xa.h b/arch/arm/include/asm/arch-ls102xa/immap_ls102xa.h
-index c34fd63e66..f474cfdedb 100644
+index c34fd63..f474cfd 100644
 --- a/arch/arm/include/asm/arch-ls102xa/immap_ls102xa.h
 +++ b/arch/arm/include/asm/arch-ls102xa/immap_ls102xa.h
 @@ -172,6 +172,10 @@ struct ccsr_gur {
@@ -73,5 +73,5 @@ index c34fd63e66..f474cfdedb 100644
  /* Supplemental Configuration Unit */
  struct ccsr_scfg {
 -- 
-2.14.1
+1.7.1
 

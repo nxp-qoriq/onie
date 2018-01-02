@@ -1,8 +1,7 @@
 From 51e5f9c51bfc679b2c236a795f0c260a6d42a00b Mon Sep 17 00:00:00 2001
 From: Ran Wang <ran.wang_1@nxp.com>
 Date: Thu, 24 Aug 2017 13:34:29 +0800
-Subject: [PATCH 116/155] armv8: fsl: Use correct conditional compile for
- ls1012a
+Subject: [PATCH 116/211] armv8: fsl: Use correct conditional compile for ls1012a
 
 According current code base, CONFIG_LS1012A should be
 CONFIG_ARCH_LS1012A, or function fsl_fdt_disable(blob) will be
@@ -11,11 +10,11 @@ cause Linux USB function stop working at all.
 
 Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
 ---
- arch/arm/cpu/armv8/fsl-layerscape/fdt.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/cpu/armv8/fsl-layerscape/fdt.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/fdt.c b/arch/arm/cpu/armv8/fsl-layerscape/fdt.c
-index cd0ea22736..7b4a6271ef 100644
+index cd0ea22..7b4a627 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/fdt.c
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/fdt.c
 @@ -417,7 +417,7 @@ void ft_cpu_setup(void *blob, bd_t *bd)
@@ -28,5 +27,5 @@ index cd0ea22736..7b4a6271ef 100644
  #endif
  #ifdef CONFIG_HAS_FEATURE_GIC64K_ALIGN
 -- 
-2.14.1
+1.7.1
 

@@ -1,16 +1,15 @@
 From 80e1335752a0c2c49983b258edb9d15c7a9801db Mon Sep 17 00:00:00 2001
 From: Shengzhou Liu <Shengzhou.Liu@nxp.com>
 Date: Mon, 7 Aug 2017 15:51:49 +0800
-Subject: [PATCH 129/155] armv7: ls1021atwr: Add sd_bootcmd for distro fallback
- in case of sdboot
+Subject: [PATCH 129/211] armv7: ls1021atwr: Add sd_bootcmd for distro fallback in case of sdboot
 
 Signed-off-by: Shengzhou Liu <Shengzhou.Liu@nxp.com>
 ---
- include/configs/ls1021atwr.h | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+ include/configs/ls1021atwr.h |   11 ++++++++++-
+ 1 files changed, 10 insertions(+), 1 deletions(-)
 
 diff --git a/include/configs/ls1021atwr.h b/include/configs/ls1021atwr.h
-index 509337645c..fbc1c16229 100644
+index 5093376..fbc1c16 100644
 --- a/include/configs/ls1021atwr.h
 +++ b/include/configs/ls1021atwr.h
 @@ -450,6 +450,8 @@
@@ -45,5 +44,5 @@ index 509337645c..fbc1c16229 100644
  #define CONFIG_BOOTCOMMAND "run distro_bootcmd; run nor_bootcmd; "	\
  			   "env exists secureboot && esbc_halt;"
 -- 
-2.14.1
+1.7.1
 

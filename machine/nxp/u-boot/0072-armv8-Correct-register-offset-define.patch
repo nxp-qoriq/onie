@@ -1,18 +1,18 @@
 From 5c02b25b3e78de94c8c264b23601e96ca1525b2a Mon Sep 17 00:00:00 2001
 From: Ran Wang <ran.wang_1@nxp.com>
 Date: Tue, 1 Aug 2017 16:43:30 +0800
-Subject: [PATCH 072/155] armv8: Correct register offset define.
+Subject: [PATCH 072/211] armv8: Correct register offset define.
 
 For USB erratum A-009007, original patch write the wrong register
 on LS208xa, need to be correct according to PDM information update.
 
 Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
 ---
- arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../include/asm/arch-fsl-layerscape/immap_lsch3.h  |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
 diff --git a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
-index 4a51e556f1..b037aeff09 100644
+index 4a51e55..b037aef 100644
 --- a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
 +++ b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
 @@ -126,7 +126,7 @@
@@ -25,5 +25,5 @@ index 4a51e556f1..b037aeff09 100644
  #define USB_PHY_RX_EQ_VAL_2            0x0080
  #define USB_PHY_RX_EQ_VAL_3            0x0380
 -- 
-2.14.1
+1.7.1
 

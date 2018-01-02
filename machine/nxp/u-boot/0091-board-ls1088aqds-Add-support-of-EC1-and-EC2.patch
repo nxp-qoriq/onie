@@ -1,7 +1,7 @@
 From 4af7491814f2765909d8dfe733049dc90616d033 Mon Sep 17 00:00:00 2001
 From: Prabhakar Kushwaha <prabhakar.kushwaha@nxp.com>
 Date: Tue, 23 Aug 2016 20:47:18 +0530
-Subject: [PATCH 091/155] board:ls1088aqds: Add support of EC1 and EC2
+Subject: [PATCH 091/211] board:ls1088aqds: Add support of EC1 and EC2
 
 EC1 and EC2 are RGMII interface on ls1088aqds platform.
 This patch add support of RGMII with PHY and MDIO
@@ -9,11 +9,11 @@ This patch add support of RGMII with PHY and MDIO
 Signed-off-by: Prabhakar Kushwaha <prabhakar.kushwaha@nxp.com>
 Signed-off-by: Amrita Kumari <amrita.kumari@nxp.com>
 ---
- board/freescale/ls1088a/eth_ls1088aqds.c | 35 ++++++++++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+ board/freescale/ls1088a/eth_ls1088aqds.c |   35 ++++++++++++++++++++++++++++++
+ 1 files changed, 35 insertions(+), 0 deletions(-)
 
 diff --git a/board/freescale/ls1088a/eth_ls1088aqds.c b/board/freescale/ls1088a/eth_ls1088aqds.c
-index a73896d470..f5320eba1f 100644
+index a73896d..f5320eb 100644
 --- a/board/freescale/ls1088a/eth_ls1088aqds.c
 +++ b/board/freescale/ls1088a/eth_ls1088aqds.c
 @@ -576,6 +576,38 @@ void ls1088a_handle_phy_interface_xsgmii(int i)
@@ -66,5 +66,5 @@ index a73896d470..f5320eba1f 100644
  			ls1088a_handle_phy_interface_qsgmii(i);
  			break;
 -- 
-2.14.1
+1.7.1
 

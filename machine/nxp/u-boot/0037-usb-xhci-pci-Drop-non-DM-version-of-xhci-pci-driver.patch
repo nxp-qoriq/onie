@@ -1,7 +1,7 @@
 From 64f713dc09e6f91ad87b3e46ba0edb66581aff80 Mon Sep 17 00:00:00 2001
 From: Bin Meng <bmeng.cn@gmail.com>
 Date: Wed, 19 Jul 2017 21:51:07 +0800
-Subject: [PATCH 037/155] usb: xhci-pci: Drop non-DM version of xhci-pci driver
+Subject: [PATCH 037/211] usb: xhci-pci: Drop non-DM version of xhci-pci driver
 
 As there is no board that currently uses xhci-pci driver without DM
 USB, drop its support and leave only DM support.
@@ -9,12 +9,12 @@ USB, drop its support and leave only DM support.
 Signed-off-by: Bin Meng <bmeng.cn@gmail.com>
 Reviewed-by: Simon Glass <sjg@chromium.org>
 ---
- drivers/usb/host/Kconfig    |  1 +
- drivers/usb/host/xhci-pci.c | 52 ---------------------------------------------
- 2 files changed, 1 insertion(+), 52 deletions(-)
+ drivers/usb/host/Kconfig    |    1 +
+ drivers/usb/host/xhci-pci.c |   52 -------------------------------------------
+ 2 files changed, 1 insertions(+), 52 deletions(-)
 
 diff --git a/drivers/usb/host/Kconfig b/drivers/usb/host/Kconfig
-index e054434a27..45cd2b9651 100644
+index e054434..45cd2b9 100644
 --- a/drivers/usb/host/Kconfig
 +++ b/drivers/usb/host/Kconfig
 @@ -33,6 +33,7 @@ config USB_XHCI_MVEBU
@@ -26,7 +26,7 @@ index e054434a27..45cd2b9651 100644
  	help
  	  Enables support for the PCI-based xHCI controller.
 diff --git a/drivers/usb/host/xhci-pci.c b/drivers/usb/host/xhci-pci.c
-index 63daaa6759..5ad8452384 100644
+index 63daaa6..5ad8452 100644
 --- a/drivers/usb/host/xhci-pci.c
 +++ b/drivers/usb/host/xhci-pci.c
 @@ -14,56 +14,6 @@
@@ -93,5 +93,5 @@ index 63daaa6759..5ad8452384 100644
 -
 -#endif /* CONFIG_DM_USB */
 -- 
-2.14.1
+1.7.1
 

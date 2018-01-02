@@ -1,8 +1,7 @@
 From de23ed62192579338359e37040701b35153d3d5e Mon Sep 17 00:00:00 2001
 From: Prabhakar Kushwaha <prabhakar.kushwaha@nxp.com>
 Date: Wed, 30 Aug 2017 15:24:05 +0530
-Subject: [PATCH 122/155] board: common: vid: Add support for LTC3882 voltage
- regulator chip
+Subject: [PATCH 122/211] board: common: vid: Add support for LTC3882 voltage regulator chip
 
 Restructures common driver to support LTC3882 voltage regulator
  chip.
@@ -10,14 +9,14 @@ Restructures common driver to support LTC3882 voltage regulator
 Signed-off-by: Ashish Kumar <Ashish.Kumar@nxp.com>
 Signed-off-by: Rajesh Bhagat <rajesh.bhagat@nxp.com>
 ---
- .../include/asm/arch-fsl-layerscape/immap_lsch3.h  |  9 ++-
- board/freescale/common/vid.c                       | 75 ++++++++++++++++++++++
- include/configs/ls1088aqds.h                       | 16 +++++
- include/configs/ls1088ardb.h                       | 15 +++++
+ .../include/asm/arch-fsl-layerscape/immap_lsch3.h  |    9 ++-
+ board/freescale/common/vid.c                       |   75 ++++++++++++++++++++
+ include/configs/ls1088aqds.h                       |   16 ++++
+ include/configs/ls1088ardb.h                       |   15 ++++
  4 files changed, 113 insertions(+), 2 deletions(-)
 
 diff --git a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
-index fec8fcd32d..d48484a723 100644
+index fec8fcd..d48484a 100644
 --- a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
 +++ b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
 @@ -197,10 +197,15 @@ struct ccsr_gur {
@@ -39,7 +38,7 @@ index fec8fcd32d..d48484a723 100644
  	u8	res_064[0x70-0x64];
  	u32	devdisr;	/* Device disable control 1 */
 diff --git a/board/freescale/common/vid.c b/board/freescale/common/vid.c
-index a920849b6c..dcff1d1953 100644
+index a920849..dcff1d1 100644
 --- a/board/freescale/common/vid.c
 +++ b/board/freescale/common/vid.c
 @@ -171,6 +171,35 @@ static int read_voltage_from_IR(int i2caddress)
@@ -160,7 +159,7 @@ index a920849b6c..dcff1d1953 100644
  		ret = -1;
  		goto exit;
 diff --git a/include/configs/ls1088aqds.h b/include/configs/ls1088aqds.h
-index e5e33060ba..87c2e01dee 100644
+index e5e3306..87c2e01 100644
 --- a/include/configs/ls1088aqds.h
 +++ b/include/configs/ls1088aqds.h
 @@ -282,6 +282,22 @@ unsigned long get_board_ddr_clk(void);
@@ -187,7 +186,7 @@ index e5e33060ba..87c2e01dee 100644
  * RTC configuration
  */
 diff --git a/include/configs/ls1088ardb.h b/include/configs/ls1088ardb.h
-index 7ac95da85b..abda2d379f 100644
+index 7ac95da..abda2d3 100644
 --- a/include/configs/ls1088ardb.h
 +++ b/include/configs/ls1088ardb.h
 @@ -226,6 +226,21 @@
@@ -213,5 +212,5 @@ index 7ac95da85b..abda2d379f 100644
   * I2C bus multiplexer
   */
 -- 
-2.14.1
+1.7.1
 

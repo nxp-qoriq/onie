@@ -1,8 +1,7 @@
 From 806bca8b1312ce9277e937152363bc6d6df24223 Mon Sep 17 00:00:00 2001
 From: Priyanka Jain <priyanka.jain@nxp.com>
 Date: Mon, 4 Sep 2017 12:28:04 +0530
-Subject: [PATCH 141/155] board/ls2080ardb: Add mcmemsize variable in default
- env
+Subject: [PATCH 141/211] board/ls2080ardb: Add mcmemsize variable in default env
 
 For most of ls2080ardb use-cases, mc private DRAM block is required
 to be of 1.75GB.
@@ -10,11 +9,11 @@ Hence set  mcmemsize=0x70000000 in default env
 
 Signed-off-by: Priyanka Jain <priyanka.jain@nxp.com>
 ---
- include/configs/ls2080ardb.h | 1 +
- 1 file changed, 1 insertion(+)
+ include/configs/ls2080ardb.h |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
 
 diff --git a/include/configs/ls2080ardb.h b/include/configs/ls2080ardb.h
-index fb7c7946e4..36c78470d8 100644
+index fb7c794..36c7847 100644
 --- a/include/configs/ls2080ardb.h
 +++ b/include/configs/ls2080ardb.h
 @@ -379,6 +379,7 @@ unsigned long get_board_sys_clk(void);
@@ -26,5 +25,5 @@ index fb7c7946e4..36c78470d8 100644
  	"boot_scripts=ls2088ardb_boot.scr\0"	\
  	"boot_script_hdr=hdr_ls2088ardb_bs.out\0"	\
 -- 
-2.14.1
+1.7.1
 

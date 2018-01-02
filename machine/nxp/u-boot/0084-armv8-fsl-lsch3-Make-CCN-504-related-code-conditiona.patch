@@ -1,8 +1,7 @@
 From 5ca57bcdc7573e39015ee181f19e9dcbbd72199c Mon Sep 17 00:00:00 2001
 From: Ashish Kumar <Ashish.Kumar@nxp.com>
 Date: Wed, 16 Aug 2017 19:20:31 +0530
-Subject: [PATCH 084/155] armv8: fsl-lsch3: Make CCN-504 related code
- conditional
+Subject: [PATCH 084/211] armv8: fsl-lsch3: Make CCN-504 related code conditional
 
 LS2080 family has CCN-504 cache coherent interconnet.
 Other SoCs from LSCH3 may have differnt interconnect like
@@ -11,13 +10,13 @@ LS1088.
 Signed-off-by: Ashish Kumar <Ashish.Kumar@nxp.com>
 Signed-off-by: Prabhakar Kushwaha <prabhakar.kushwaha@nxp.com>
 ---
- README                                       | 4 ++++
- arch/arm/cpu/armv8/fsl-layerscape/Kconfig    | 4 ++++
- arch/arm/cpu/armv8/fsl-layerscape/lowlevel.S | 8 +++++---
+ README                                       |    4 ++++
+ arch/arm/cpu/armv8/fsl-layerscape/Kconfig    |    4 ++++
+ arch/arm/cpu/armv8/fsl-layerscape/lowlevel.S |    8 +++++---
  3 files changed, 13 insertions(+), 3 deletions(-)
 
 diff --git a/README b/README
-index 06f3b1a25a..f8d801e883 100644
+index 06f3b1a..f8d801e 100644
 --- a/README
 +++ b/README
 @@ -322,6 +322,10 @@ build a config tool - later.
@@ -32,7 +31,7 @@ index 06f3b1a25a..f8d801e883 100644
  
  - CPU Type:	Define exactly one, e.g. CONFIG_MPC85XX.
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
-index c44b2c3ef9..2f8d9da7dd 100644
+index c44b2c3..2f8d9da 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 @@ -72,6 +72,7 @@ config ARCH_LS2080A
@@ -54,7 +53,7 @@ index c44b2c3ef9..2f8d9da7dd 100644
  	bool
  
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/lowlevel.S b/arch/arm/cpu/armv8/fsl-layerscape/lowlevel.S
-index 619d9b7a0e..e91be19335 100644
+index 619d9b7..e91be19 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/lowlevel.S
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/lowlevel.S
 @@ -76,7 +76,7 @@ ENTRY(lowlevel_init)
@@ -95,5 +94,5 @@ index 619d9b7a0e..e91be19335 100644
  #ifdef CONFIG_MP
  	/* Keep literals not used by the secondary boot code outside it */
 -- 
-2.14.1
+1.7.1
 

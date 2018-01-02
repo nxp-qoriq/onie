@@ -1,7 +1,7 @@
 From 857563646565671c3566570b4bb631e80dfcbb05 Mon Sep 17 00:00:00 2001
 From: Prabhakar Kushwaha <prabhakar.kushwaha@nxp.com>
 Date: Tue, 29 Aug 2017 16:09:58 +0530
-Subject: [PATCH 109/155]  LS1088A_QSPI: SECURE_BOOT: Images validation
+Subject: [PATCH 109/211]  LS1088A_QSPI: SECURE_BOOT: Images validation
 
  Validates PPA, MC, DPC, Bootscript, DPL and Kernel images in ESBC phase
  using esbc_validate command. Add images validation in default environment
@@ -15,16 +15,16 @@ Subject: [PATCH 109/155]  LS1088A_QSPI: SECURE_BOOT: Images validation
 
  Signed-off-by: Udit Agarwal <udit.agarwal@nxp.com>
 ---
- arch/arm/cpu/armv8/fsl-layerscape/Kconfig |  3 ++-
- board/freescale/ls1088a/Kconfig           |  2 ++
- board/freescale/ls1088a/ls1088a.c         |  6 +++---
- include/configs/ls1088a_common.h          |  4 ++--
- include/configs/ls1088aqds.h              | 21 +++++++++++++++++++++
- include/configs/ls1088ardb.h              | 22 +++++++++++++++++++++-
+ arch/arm/cpu/armv8/fsl-layerscape/Kconfig |    3 ++-
+ board/freescale/ls1088a/Kconfig           |    2 ++
+ board/freescale/ls1088a/ls1088a.c         |    6 +++---
+ include/configs/ls1088a_common.h          |    4 ++--
+ include/configs/ls1088aqds.h              |   21 +++++++++++++++++++++
+ include/configs/ls1088ardb.h              |   22 +++++++++++++++++++++-
  6 files changed, 51 insertions(+), 7 deletions(-)
 
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
-index 48812b93dd..737a80c0a4 100644
+index 48812b9..737a80c 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 @@ -249,7 +249,8 @@ config SYS_LS_PPA_ESBC_ADDR
@@ -38,7 +38,7 @@ index 48812b93dd..737a80c0a4 100644
  	default 0x680000 if SYS_LS_PPA_FW_IN_NAND
  	help
 diff --git a/board/freescale/ls1088a/Kconfig b/board/freescale/ls1088a/Kconfig
-index 1ada661743..4479dd0758 100644
+index 1ada661..4479dd0 100644
 --- a/board/freescale/ls1088a/Kconfig
 +++ b/board/freescale/ls1088a/Kconfig
 @@ -12,6 +12,7 @@ config SYS_SOC
@@ -56,7 +56,7 @@ index 1ada661743..4479dd0758 100644
 +source "board/freescale/common/Kconfig"
  endif
 diff --git a/board/freescale/ls1088a/ls1088a.c b/board/freescale/ls1088a/ls1088a.c
-index ccf46943df..1c28ab48ef 100644
+index ccf4694..1c28ab4 100644
 --- a/board/freescale/ls1088a/ls1088a.c
 +++ b/board/freescale/ls1088a/ls1088a.c
 @@ -322,6 +322,9 @@ int board_init(void)
@@ -80,7 +80,7 @@ index ccf46943df..1c28ab48ef 100644
  }
  #endif
 diff --git a/include/configs/ls1088a_common.h b/include/configs/ls1088a_common.h
-index 05de5cca9b..eef03695ba 100644
+index 05de5cc..eef0369 100644
 --- a/include/configs/ls1088a_common.h
 +++ b/include/configs/ls1088a_common.h
 @@ -150,9 +150,9 @@ unsigned long long get_qixis_addr(void);
@@ -96,7 +96,7 @@ index 05de5cca9b..eef03695ba 100644
  #define CONFIG_CMD_GREPENV
  #define CONFIG_CMD_CACHE
 diff --git a/include/configs/ls1088aqds.h b/include/configs/ls1088aqds.h
-index 16a4708fed..e5e33060ba 100644
+index 16a4708..e5e3306 100644
 --- a/include/configs/ls1088aqds.h
 +++ b/include/configs/ls1088aqds.h
 @@ -338,6 +338,26 @@ unsigned long get_board_ddr_clk(void);
@@ -135,7 +135,7 @@ index 16a4708fed..e5e33060ba 100644
  /*  USB  */
  #define CONFIG_HAS_FSL_XHCI_USB
 diff --git a/include/configs/ls1088ardb.h b/include/configs/ls1088ardb.h
-index 8b79648206..7ac95da85b 100644
+index 8b79648..7ac95da 100644
 --- a/include/configs/ls1088ardb.h
 +++ b/include/configs/ls1088ardb.h
 @@ -278,6 +278,26 @@
@@ -175,5 +175,5 @@ index 8b79648206..7ac95da85b 100644
  #ifdef CONFIG_FSL_MC_ENET
  #define CONFIG_PHYLIB_10G
 -- 
-2.14.1
+1.7.1
 

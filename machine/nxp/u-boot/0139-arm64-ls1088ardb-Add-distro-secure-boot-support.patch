@@ -1,7 +1,7 @@
 From 8f2b375b6d059403529037151e4ca834bde23937 Mon Sep 17 00:00:00 2001
 From: Prabhakar Kushwaha <prabhakar.kushwaha@nxp.com>
 Date: Mon, 4 Sep 2017 12:39:12 +0530
-Subject: [PATCH 139/155] arm64: ls1088ardb: Add distro secure boot support
+Subject: [PATCH 139/211] arm64: ls1088ardb: Add distro secure boot support
 
 Enable validation of boot.scr script prior to its execution dependent
 on "secureboot" flag in environment.
@@ -9,13 +9,13 @@ on "secureboot" flag in environment.
 Signed-off-by: Vinitha Pillai-B57223 <vinitha.pillai@nxp.com>
 Signed-off-by: Sumit Garg <sumit.garg@nxp.com>
 ---
- configs/ls1088ardb_qspi_SECURE_BOOT_defconfig      |  9 +++
- .../ls1088ardb_sdcard_qspi_SECURE_BOOT_defconfig   | 10 ++++
- include/configs/ls1088ardb.h                       | 66 +++++++++++-----------
+ configs/ls1088ardb_qspi_SECURE_BOOT_defconfig      |    9 +++
+ .../ls1088ardb_sdcard_qspi_SECURE_BOOT_defconfig   |   10 +++
+ include/configs/ls1088ardb.h                       |   66 ++++++++++----------
  3 files changed, 53 insertions(+), 32 deletions(-)
 
 diff --git a/configs/ls1088ardb_qspi_SECURE_BOOT_defconfig b/configs/ls1088ardb_qspi_SECURE_BOOT_defconfig
-index a14e34300b..c5d4f8a3b1 100644
+index a14e343..c5d4f8a 100644
 --- a/configs/ls1088ardb_qspi_SECURE_BOOT_defconfig
 +++ b/configs/ls1088ardb_qspi_SECURE_BOOT_defconfig
 @@ -27,6 +27,15 @@ CONFIG_DM_PCI=y
@@ -35,7 +35,7 @@ index a14e34300b..c5d4f8a3b1 100644
  CONFIG_EFI_LOADER_BOUNCE_BUFFER=y
  # CONFIG_DISPLAY_BOARDINFO is not set
 diff --git a/configs/ls1088ardb_sdcard_qspi_SECURE_BOOT_defconfig b/configs/ls1088ardb_sdcard_qspi_SECURE_BOOT_defconfig
-index 2415722603..f3dac279f3 100644
+index 2415722..f3dac27 100644
 --- a/configs/ls1088ardb_sdcard_qspi_SECURE_BOOT_defconfig
 +++ b/configs/ls1088ardb_sdcard_qspi_SECURE_BOOT_defconfig
 @@ -34,6 +34,16 @@ CONFIG_FSL_DSPI=y
@@ -56,7 +56,7 @@ index 2415722603..f3dac279f3 100644
  CONFIG_PARTITIONS=y
  CONFIG_RSA=y
 diff --git a/include/configs/ls1088ardb.h b/include/configs/ls1088ardb.h
-index 81dfcb6dad..7bd152df4e 100644
+index 81dfcb6..7bd152d 100644
 --- a/include/configs/ls1088ardb.h
 +++ b/include/configs/ls1088ardb.h
 @@ -307,36 +307,26 @@
@@ -185,5 +185,5 @@ index 81dfcb6dad..7bd152df4e 100644
  /*  USB  */
  #define CONFIG_HAS_FSL_XHCI_USB
 -- 
-2.14.1
+1.7.1
 

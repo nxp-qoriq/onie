@@ -1,8 +1,7 @@
 From 8f967498d9f7fb19167445fd32be0fc48018edb7 Mon Sep 17 00:00:00 2001
 From: Bin Meng <bmeng.cn@gmail.com>
 Date: Wed, 19 Jul 2017 21:51:11 +0800
-Subject: [PATCH 041/155] usb: hub: Add a new API to test if a hub device is
- root hub
+Subject: [PATCH 041/211] usb: hub: Add a new API to test if a hub device is root hub
 
 Sometimes we need know if a given hub device is root hub or not.
 Add a new API to test this. This removes the xHCI driver's own
@@ -13,13 +12,13 @@ in the xHCI driver too.
 
 Signed-off-by: Bin Meng <bmeng.cn@gmail.com>
 ---
- common/usb_hub.c        | 10 ++++++++++
- drivers/usb/host/xhci.c | 24 ++----------------------
- include/usb.h           |  8 ++++++++
+ common/usb_hub.c        |   10 ++++++++++
+ drivers/usb/host/xhci.c |   24 ++----------------------
+ include/usb.h           |    8 ++++++++
  3 files changed, 20 insertions(+), 22 deletions(-)
 
 diff --git a/common/usb_hub.c b/common/usb_hub.c
-index 086b155cb7..a8c2f56006 100644
+index 086b155..a8c2f56 100644
 --- a/common/usb_hub.c
 +++ b/common/usb_hub.c
 @@ -67,6 +67,16 @@ static inline bool usb_hub_is_superspeed(struct usb_device *hdev)
@@ -40,7 +39,7 @@ index 086b155cb7..a8c2f56006 100644
  {
  	unsigned short dtype = USB_DT_HUB;
 diff --git a/drivers/usb/host/xhci.c b/drivers/usb/host/xhci.c
-index 8631e27d06..a5b888aecd 100644
+index 8631e27..a5b888a 100644
 --- a/drivers/usb/host/xhci.c
 +++ b/drivers/usb/host/xhci.c
 @@ -1116,26 +1116,6 @@ int usb_lowlevel_stop(int index)
@@ -84,14 +83,13 @@ index 8631e27d06..a5b888aecd 100644
  			uhop = dev_get_parent_priv(hub);
  			root_portnr = uhop->portnr;
 diff --git a/include/usb.h b/include/usb.h
-index a266677677..64dfa84a9b 100644
+index a266677..64dfa84 100644
 --- a/include/usb.h
 +++ b/include/usb.h
-@@ -775,6 +775,14 @@ struct usb_device *usb_get_dev_index(struct udevice *bus, int index);
- int usb_setup_device(struct usb_device *dev, bool do_read,
+@@ -776,6 +776,14 @@ int usb_setup_device(struct usb_device *dev, bool do_read,
  		     struct usb_device *parent);
  
-+/**
+ /**
 + * usb_hub_is_root_hub() - Test whether a hub device is root hub or not
 + *
 + * @hub:	USB hub device to test
@@ -99,9 +97,10 @@ index a266677677..64dfa84a9b 100644
 + */
 +bool usb_hub_is_root_hub(struct udevice *hub);
 +
- /**
++/**
   * usb_hub_scan() - Scan a hub and find its devices
   *
+  * @hub:	Hub device to scan
 -- 
-2.14.1
+1.7.1
 

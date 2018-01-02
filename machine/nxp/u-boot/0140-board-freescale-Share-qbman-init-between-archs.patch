@@ -1,7 +1,7 @@
 From cc926d97ace213d37e51862fbf7542ffa9f99a55 Mon Sep 17 00:00:00 2001
 From: Ahmed Mansour <ahmed.mansour@nxp.com>
 Date: Thu, 10 Nov 2016 11:26:50 -0500
-Subject: [PATCH 140/155] board/freescale: Share qbman init between archs
+Subject: [PATCH 140/211] board/freescale: Share qbman init between archs
 
 This patch adds changes necessary to move functionality present in
 PowerPC folders with ARM architectures that have DPAA1 QBMan hardware
@@ -19,40 +19,40 @@ PowerPC folders with ARM architectures that have DPAA1 QBMan hardware
 Signed-off-by: Ahmed Mansour <ahmed.mansour@nxp.com>
 Signed-off-by: Roy Pledge <roy.pledge@nxp.com>
 ---
- arch/arm/cpu/armv8/fsl-layerscape/cpu.c            |   3 +
- arch/arm/cpu/armv8/fsl-layerscape/fdt.c            |  15 +
- .../arm/cpu/armv8/fsl-layerscape/fsl_lsch2_speed.c |   3 +
- .../include/asm/arch-fsl-layerscape/immap_lsch2.h  |  29 ++
- arch/powerpc/cpu/mpc85xx/cpu_init.c                |   3 +-
- arch/powerpc/cpu/mpc85xx/fdt.c                     |   1 +
- arch/powerpc/cpu/mpc85xx/portals.c                 | 281 -------------------
- arch/powerpc/include/asm/fsl_liodn.h               |   5 +-
- arch/powerpc/include/asm/fsl_portals.h             |   4 -
- arch/powerpc/include/asm/immap_85xx.h              |  60 ----
- board/freescale/common/Makefile                    |   2 +
- board/freescale/common/portals.c                   | 312 +++++++++++++++++++++
- include/configs/ls1043a_common.h                   |   2 +
- include/fsl_qbman.h                                |  75 +++++
+ arch/arm/cpu/armv8/fsl-layerscape/cpu.c            |    3 +
+ arch/arm/cpu/armv8/fsl-layerscape/fdt.c            |   15 +
+ .../arm/cpu/armv8/fsl-layerscape/fsl_lsch2_speed.c |    3 +
+ .../include/asm/arch-fsl-layerscape/immap_lsch2.h  |   29 ++
+ arch/powerpc/cpu/mpc85xx/cpu_init.c                |    3 +-
+ arch/powerpc/cpu/mpc85xx/fdt.c                     |    1 +
+ arch/powerpc/cpu/mpc85xx/portals.c                 |  281 ------------------
+ arch/powerpc/include/asm/fsl_liodn.h               |    5 +-
+ arch/powerpc/include/asm/fsl_portals.h             |    4 -
+ arch/powerpc/include/asm/immap_85xx.h              |   60 ----
+ board/freescale/common/Makefile                    |    2 +
+ board/freescale/common/portals.c                   |  312 ++++++++++++++++++++
+ include/configs/ls1043a_common.h                   |    2 +
+ include/fsl_qbman.h                                |   75 +++++
  14 files changed, 447 insertions(+), 348 deletions(-)
  create mode 100644 board/freescale/common/portals.c
  create mode 100644 include/fsl_qbman.h
 
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/cpu.c b/arch/arm/cpu/armv8/fsl-layerscape/cpu.c
-index 86ac793dc9..ef3e3008f3 100644
+index 86ac793..ef3e300 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/cpu.c
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/cpu.c
-@@ -528,6 +528,9 @@ int arch_early_init_r(void)
- #endif
+@@ -529,6 +529,9 @@ int arch_early_init_r(void)
  #ifdef CONFIG_FMAN_ENET
  	fman_enet_init();
-+#endif
+ #endif
 +#ifdef CONFIG_SYS_DPAA_QBMAN
 +	setup_qbman_portals();
- #endif
++#endif
  	return 0;
  }
+ 
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/fdt.c b/arch/arm/cpu/armv8/fsl-layerscape/fdt.c
-index 7b4a6271ef..d6794708c9 100644
+index 7b4a627..d679470 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/fdt.c
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/fdt.c
 @@ -26,6 +26,8 @@
@@ -92,7 +92,7 @@ index 7b4a6271ef..d6794708c9 100644
  	fdt_fixup_fman_firmware(blob);
  #endif
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/fsl_lsch2_speed.c b/arch/arm/cpu/armv8/fsl-layerscape/fsl_lsch2_speed.c
-index 2d7775e54f..eaab948e67 100644
+index 2d7775e..eaab948 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/fsl_lsch2_speed.c
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/fsl_lsch2_speed.c
 @@ -155,6 +155,9 @@ void get_sys_info(struct sys_info *sys_info)
@@ -106,7 +106,7 @@ index 2d7775e54f..eaab948e67 100644
  
  int get_clocks(void)
 diff --git a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch2.h b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch2.h
-index 4e7dc46372..70c5fb320d 100644
+index 4e7dc46..70c5fb3 100644
 --- a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch2.h
 +++ b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch2.h
 @@ -23,6 +23,8 @@
@@ -153,7 +153,7 @@ index 4e7dc46372..70c5fb320d 100644
  
  #define I2C1_BASE_ADDR				(CONFIG_SYS_IMMR + 0x01180000)
 diff --git a/arch/powerpc/cpu/mpc85xx/cpu_init.c b/arch/powerpc/cpu/mpc85xx/cpu_init.c
-index f5bf67c990..600cce42f8 100644
+index f5bf67c..600cce4 100644
 --- a/arch/powerpc/cpu/mpc85xx/cpu_init.c
 +++ b/arch/powerpc/cpu/mpc85xx/cpu_init.c
 @@ -26,6 +26,7 @@
@@ -174,7 +174,7 @@ index f5bf67c990..600cce42f8 100644
  #endif
  
 diff --git a/arch/powerpc/cpu/mpc85xx/fdt.c b/arch/powerpc/cpu/mpc85xx/fdt.c
-index a9ea947305..7526fff9bc 100644
+index a9ea947..7526fff 100644
 --- a/arch/powerpc/cpu/mpc85xx/fdt.c
 +++ b/arch/powerpc/cpu/mpc85xx/fdt.c
 @@ -15,6 +15,7 @@
@@ -186,7 +186,7 @@ index a9ea947305..7526fff9bc 100644
  #ifdef CONFIG_FSL_ESDHC
  #include <fsl_esdhc.h>
 diff --git a/arch/powerpc/cpu/mpc85xx/portals.c b/arch/powerpc/cpu/mpc85xx/portals.c
-index 3777c6faa1..b298d11b9d 100644
+index 3777c6f..b298d11 100644
 --- a/arch/powerpc/cpu/mpc85xx/portals.c
 +++ b/arch/powerpc/cpu/mpc85xx/portals.c
 @@ -14,75 +14,6 @@
@@ -482,7 +482,7 @@ index 3777c6faa1..b298d11b9d 100644
 -
 -}
 diff --git a/arch/powerpc/include/asm/fsl_liodn.h b/arch/powerpc/include/asm/fsl_liodn.h
-index 8c91e722f4..22bf5eccc1 100644
+index 8c91e72..22bf5ec 100644
 --- a/arch/powerpc/include/asm/fsl_liodn.h
 +++ b/arch/powerpc/include/asm/fsl_liodn.h
 @@ -8,6 +8,7 @@
@@ -509,7 +509,7 @@ index 8c91e722f4..22bf5eccc1 100644
  		CONFIG_SYS_FSL_BMAN_OFFSET)
  
 diff --git a/arch/powerpc/include/asm/fsl_portals.h b/arch/powerpc/include/asm/fsl_portals.h
-index f13ba14579..10d459e2bc 100644
+index f13ba14..10d459e 100644
 --- a/arch/powerpc/include/asm/fsl_portals.h
 +++ b/arch/powerpc/include/asm/fsl_portals.h
 @@ -41,10 +41,6 @@ struct qportal_info {
@@ -524,7 +524,7 @@ index f13ba14579..10d459e2bc 100644
  extern void fdt_portal(void *blob, const char *compat, const char *container,
  			u64 addr, u32 size);
 diff --git a/arch/powerpc/include/asm/immap_85xx.h b/arch/powerpc/include/asm/immap_85xx.h
-index ee537f4ac9..841f3d95c1 100644
+index ee537f4..841f3d9 100644
 --- a/arch/powerpc/include/asm/immap_85xx.h
 +++ b/arch/powerpc/include/asm/immap_85xx.h
 @@ -2702,66 +2702,6 @@ enum {
@@ -595,7 +595,7 @@ index ee537f4ac9..841f3d95c1 100644
  	u8	res0[0x804];
  	u32	liodnbr;	/* LIODN Base Register */
 diff --git a/board/freescale/common/Makefile b/board/freescale/common/Makefile
-index 1c53fb605b..3e516a3160 100644
+index 1c53fb6..3e516a3 100644
 --- a/board/freescale/common/Makefile
 +++ b/board/freescale/common/Makefile
 @@ -74,6 +74,8 @@ obj-$(CONFIG_TARGET_P5040DS)	+= p_corenet/
@@ -609,7 +609,7 @@ index 1c53fb605b..3e516a3160 100644
  endif
 diff --git a/board/freescale/common/portals.c b/board/freescale/common/portals.c
 new file mode 100644
-index 0000000000..7e15b82819
+index 0000000..7e15b82
 --- /dev/null
 +++ b/board/freescale/common/portals.c
 @@ -0,0 +1,312 @@
@@ -926,7 +926,7 @@ index 0000000000..7e15b82819
 +
 +#endif /* CONFIG_SYS_DPAA_QBMAN */
 diff --git a/include/configs/ls1043a_common.h b/include/configs/ls1043a_common.h
-index dbb700bcb4..0b3fb4eab0 100644
+index dbb700b..0b3fb4e 100644
 --- a/include/configs/ls1043a_common.h
 +++ b/include/configs/ls1043a_common.h
 @@ -198,6 +198,8 @@
@@ -940,7 +940,7 @@ index dbb700bcb4..0b3fb4eab0 100644
  #define CONFIG_SYS_DPAA_FMAN
 diff --git a/include/fsl_qbman.h b/include/fsl_qbman.h
 new file mode 100644
-index 0000000000..3fa3d3908c
+index 0000000..3fa3d39
 --- /dev/null
 +++ b/include/fsl_qbman.h
 @@ -0,0 +1,75 @@
@@ -1020,5 +1020,5 @@ index 0000000000..3fa3d3908c
 +
 +#endif /* __FSL_QBMAN_H__ */
 -- 
-2.14.1
+1.7.1
 

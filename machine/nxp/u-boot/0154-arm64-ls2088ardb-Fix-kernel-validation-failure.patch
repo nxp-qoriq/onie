@@ -1,7 +1,7 @@
 From c66ddf7df5ef1130b264040555733cbcd227555f Mon Sep 17 00:00:00 2001
 From: Vinitha V Pillai <vinitha.pillai@nxp.com>
 Date: Thu, 14 Sep 2017 16:14:33 +0530
-Subject: [PATCH 154/155] arm64: ls2088ardb: Fix kernel validation failure
+Subject: [PATCH 154/211] arm64: ls2088ardb: Fix kernel validation failure
 
 Add a variable $kernelheader_addr_r used in
 distroboot to validate kernel image as its absence
@@ -9,11 +9,11 @@ caused kernel validation failure
 
 Signed-off-by: Vinitha V Pillai <vinitha.pillai@nxp.com>
 ---
- include/configs/ls2080ardb.h | 16 +++++++++++-----
- 1 file changed, 11 insertions(+), 5 deletions(-)
+ include/configs/ls2080ardb.h |   16 +++++++++++-----
+ 1 files changed, 11 insertions(+), 5 deletions(-)
 
 diff --git a/include/configs/ls2080ardb.h b/include/configs/ls2080ardb.h
-index 36c78470d8..8a34990bf1 100644
+index 36c7847..8a34990 100644
 --- a/include/configs/ls2080ardb.h
 +++ b/include/configs/ls2080ardb.h
 @@ -370,6 +370,7 @@ unsigned long get_board_sys_clk(void);
@@ -64,5 +64,5 @@ index 36c78470d8..8a34990bf1 100644
  #else
  /* Try to boot an on-NOR kernel first, then do normal distro boot */
 -- 
-2.14.1
+1.7.1
 

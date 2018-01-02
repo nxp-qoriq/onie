@@ -1,17 +1,16 @@
 From 0e21873e4c3be2a37986b7105715611cfc86bd01 Mon Sep 17 00:00:00 2001
 From: Shengzhou Liu <Shengzhou.Liu@nxp.com>
 Date: Mon, 7 Aug 2017 15:06:47 +0800
-Subject: [PATCH 128/155] arm64: ls1046ardb: Add sd_bootcmd for distro fallback
- in case of sdboot
+Subject: [PATCH 128/211] arm64: ls1046ardb: Add sd_bootcmd for distro fallback in case of sdboot
 
 Signed-off-by: Shengzhou Liu <Shengzhou.Liu@nxp.com>
 ---
- include/configs/ls1046a_common.h | 8 +++++++-
- include/configs/ls1046ardb.h     | 8 +++++++-
+ include/configs/ls1046a_common.h |    8 +++++++-
+ include/configs/ls1046ardb.h     |    8 +++++++-
  2 files changed, 14 insertions(+), 2 deletions(-)
 
 diff --git a/include/configs/ls1046a_common.h b/include/configs/ls1046a_common.h
-index 5a2523252a..d02daf7f92 100644
+index 5a25232..d02daf7 100644
 --- a/include/configs/ls1046a_common.h
 +++ b/include/configs/ls1046a_common.h
 @@ -232,6 +232,8 @@
@@ -37,7 +36,7 @@ index 5a2523252a..d02daf7f92 100644
  
  #define CONFIG_BOOTARGS			"console=ttyS0,115200 root=/dev/ram0 " \
 diff --git a/include/configs/ls1046ardb.h b/include/configs/ls1046ardb.h
-index 7bdff828b9..f8c15a65d8 100644
+index 7bdff82..f8c15a6 100644
 --- a/include/configs/ls1046ardb.h
 +++ b/include/configs/ls1046ardb.h
 @@ -243,8 +243,14 @@
@@ -57,5 +56,5 @@ index 7bdff828b9..f8c15a65d8 100644
  			"15m(u-boot),48m(kernel.itb);" \
  			"7e800000.flash:16m(nand_uboot)," \
 -- 
-2.14.1
+1.7.1
 

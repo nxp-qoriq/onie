@@ -1,7 +1,7 @@
 From 7b23d9c59fe85db47b3be25ee0da72b1d9d9f022 Mon Sep 17 00:00:00 2001
 From: Bin Meng <bmeng.cn@gmail.com>
 Date: Wed, 19 Jul 2017 21:51:10 +0800
-Subject: [PATCH 040/155] usb: hub: Remove hub_port_reset()
+Subject: [PATCH 040/211] usb: hub: Remove hub_port_reset()
 
 At present hub_port_reset() is defined in DM USB, but it is never
 called hence remove it (removing another ifdefs).
@@ -13,12 +13,12 @@ same hub module.
 Signed-off-by: Bin Meng <bmeng.cn@gmail.com>
 Reviewed-by: Simon Glass <sjg@chromium.org>
 ---
- common/usb_hub.c | 25 +++++++++++++------------
- include/usb.h    | 18 ------------------
+ common/usb_hub.c |   25 +++++++++++++------------
+ include/usb.h    |   18 ------------------
  2 files changed, 13 insertions(+), 30 deletions(-)
 
 diff --git a/common/usb_hub.c b/common/usb_hub.c
-index 37b358bbbb..086b155cb7 100644
+index 37b358b..086b155 100644
 --- a/common/usb_hub.c
 +++ b/common/usb_hub.c
 @@ -207,8 +207,18 @@ static inline char *portspeed(int portstatus)
@@ -68,7 +68,7 @@ index 37b358bbbb..086b155cb7 100644
  		if (ret != -ENXIO)
  			printf("cannot reset port %i!?\n", port + 1);
 diff --git a/include/usb.h b/include/usb.h
-index eb82cc23a8..a266677677 100644
+index eb82cc2..a266677 100644
 --- a/include/usb.h
 +++ b/include/usb.h
 @@ -871,24 +871,6 @@ bool usb_device_has_child_on_port(struct usb_device *parent, int port);
@@ -97,5 +97,5 @@ index eb82cc23a8..a266677677 100644
   * usb_find_usb2_hub_address_port() - Get hub address and port for TT setting
   *
 -- 
-2.14.1
+1.7.1
 

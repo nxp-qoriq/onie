@@ -1,8 +1,7 @@
 From d8ada44e3127d8f48bf96da7c6a60ff9adc143c6 Mon Sep 17 00:00:00 2001
 From: Rajesh Bhagat <rajesh.bhagat@nxp.com>
 Date: Fri, 25 Aug 2017 13:31:15 +0530
-Subject: [PATCH 120/155] board: common: vid: Move IR chip specific code in
- flag
+Subject: [PATCH 120/211] board: common: vid: Move IR chip specific code in flag
 
 Moves IR chip (IR36021) specific code in flag to resolve
 compilation issue where it is not present. For example,
@@ -11,11 +10,11 @@ LS1088A is having a new LTC3882 voltage chip.
 Signed-off-by: Ashish Kumar <Ashish.Kumar@nxp.com>
 Signed-off-by: Rajesh Bhagat <rajesh.bhagat@nxp.com>
 ---
- board/freescale/common/vid.c | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+ board/freescale/common/vid.c |   10 +++++++++-
+ 1 files changed, 9 insertions(+), 1 deletions(-)
 
 diff --git a/board/freescale/common/vid.c b/board/freescale/common/vid.c
-index 8fee5ba83d..a920849b6c 100644
+index 8fee5ba..a920849 100644
 --- a/board/freescale/common/vid.c
 +++ b/board/freescale/common/vid.c
 @@ -184,6 +184,7 @@ static int read_voltage(int i2caddress)
@@ -65,5 +64,5 @@ index 8fee5ba83d..a920849b6c 100644
  	/* get the voltage ID from fuse status register */
  	fusesr = in_le32(&gur->dcfg_fusesr);
 -- 
-2.14.1
+1.7.1
 

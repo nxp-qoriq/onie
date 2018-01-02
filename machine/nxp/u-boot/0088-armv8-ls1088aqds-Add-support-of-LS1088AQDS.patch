@@ -1,7 +1,7 @@
 From 999341d873c5a7f051eed8d83d14e8b5ee662d0b Mon Sep 17 00:00:00 2001
 From: Ashish Kumar <Ashish.Kumar@nxp.com>
 Date: Thu, 17 Aug 2017 18:43:53 +0530
-Subject: [PATCH 088/155] armv8: ls1088aqds: Add support of LS1088AQDS
+Subject: [PATCH 088/211] armv8: ls1088aqds: Add support of LS1088AQDS
 
 This patch add support of LS1088AQDS platform.
 
@@ -14,20 +14,20 @@ Signed-off-by: Prabhakar Kushwaha <prabhakar.kushwaha@nxp.com>
 Signed-off-by: Shaohui Xie <Shaohui.Xie@nxp.com>
 Signed-off-by: Ashish Kumar <Ashish.Kumar@nxp.com>
 ---
- arch/arm/Kconfig                         |  13 +
- arch/arm/cpu/armv8/Kconfig               |   2 +-
- arch/arm/dts/Makefile                    |   3 +-
- arch/arm/dts/fsl-ls1088a-qds.dts         |  70 ++++
- board/freescale/ls1088a/Kconfig          |  16 +
- board/freescale/ls1088a/MAINTAINERS      |   8 +
- board/freescale/ls1088a/Makefile         |   1 +
- board/freescale/ls1088a/README           |  79 ++++
- board/freescale/ls1088a/ddr.h            |   5 +
- board/freescale/ls1088a/eth_ls1088aqds.c | 650 +++++++++++++++++++++++++++++++
- board/freescale/ls1088a/ls1088a.c        |  87 ++++-
- board/freescale/ls1088a/ls1088a_qixis.h  |   5 +
- configs/ls1088aqds_qspi_defconfig        |  29 ++
- include/configs/ls1088aqds.h             | 414 ++++++++++++++++++++
+ arch/arm/Kconfig                         |   13 +
+ arch/arm/cpu/armv8/Kconfig               |    2 +-
+ arch/arm/dts/Makefile                    |    3 +-
+ arch/arm/dts/fsl-ls1088a-qds.dts         |   70 ++++
+ board/freescale/ls1088a/Kconfig          |   16 +
+ board/freescale/ls1088a/MAINTAINERS      |    8 +
+ board/freescale/ls1088a/Makefile         |    1 +
+ board/freescale/ls1088a/README           |   79 ++++
+ board/freescale/ls1088a/ddr.h            |    5 +
+ board/freescale/ls1088a/eth_ls1088aqds.c |  650 ++++++++++++++++++++++++++++++
+ board/freescale/ls1088a/ls1088a.c        |   87 ++++-
+ board/freescale/ls1088a/ls1088a_qixis.h  |    5 +
+ configs/ls1088aqds_qspi_defconfig        |   29 ++
+ include/configs/ls1088aqds.h             |  414 +++++++++++++++++++
  14 files changed, 1372 insertions(+), 10 deletions(-)
  create mode 100644 arch/arm/dts/fsl-ls1088a-qds.dts
  create mode 100644 board/freescale/ls1088a/eth_ls1088aqds.c
@@ -35,7 +35,7 @@ Signed-off-by: Ashish Kumar <Ashish.Kumar@nxp.com>
  create mode 100644 include/configs/ls1088aqds.h
 
 diff --git a/arch/arm/Kconfig b/arch/arm/Kconfig
-index dd75907a68..45754d96f8 100644
+index dd75907..45754d9 100644
 --- a/arch/arm/Kconfig
 +++ b/arch/arm/Kconfig
 @@ -787,6 +787,19 @@ config TARGET_LS2080A_SIMU
@@ -59,7 +59,7 @@ index dd75907a68..45754d96f8 100644
  	bool "Support ls2080aqds"
  	select ARCH_LS2080A
 diff --git a/arch/arm/cpu/armv8/Kconfig b/arch/arm/cpu/armv8/Kconfig
-index aecdf814c8..12aba9d4e9 100644
+index aecdf81..12aba9d 100644
 --- a/arch/arm/cpu/armv8/Kconfig
 +++ b/arch/arm/cpu/armv8/Kconfig
 @@ -88,7 +88,7 @@ config PSCI_RESET
@@ -72,7 +72,7 @@ index aecdf814c8..12aba9d4e9 100644
  		   !TARGET_LS1043ARDB && !TARGET_LS1043AQDS && \
  		   !TARGET_LS1046ARDB && !TARGET_LS1046AQDS && \
 diff --git a/arch/arm/dts/Makefile b/arch/arm/dts/Makefile
-index 2ea63228f8..1709ac6e61 100644
+index 2ea6322..1709ac6 100644
 --- a/arch/arm/dts/Makefile
 +++ b/arch/arm/dts/Makefile
 @@ -187,7 +187,8 @@ dtb-$(CONFIG_FSL_LSCH3) += fsl-ls2080a-qds.dtb \
@@ -87,7 +87,7 @@ index 2ea63228f8..1709ac6e61 100644
  	fsl-ls1043a-rdb.dtb \
 diff --git a/arch/arm/dts/fsl-ls1088a-qds.dts b/arch/arm/dts/fsl-ls1088a-qds.dts
 new file mode 100644
-index 0000000000..9b7bef42b8
+index 0000000..9b7bef4
 --- /dev/null
 +++ b/arch/arm/dts/fsl-ls1088a-qds.dts
 @@ -0,0 +1,70 @@
@@ -162,7 +162,7 @@ index 0000000000..9b7bef42b8
 +	 };
 +};
 diff --git a/board/freescale/ls1088a/Kconfig b/board/freescale/ls1088a/Kconfig
-index a4d8223471..1ada661743 100644
+index a4d8223..1ada661 100644
 --- a/board/freescale/ls1088a/Kconfig
 +++ b/board/freescale/ls1088a/Kconfig
 @@ -1,3 +1,19 @@
@@ -186,7 +186,7 @@ index a4d8223471..1ada661743 100644
  
  config SYS_BOARD
 diff --git a/board/freescale/ls1088a/MAINTAINERS b/board/freescale/ls1088a/MAINTAINERS
-index 12834f63be..e1e6d4bbc5 100644
+index 12834f6..e1e6d4b 100644
 --- a/board/freescale/ls1088a/MAINTAINERS
 +++ b/board/freescale/ls1088a/MAINTAINERS
 @@ -5,3 +5,11 @@ S:	Maintained
@@ -202,7 +202,7 @@ index 12834f63be..e1e6d4bbc5 100644
 +F:	include/configs/ls1088aqds.h
 +F:	configs/ls1088aqds_qspi_defconfig
 diff --git a/board/freescale/ls1088a/Makefile b/board/freescale/ls1088a/Makefile
-index e997cf1adb..bdcce9e6bc 100644
+index e997cf1..bdcce9e 100644
 --- a/board/freescale/ls1088a/Makefile
 +++ b/board/freescale/ls1088a/Makefile
 @@ -6,4 +6,5 @@
@@ -212,7 +212,7 @@ index e997cf1adb..bdcce9e6bc 100644
 +obj-$(CONFIG_TARGET_LS1088AQDS) += eth_ls1088aqds.o
  obj-y += ddr.o
 diff --git a/board/freescale/ls1088a/README b/board/freescale/ls1088a/README
-index 3f4d987631..aa0fb6ac67 100644
+index 3f4d987..aa0fb6a 100644
 --- a/board/freescale/ls1088a/README
 +++ b/board/freescale/ls1088a/README
 @@ -64,3 +64,82 @@ Alternately you can use this command to switch from QSPI to SD
@@ -299,7 +299,7 @@ index 3f4d987631..aa0fb6ac67 100644
 + DPAA2 DPC                           0x00E00000
 + Kernel.itb                          0x01000000
 diff --git a/board/freescale/ls1088a/ddr.h b/board/freescale/ls1088a/ddr.h
-index dfcfc1fae2..a1ad709e86 100644
+index dfcfc1f..a1ad709 100644
 --- a/board/freescale/ls1088a/ddr.h
 +++ b/board/freescale/ls1088a/ddr.h
 @@ -34,6 +34,11 @@ static const struct board_specific_parameters udimm0[] = {
@@ -316,7 +316,7 @@ index dfcfc1fae2..a1ad709e86 100644
  };
 diff --git a/board/freescale/ls1088a/eth_ls1088aqds.c b/board/freescale/ls1088a/eth_ls1088aqds.c
 new file mode 100644
-index 0000000000..3e78ac74c1
+index 0000000..3e78ac7
 --- /dev/null
 +++ b/board/freescale/ls1088a/eth_ls1088aqds.c
 @@ -0,0 +1,650 @@
@@ -971,7 +971,7 @@ index 0000000000..3e78ac74c1
 +	return error;
 +}
 diff --git a/board/freescale/ls1088a/ls1088a.c b/board/freescale/ls1088a/ls1088a.c
-index 04414a8ea5..96d9ae7f1d 100644
+index 04414a8..96d9ae7 100644
 --- a/board/freescale/ls1088a/ls1088a.c
 +++ b/board/freescale/ls1088a/ls1088a.c
 @@ -50,14 +50,20 @@ int checkboard(void)
@@ -1108,7 +1108,7 @@ index 04414a8ea5..96d9ae7f1d 100644
  	select_i2c_ch_pca9547(I2C_MUX_CH_DEFAULT);
  }
 diff --git a/board/freescale/ls1088a/ls1088a_qixis.h b/board/freescale/ls1088a/ls1088a_qixis.h
-index 9757d1b28c..4790461b47 100644
+index 9757d1b..4790461 100644
 --- a/board/freescale/ls1088a/ls1088a_qixis.h
 +++ b/board/freescale/ls1088a/ls1088a_qixis.h
 @@ -31,4 +31,9 @@
@@ -1123,7 +1123,7 @@ index 9757d1b28c..4790461b47 100644
  #endif
 diff --git a/configs/ls1088aqds_qspi_defconfig b/configs/ls1088aqds_qspi_defconfig
 new file mode 100644
-index 0000000000..6fff149fb6
+index 0000000..6fff149
 --- /dev/null
 +++ b/configs/ls1088aqds_qspi_defconfig
 @@ -0,0 +1,29 @@
@@ -1158,7 +1158,7 @@ index 0000000000..6fff149fb6
 +CONFIG_FSL_LS_PPA=y
 diff --git a/include/configs/ls1088aqds.h b/include/configs/ls1088aqds.h
 new file mode 100644
-index 0000000000..3547b0bbbc
+index 0000000..3547b0b
 --- /dev/null
 +++ b/include/configs/ls1088aqds.h
 @@ -0,0 +1,414 @@
@@ -1577,5 +1577,5 @@ index 0000000000..3547b0bbbc
 +
 +#endif /* __LS1088A_QDS_H */
 -- 
-2.14.1
+1.7.1
 

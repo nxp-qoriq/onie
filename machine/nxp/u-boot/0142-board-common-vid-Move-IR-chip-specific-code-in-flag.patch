@@ -1,8 +1,7 @@
 From bb85ef33612b0dcd508a32e0580490add31f91a1 Mon Sep 17 00:00:00 2001
 From: Rajesh Bhagat <rajesh.bhagat@nxp.com>
 Date: Mon, 4 Sep 2017 18:41:28 +0530
-Subject: [PATCH 142/155] board: common: vid: Move IR chip specific code in
- flag
+Subject: [PATCH 142/211] board: common: vid: Move IR chip specific code in flag
 
 Moves IR chip (IR36021) specific code in flag to resolve
 compilation issue where it is not present. For example,
@@ -11,11 +10,11 @@ LS1088A is having a new LTC3882 voltage chip.
 Signed-off-by: Ashish Kumar <Ashish.Kumar@nxp.com>
 Signed-off-by: Rajesh Bhagat <rajesh.bhagat@nxp.com>
 ---
- board/freescale/common/vid.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ board/freescale/common/vid.c |    9 +++++++++
+ 1 files changed, 9 insertions(+), 0 deletions(-)
 
 diff --git a/board/freescale/common/vid.c b/board/freescale/common/vid.c
-index 24bdb66d6f..810de17ae4 100644
+index 24bdb66..810de17 100644
 --- a/board/freescale/common/vid.c
 +++ b/board/freescale/common/vid.c
 @@ -41,6 +41,8 @@ int __weak board_adjust_vdd(int vdd)
@@ -70,5 +69,5 @@ index 24bdb66d6f..810de17ae4 100644
  	/*
  	 * Read voltage monitor to check real voltage.
 -- 
-2.14.1
+1.7.1
 

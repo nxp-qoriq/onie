@@ -1,8 +1,7 @@
 From be2d1d475cd0fb75168da54d33fee8d6cb2f7a69 Mon Sep 17 00:00:00 2001
 From: Bin Meng <bmeng.cn@gmail.com>
 Date: Wed, 19 Jul 2017 21:51:14 +0800
-Subject: [PATCH 044/155] usb: xhci: Change xhci_setup_addressable_virt_dev()
- signature
+Subject: [PATCH 044/211] usb: xhci: Change xhci_setup_addressable_virt_dev() signature
 
 For future extension, change xhci_setup_addressable_virt_dev()
 signature to accept a pointer to 'struct usb_device', instead
@@ -12,13 +11,13 @@ these two plus some other useful information of the device.
 Signed-off-by: Bin Meng <bmeng.cn@gmail.com>
 Reviewed-by: Simon Glass <sjg@chromium.org>
 ---
- drivers/usb/host/xhci-mem.c | 6 ++++--
- drivers/usb/host/xhci.c     | 3 +--
- drivers/usb/host/xhci.h     | 4 ++--
+ drivers/usb/host/xhci-mem.c |    6 ++++--
+ drivers/usb/host/xhci.c     |    3 +--
+ drivers/usb/host/xhci.h     |    4 ++--
  3 files changed, 7 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/usb/host/xhci-mem.c b/drivers/usb/host/xhci-mem.c
-index 12e277a26d..9aa309237e 100644
+index 12e277a..9aa3092 100644
 --- a/drivers/usb/host/xhci-mem.c
 +++ b/drivers/usb/host/xhci-mem.c
 @@ -713,14 +713,16 @@ void xhci_slot_copy(struct xhci_ctrl *ctrl, struct xhci_container_ctx *in_ctx,
@@ -41,7 +40,7 @@ index 12e277a26d..9aa309237e 100644
  	virt_dev = ctrl->devs[slot_id];
  
 diff --git a/drivers/usb/host/xhci.c b/drivers/usb/host/xhci.c
-index a5b888aecd..1148127ea5 100644
+index a5b888a..1148127 100644
 --- a/drivers/usb/host/xhci.c
 +++ b/drivers/usb/host/xhci.c
 @@ -415,8 +415,7 @@ static int xhci_address_device(struct usb_device *udev, int root_portnr)
@@ -55,7 +54,7 @@ index a5b888aecd..1148127ea5 100644
  	ctrl_ctx = xhci_get_input_control_ctx(virt_dev->in_ctx);
  	ctrl_ctx->add_flags = cpu_to_le32(SLOT_FLAG | EP0_FLAG);
 diff --git a/drivers/usb/host/xhci.h b/drivers/usb/host/xhci.h
-index b9602baa74..cdce67c1a0 100644
+index b9602ba..cdce67c 100644
 --- a/drivers/usb/host/xhci.h
 +++ b/drivers/usb/host/xhci.h
 @@ -1247,8 +1247,8 @@ void xhci_endpoint_copy(struct xhci_ctrl *ctrl,
@@ -70,5 +69,5 @@ index b9602baa74..cdce67c1a0 100644
  			u32 slot_id, u32 ep_index, trb_type cmd);
  void xhci_acknowledge_event(struct xhci_ctrl *ctrl);
 -- 
-2.14.1
+1.7.1
 

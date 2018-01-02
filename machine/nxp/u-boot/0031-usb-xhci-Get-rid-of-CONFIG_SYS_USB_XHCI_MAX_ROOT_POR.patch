@@ -1,8 +1,7 @@
 From f07471323eefa76c5a09e575bb6d998286902d49 Mon Sep 17 00:00:00 2001
 From: Bin Meng <bmeng.cn@gmail.com>
 Date: Wed, 19 Jul 2017 21:50:03 +0800
-Subject: [PATCH 031/155] usb: xhci: Get rid of
- CONFIG_SYS_USB_XHCI_MAX_ROOT_PORTS
+Subject: [PATCH 031/211] usb: xhci: Get rid of CONFIG_SYS_USB_XHCI_MAX_ROOT_PORTS
 
 xHC reports supported maximum number of ports in the HCSPARAMS1
 register, so it's unnecessary to use a hardcoded config option
@@ -13,12 +12,12 @@ Reviewed-by: Simon Glass <sjg@chromium.org>
 Reviewed-by: Stefan Roese <sr@denx.de>
 Tested-by: Stefan Roese <sr@denx.de>
 ---
- drivers/usb/host/xhci.c | 8 +++++---
- drivers/usb/host/xhci.h | 4 +---
+ drivers/usb/host/xhci.c |    8 +++++---
+ drivers/usb/host/xhci.h |    4 +---
  2 files changed, 6 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/usb/host/xhci.c b/drivers/usb/host/xhci.c
-index 2acb0e6539..8631e27d06 100644
+index 2acb0e6..8631e27 100644
 --- a/drivers/usb/host/xhci.c
 +++ b/drivers/usb/host/xhci.c
 @@ -668,12 +668,14 @@ static int xhci_submit_root(struct usb_device *udev, unsigned long pipe,
@@ -40,7 +39,7 @@ index 2acb0e6539..8631e27d06 100644
  	}
  
 diff --git a/drivers/usb/host/xhci.h b/drivers/usb/host/xhci.h
-index 3cf08e4207..b9602baa74 100644
+index 3cf08e4..b9602ba 100644
 --- a/drivers/usb/host/xhci.h
 +++ b/drivers/usb/host/xhci.h
 @@ -172,9 +172,7 @@ struct xhci_hcor {
@@ -55,5 +54,5 @@ index 3cf08e4207..b9602baa74 100644
  
  /* USBCMD - USB command - command bitmasks */
 -- 
-2.14.1
+1.7.1
 

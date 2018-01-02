@@ -1,7 +1,7 @@
 From bdf9c1af48954fbf6dac8540fae5abf3f9ddf570 Mon Sep 17 00:00:00 2001
 From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
 Date: Mon, 3 Jul 2017 17:51:10 +0800
-Subject: [PATCH 147/155] fsl-lsch2: csu: correct the workaround A-010315
+Subject: [PATCH 147/211] fsl-lsch2: csu: correct the workaround A-010315
 
 The implementation of function set_pcie_ns_access() uses a wrong
 argument. The structure array ns_dev has a member 'ind' which is
@@ -12,12 +12,12 @@ Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
 [YS: Revise commit message]
 Reviewed-by: York Sun <york.sun@nxp.com>
 ---
- board/freescale/common/ns_access.c | 20 ++++++++++----------
- include/fsl_csu.h                  |  2 +-
+ board/freescale/common/ns_access.c |   20 ++++++++++----------
+ include/fsl_csu.h                  |    2 +-
  2 files changed, 11 insertions(+), 11 deletions(-)
 
 diff --git a/board/freescale/common/ns_access.c b/board/freescale/common/ns_access.c
-index 1c2287d22a..0c3a54cae5 100644
+index 1c2287d..0c3a54c 100644
 --- a/board/freescale/common/ns_access.c
 +++ b/board/freescale/common/ns_access.c
 @@ -10,15 +10,15 @@
@@ -76,7 +76,7 @@ index 1c2287d22a..0c3a54cae5 100644
  #endif
  	default:
 diff --git a/include/fsl_csu.h b/include/fsl_csu.h
-index 8582ac0774..027a811aaf 100644
+index 8582ac0..027a811 100644
 --- a/include/fsl_csu.h
 +++ b/include/fsl_csu.h
 @@ -30,7 +30,7 @@ struct csu_ns_dev {
@@ -89,5 +89,5 @@ index 8582ac0774..027a811aaf 100644
  
  #endif
 -- 
-2.14.1
+1.7.1
 

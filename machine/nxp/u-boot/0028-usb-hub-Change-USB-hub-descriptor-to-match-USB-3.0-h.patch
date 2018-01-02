@@ -1,8 +1,7 @@
 From 8b1210ecd4c6bd301b47026d75bb259bf0fa1dcc Mon Sep 17 00:00:00 2001
 From: Bin Meng <bmeng.cn@gmail.com>
 Date: Wed, 19 Jul 2017 21:50:00 +0800
-Subject: [PATCH 028/155] usb: hub: Change USB hub descriptor to match USB 3.0
- hubs
+Subject: [PATCH 028/211] usb: hub: Change USB hub descriptor to match USB 3.0 hubs
 
 USB 3.0 hubs have a slightly different hub descriptor than USB 2.0
 hubs, with a fixed (rather than variable length) size. Change the
@@ -14,15 +13,15 @@ Reviewed-by: Simon Glass <sjg@chromium.org>
 Reviewed-by: Stefan Roese <sr@denx.de>
 Tested-by: Stefan Roese <sr@denx.de>
 ---
- common/usb_hub.c               | 12 +++++++-----
- drivers/usb/emul/sandbox_hub.c |  7 ++++++-
- drivers/usb/host/ehci-hcd.c    |  4 ++--
- drivers/usb/host/xhci.c        |  4 ++--
- include/usb.h                  | 18 ++++++++++++++----
+ common/usb_hub.c               |   12 +++++++-----
+ drivers/usb/emul/sandbox_hub.c |    7 ++++++-
+ drivers/usb/host/ehci-hcd.c    |    4 ++--
+ drivers/usb/host/xhci.c        |    4 ++--
+ include/usb.h                  |   18 ++++++++++++++----
  5 files changed, 31 insertions(+), 14 deletions(-)
 
 diff --git a/common/usb_hub.c b/common/usb_hub.c
-index 83c6767a3b..a46d26a69e 100644
+index 83c6767..a46d26a 100644
 --- a/common/usb_hub.c
 +++ b/common/usb_hub.c
 @@ -583,17 +583,19 @@ static int usb_hub_configure(struct usb_device *dev)
@@ -59,7 +58,7 @@ index 83c6767a3b..a46d26a69e 100644
  
  	if (sizeof(struct usb_hub_status) > USB_BUFSIZ) {
 diff --git a/drivers/usb/emul/sandbox_hub.c b/drivers/usb/emul/sandbox_hub.c
-index 9ffda9cc74..1432858fd5 100644
+index 9ffda9c..1432858 100644
 --- a/drivers/usb/emul/sandbox_hub.c
 +++ b/drivers/usb/emul/sandbox_hub.c
 @@ -96,7 +96,12 @@ static struct usb_hub_descriptor hub_desc = {
@@ -77,7 +76,7 @@ index 9ffda9cc74..1432858fd5 100644
  #error "This code sets up an incorrect mask"
  #endif
 diff --git a/drivers/usb/host/ehci-hcd.c b/drivers/usb/host/ehci-hcd.c
-index 13aa70d606..25f9d6d174 100644
+index 13aa70d..25f9d6d 100644
 --- a/drivers/usb/host/ehci-hcd.c
 +++ b/drivers/usb/host/ehci-hcd.c
 @@ -52,8 +52,8 @@ static struct descriptor {
@@ -92,7 +91,7 @@ index 13aa70d606..25f9d6d174 100644
  	{
  		0x12,		/* bLength */
 diff --git a/drivers/usb/host/xhci.c b/drivers/usb/host/xhci.c
-index 9fa0d8fc54..2acb0e6539 100644
+index 9fa0d8f..2acb0e6 100644
 --- a/drivers/usb/host/xhci.c
 +++ b/drivers/usb/host/xhci.c
 @@ -50,8 +50,8 @@ static struct descriptor {
@@ -107,7 +106,7 @@ index 9fa0d8fc54..2acb0e6539 100644
  	{
  		0x12,		/* bLength */
 diff --git a/include/usb.h b/include/usb.h
-index 62f051fe53..eb82cc23a8 100644
+index 62f051f..eb82cc2 100644
 --- a/include/usb.h
 +++ b/include/usb.h
 @@ -546,10 +546,20 @@ struct usb_hub_descriptor {
@@ -136,5 +135,5 @@ index 62f051fe53..eb82cc23a8 100644
  
  
 -- 
-2.14.1
+1.7.1
 

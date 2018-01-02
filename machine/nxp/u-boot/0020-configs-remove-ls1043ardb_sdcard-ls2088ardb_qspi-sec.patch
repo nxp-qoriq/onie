@@ -1,8 +1,7 @@
 From 06a777ac27143d23eec6f2375b1100230260f454 Mon Sep 17 00:00:00 2001
 From: Prabhakar Kushwaha <prabhakar.kushwaha@nxp.com>
 Date: Wed, 19 Jul 2017 13:31:33 +0530
-Subject: [PATCH 020/155] configs: remove ls1043ardb_sdcard & ls2088ardb_qspi
- secure targets
+Subject: [PATCH 020/211] configs: remove ls1043ardb_sdcard & ls2088ardb_qspi secure targets
 
 Build of ls1043ardb_sdcard & ls2088ardb_qspi secure targets showing
 compilation error so removing them for the time being till propper
@@ -10,15 +9,15 @@ support has been applied.
 
 Signed-off-by: Prabhakar Kushwaha <prabhakar.kushwaha@nxp.com>
 ---
- configs/ls1043ardb_sdcard_SECURE_BOOT_defconfig | 57 -------------------------
- configs/ls2088ardb_qspi_SECURE_BOOT_defconfig   | 50 ----------------------
- 2 files changed, 107 deletions(-)
+ configs/ls1043ardb_sdcard_SECURE_BOOT_defconfig |   57 -----------------------
+ configs/ls2088ardb_qspi_SECURE_BOOT_defconfig   |   50 --------------------
+ 2 files changed, 0 insertions(+), 107 deletions(-)
  delete mode 100644 configs/ls1043ardb_sdcard_SECURE_BOOT_defconfig
  delete mode 100644 configs/ls2088ardb_qspi_SECURE_BOOT_defconfig
 
 diff --git a/configs/ls1043ardb_sdcard_SECURE_BOOT_defconfig b/configs/ls1043ardb_sdcard_SECURE_BOOT_defconfig
 deleted file mode 100644
-index 4e959bfe60..0000000000
+index 4e959bf..0000000
 --- a/configs/ls1043ardb_sdcard_SECURE_BOOT_defconfig
 +++ /dev/null
 @@ -1,57 +0,0 @@
@@ -81,7 +80,7 @@ index 4e959bfe60..0000000000
 -CONFIG_SPL_RSA=y
 diff --git a/configs/ls2088ardb_qspi_SECURE_BOOT_defconfig b/configs/ls2088ardb_qspi_SECURE_BOOT_defconfig
 deleted file mode 100644
-index 749ad1d15a..0000000000
+index 749ad1d..0000000
 --- a/configs/ls2088ardb_qspi_SECURE_BOOT_defconfig
 +++ /dev/null
 @@ -1,50 +0,0 @@
@@ -136,5 +135,5 @@ index 749ad1d15a..0000000000
 -CONFIG_USB_STORAGE=y
 -CONFIG_EFI_LOADER_BOUNCE_BUFFER=y
 -- 
-2.14.1
+1.7.1
 

@@ -1,7 +1,7 @@
 From 374af01f7a1753fb2bb4e0b4fded8dbc5d8e9ef2 Mon Sep 17 00:00:00 2001
 From: Bharat Bhushan <Bharat.Bhushan@nxp.com>
 Date: Thu, 31 Aug 2017 13:20:53 +0530
-Subject: [PATCH 136/155] pci: layerscape: Fixup iommu-map for LS208xA
+Subject: [PATCH 136/211] pci: layerscape: Fixup iommu-map for LS208xA
 
 "pci: layerscape: Fixup device tree node for ls2088a" added
 support for LS208xA devices but fixing iommu-map property
@@ -10,11 +10,11 @@ is missing. This patch adds support for fixing iommu-map.
 Signed-off-by: Bharat Bhushan <Bharat.Bhushan@nxp.com>
 Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
 ---
- drivers/pci/pcie_layerscape_fixup.c | 19 ++++++++++++++-----
- 1 file changed, 14 insertions(+), 5 deletions(-)
+ drivers/pci/pcie_layerscape_fixup.c |   19 ++++++++++++++-----
+ 1 files changed, 14 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/pci/pcie_layerscape_fixup.c b/drivers/pci/pcie_layerscape_fixup.c
-index 9e6c2f5dfc..3dae20103d 100644
+index 9e6c2f5..3dae201 100644
 --- a/drivers/pci/pcie_layerscape_fixup.c
 +++ b/drivers/pci/pcie_layerscape_fixup.c
 @@ -130,19 +130,28 @@ static void fdt_pcie_set_iommu_map_entry(void *blob, struct ls_pcie *pcie,
@@ -52,5 +52,5 @@ index 9e6c2f5dfc..3dae20103d 100644
  
  	/* get phandle to iommu controller */
 -- 
-2.14.1
+1.7.1
 

@@ -1,8 +1,7 @@
 From 1abcf1bfb80f3e7441c6a7273fe65ea360009abd Mon Sep 17 00:00:00 2001
 From: Ruchika Gupta <ruchika.gupta@nxp.com>
 Date: Wed, 2 Aug 2017 11:36:38 +0530
-Subject: [PATCH 057/155] ARMv8/sec_firmware : Update chosen/kaslr-seed with
- random number
+Subject: [PATCH 057/211] ARMv8/sec_firmware : Update chosen/kaslr-seed with random number
 
 kASLR support in kernel requires a random number to be passed via
 chosen/kaslr-seed propert. sec_firmware generates this random seed
@@ -13,13 +12,13 @@ removed from device-tree.
 
 Signed-off-by: Ruchika Gupta <ruchika.gupta@nxp.com>
 ---
- arch/arm/cpu/armv8/fsl-layerscape/fdt.c   | 33 ++++++++++-
- arch/arm/cpu/armv8/sec_firmware.c         | 99 +++++++++++++++++++++++++++++++
- arch/arm/include/asm/armv8/sec_firmware.h |  9 +++
+ arch/arm/cpu/armv8/fsl-layerscape/fdt.c   |   33 +++++++++-
+ arch/arm/cpu/armv8/sec_firmware.c         |   99 +++++++++++++++++++++++++++++
+ arch/arm/include/asm/armv8/sec_firmware.h |    9 +++
  3 files changed, 138 insertions(+), 3 deletions(-)
 
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/fdt.c b/arch/arm/cpu/armv8/fsl-layerscape/fdt.c
-index f5f4840f19..7f58dbbd4f 100644
+index f5f4840..7f58dbb 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/fdt.c
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/fdt.c
 @@ -345,11 +345,36 @@ static void fdt_fixup_msi(void *blob)
@@ -77,14 +76,13 @@ index f5f4840f19..7f58dbbd4f 100644
  #ifdef CONFIG_MP
  	ft_fixup_cpu(blob);
 diff --git a/arch/arm/cpu/armv8/sec_firmware.c b/arch/arm/cpu/armv8/sec_firmware.c
-index fffce712d3..0e7483437a 100644
+index fffce71..0e74834 100644
 --- a/arch/arm/cpu/armv8/sec_firmware.c
 +++ b/arch/arm/cpu/armv8/sec_firmware.c
-@@ -231,6 +231,59 @@ unsigned int sec_firmware_support_psci_version(void)
- }
+@@ -232,6 +232,59 @@ unsigned int sec_firmware_support_psci_version(void)
  #endif
  
-+/*
+ /*
 + * Check with sec_firmware if it supports random number generation
 + * via HW RNG
 + *
@@ -137,9 +135,10 @@ index fffce712d3..0e7483437a 100644
 +	return 0;
 +}
 +
- /*
++/*
   * sec_firmware_init - Initialize the SEC Firmware
   * @sec_firmware_img:	the SEC Firmware image address
+  * @eret_hold_l:	the address to hold exception return address low
 @@ -278,3 +331,49 @@ int sec_firmware_init(const void *sec_firmware_img,
  
  	return 0;
@@ -191,7 +190,7 @@ index fffce712d3..0e7483437a 100644
 +	return ret;
 +}
 diff --git a/arch/arm/include/asm/armv8/sec_firmware.h b/arch/arm/include/asm/armv8/sec_firmware.h
-index bc1d97d7a9..6d42a7111f 100644
+index bc1d97d..6d42a71 100644
 --- a/arch/arm/include/asm/armv8/sec_firmware.h
 +++ b/arch/arm/include/asm/armv8/sec_firmware.h
 @@ -8,10 +8,14 @@
@@ -220,5 +219,5 @@ index bc1d97d7a9..6d42a7111f 100644
 +
  #endif /* __SEC_FIRMWARE_H_ */
 -- 
-2.14.1
+1.7.1
 

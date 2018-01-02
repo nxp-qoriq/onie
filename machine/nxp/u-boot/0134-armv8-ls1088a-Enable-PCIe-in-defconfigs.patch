@@ -1,24 +1,24 @@
 From e69a120823f008873b478da731ec04af115f9fa1 Mon Sep 17 00:00:00 2001
 From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
 Date: Mon, 24 Apr 2017 19:23:22 +0800
-Subject: [PATCH 134/155] armv8: ls1088a: Enable PCIe in defconfigs
+Subject: [PATCH 134/211] armv8: ls1088a: Enable PCIe in defconfigs
 
 Enabled PCIe support and PCI command feature.
 
 Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
 ---
- configs/ls1088aqds_qspi_SECURE_BOOT_defconfig        | 4 ++++
- configs/ls1088aqds_qspi_defconfig                    | 4 ++++
- configs/ls1088aqds_sdcard_qspi_defconfig             | 4 ++++
- configs/ls1088ardb_qspi_SECURE_BOOT_defconfig        | 4 ++++
- configs/ls1088ardb_qspi_defconfig                    | 4 ++++
- configs/ls1088ardb_sdcard_qspi_SECURE_BOOT_defconfig | 4 ++++
- configs/ls1088ardb_sdcard_qspi_defconfig             | 4 ++++
- include/configs/ls1088a_common.h                     | 4 ++++
- 8 files changed, 32 insertions(+)
+ configs/ls1088aqds_qspi_SECURE_BOOT_defconfig      |    4 ++++
+ configs/ls1088aqds_qspi_defconfig                  |    4 ++++
+ configs/ls1088aqds_sdcard_qspi_defconfig           |    4 ++++
+ configs/ls1088ardb_qspi_SECURE_BOOT_defconfig      |    4 ++++
+ configs/ls1088ardb_qspi_defconfig                  |    4 ++++
+ .../ls1088ardb_sdcard_qspi_SECURE_BOOT_defconfig   |    4 ++++
+ configs/ls1088ardb_sdcard_qspi_defconfig           |    4 ++++
+ include/configs/ls1088a_common.h                   |    4 ++++
+ 8 files changed, 32 insertions(+), 0 deletions(-)
 
 diff --git a/configs/ls1088aqds_qspi_SECURE_BOOT_defconfig b/configs/ls1088aqds_qspi_SECURE_BOOT_defconfig
-index 65653b87db..fdb4a1279d 100644
+index 65653b8..fdb4a12 100644
 --- a/configs/ls1088aqds_qspi_SECURE_BOOT_defconfig
 +++ b/configs/ls1088aqds_qspi_SECURE_BOOT_defconfig
 @@ -22,6 +22,10 @@ CONFIG_DM=y
@@ -33,7 +33,7 @@ index 65653b87db..fdb4a1279d 100644
  CONFIG_FSL_DSPI=y
  CONFIG_EFI_LOADER_BOUNCE_BUFFER=y
 diff --git a/configs/ls1088aqds_qspi_defconfig b/configs/ls1088aqds_qspi_defconfig
-index 3fc2520446..dbfc114fec 100644
+index 3fc2520..dbfc114 100644
 --- a/configs/ls1088aqds_qspi_defconfig
 +++ b/configs/ls1088aqds_qspi_defconfig
 @@ -22,6 +22,10 @@ CONFIG_DM=y
@@ -48,7 +48,7 @@ index 3fc2520446..dbfc114fec 100644
  CONFIG_FSL_DSPI=y
  CONFIG_EFI_LOADER_BOUNCE_BUFFER=y
 diff --git a/configs/ls1088aqds_sdcard_qspi_defconfig b/configs/ls1088aqds_sdcard_qspi_defconfig
-index 9aceef63f7..cdbc18bfbd 100644
+index 9aceef6..cdbc18b 100644
 --- a/configs/ls1088aqds_sdcard_qspi_defconfig
 +++ b/configs/ls1088aqds_sdcard_qspi_defconfig
 @@ -24,6 +24,10 @@ CONFIG_DM=y
@@ -63,7 +63,7 @@ index 9aceef63f7..cdbc18bfbd 100644
  CONFIG_SYS_NS16550=y
  CONFIG_FSL_DSPI=y
 diff --git a/configs/ls1088ardb_qspi_SECURE_BOOT_defconfig b/configs/ls1088ardb_qspi_SECURE_BOOT_defconfig
-index 5afd559048..a14e34300b 100644
+index 5afd559..a14e343 100644
 --- a/configs/ls1088ardb_qspi_SECURE_BOOT_defconfig
 +++ b/configs/ls1088ardb_qspi_SECURE_BOOT_defconfig
 @@ -22,6 +22,10 @@ CONFIG_DM=y
@@ -78,7 +78,7 @@ index 5afd559048..a14e34300b 100644
  CONFIG_FSL_DSPI=y
  CONFIG_EFI_LOADER_BOUNCE_BUFFER=y
 diff --git a/configs/ls1088ardb_qspi_defconfig b/configs/ls1088ardb_qspi_defconfig
-index 0d02575951..aae808bdcc 100644
+index 0d02575..aae808b 100644
 --- a/configs/ls1088ardb_qspi_defconfig
 +++ b/configs/ls1088ardb_qspi_defconfig
 @@ -22,6 +22,10 @@ CONFIG_DM=y
@@ -93,7 +93,7 @@ index 0d02575951..aae808bdcc 100644
  CONFIG_FSL_DSPI=y
  CONFIG_EFI_LOADER_BOUNCE_BUFFER=y
 diff --git a/configs/ls1088ardb_sdcard_qspi_SECURE_BOOT_defconfig b/configs/ls1088ardb_sdcard_qspi_SECURE_BOOT_defconfig
-index 746637d864..2415722603 100644
+index 746637d..2415722 100644
 --- a/configs/ls1088ardb_sdcard_qspi_SECURE_BOOT_defconfig
 +++ b/configs/ls1088ardb_sdcard_qspi_SECURE_BOOT_defconfig
 @@ -25,6 +25,10 @@ CONFIG_SPL_DM=y
@@ -108,7 +108,7 @@ index 746637d864..2415722603 100644
  CONFIG_FSL_DSPI=y
  CONFIG_SYS_MMCSD_RAW_MODE_U_BOOT_USE_SECTOR=y
 diff --git a/configs/ls1088ardb_sdcard_qspi_defconfig b/configs/ls1088ardb_sdcard_qspi_defconfig
-index 7fa7949ffa..146af273f1 100644
+index 7fa7949..146af27 100644
 --- a/configs/ls1088ardb_sdcard_qspi_defconfig
 +++ b/configs/ls1088ardb_sdcard_qspi_defconfig
 @@ -23,6 +23,10 @@ CONFIG_DM=y
@@ -123,7 +123,7 @@ index 7fa7949ffa..146af273f1 100644
  CONFIG_FSL_DSPI=y
  CONFIG_SYS_MMCSD_RAW_MODE_U_BOOT_USE_SECTOR=y
 diff --git a/include/configs/ls1088a_common.h b/include/configs/ls1088a_common.h
-index eef03695ba..85118ec2cd 100644
+index eef0369..85118ec 100644
 --- a/include/configs/ls1088a_common.h
 +++ b/include/configs/ls1088a_common.h
 @@ -64,6 +64,10 @@
@@ -138,5 +138,5 @@ index eef03695ba..85118ec2cd 100644
  #define CONFIG_SYS_MALLOC_LEN		(CONFIG_ENV_SIZE + 2048 * 1024)
  
 -- 
-2.14.1
+1.7.1
 

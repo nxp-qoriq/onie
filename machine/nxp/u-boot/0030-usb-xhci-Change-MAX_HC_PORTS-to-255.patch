@@ -1,7 +1,7 @@
 From d319273d844b04ad96927d99624336b9a4b21a0d Mon Sep 17 00:00:00 2001
 From: Bin Meng <bmeng.cn@gmail.com>
 Date: Wed, 19 Jul 2017 21:50:02 +0800
-Subject: [PATCH 030/155] usb: xhci: Change MAX_HC_PORTS to 255
+Subject: [PATCH 030/211] usb: xhci: Change MAX_HC_PORTS to 255
 
 HCSPARAMS1:MaxPorts field specifies the maximum port number value,
 and its valid values are in the range of 1 to 255.
@@ -11,11 +11,11 @@ Reviewed-by: Simon Glass <sjg@chromium.org>
 Reviewed-by: Stefan Roese <sr@denx.de>
 Tested-by: Stefan Roese <sr@denx.de>
 ---
- drivers/usb/host/xhci.h | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/usb/host/xhci.h |    6 +++---
+ 1 files changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/usb/host/xhci.h b/drivers/usb/host/xhci.h
-index 32dd611efa..3cf08e4207 100644
+index 32dd611..3cf08e4 100644
 --- a/drivers/usb/host/xhci.h
 +++ b/drivers/usb/host/xhci.h
 @@ -30,7 +30,7 @@
@@ -39,5 +39,5 @@ index 32dd611efa..3cf08e4207 100644
  /* HCSPARAMS2 - hcs_params2 - bitmasks */
  /* bits 0:3, frames or uframes that SW needs to queue transactions
 -- 
-2.14.1
+1.7.1
 

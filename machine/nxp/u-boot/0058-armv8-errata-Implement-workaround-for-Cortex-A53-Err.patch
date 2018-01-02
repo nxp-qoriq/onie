@@ -1,8 +1,7 @@
 From 043b765afdb85fa06f2566f614ef244806e206f4 Mon Sep 17 00:00:00 2001
 From: Alison Wang <b18965@freescale.com>
 Date: Tue, 18 Jul 2017 17:09:28 +0800
-Subject: [PATCH 058/155] armv8: errata: Implement workaround for Cortex-A53
- Erratum 855873
+Subject: [PATCH 058/211] armv8: errata: Implement workaround for Cortex-A53 Erratum 855873
 
 855873: An eviction might overtake a cache clean operation
 Workaround: The erratum can be avoided by upgrading cache clean by
@@ -14,13 +13,13 @@ This patch is to implement the workaround for this erratum.
 
 Signed-off-by: Alison Wang <alison.wang@nxp.com>
 ---
- arch/arm/Kconfig                          |  3 +++
- arch/arm/cpu/armv8/fsl-layerscape/Kconfig |  2 ++
- arch/arm/cpu/armv8/start.S                | 20 +++++++++++++++++++-
- 3 files changed, 24 insertions(+), 1 deletion(-)
+ arch/arm/Kconfig                          |    3 +++
+ arch/arm/cpu/armv8/fsl-layerscape/Kconfig |    2 ++
+ arch/arm/cpu/armv8/start.S                |   20 +++++++++++++++++++-
+ 3 files changed, 24 insertions(+), 1 deletions(-)
 
 diff --git a/arch/arm/Kconfig b/arch/arm/Kconfig
-index 3c3f5f7d05..6c0422d144 100644
+index 3c3f5f7..6c0422d 100644
 --- a/arch/arm/Kconfig
 +++ b/arch/arm/Kconfig
 @@ -103,6 +103,9 @@ config ARM_ERRATA_852421
@@ -34,7 +33,7 @@ index 3c3f5f7d05..6c0422d144 100644
  	bool
  	select SYS_CACHE_SHIFT_5
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
-index 6c2ba4fc62..5dd455c7c2 100644
+index 6c2ba4f..5dd455c 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 @@ -1,6 +1,7 @@
@@ -54,7 +53,7 @@ index 6c2ba4fc62..5dd455c7c2 100644
  	select SYS_FSL_DDR
  	select SYS_FSL_DDR_BE
 diff --git a/arch/arm/cpu/armv8/start.S b/arch/arm/cpu/armv8/start.S
-index 5c500be51d..ed15c7f1a5 100644
+index 5c500be..ed15c7f 100644
 --- a/arch/arm/cpu/armv8/start.S
 +++ b/arch/arm/cpu/armv8/start.S
 @@ -170,7 +170,10 @@ reset_sctrl:
@@ -92,5 +91,5 @@ index 5c500be51d..ed15c7f1a5 100644
  
  #ifdef CONFIG_ARM_ERRATA_828024
 -- 
-2.14.1
+1.7.1
 

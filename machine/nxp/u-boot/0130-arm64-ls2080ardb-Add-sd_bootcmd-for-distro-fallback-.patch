@@ -1,16 +1,15 @@
 From d854cd17834846334e9d8c3adbcac8337d83a75c Mon Sep 17 00:00:00 2001
 From: Shengzhou Liu <Shengzhou.Liu@nxp.com>
 Date: Mon, 7 Aug 2017 15:59:49 +0800
-Subject: [PATCH 130/155] arm64: ls2080ardb: Add sd_bootcmd for distro fallback
- in case of sdboot
+Subject: [PATCH 130/211] arm64: ls2080ardb: Add sd_bootcmd for distro fallback in case of sdboot
 
 Signed-off-by: Shengzhou Liu <Shengzhou.Liu@nxp.com>
 ---
- include/configs/ls2080ardb.h | 20 +++++++++++++++++++-
- 1 file changed, 19 insertions(+), 1 deletion(-)
+ include/configs/ls2080ardb.h |   20 +++++++++++++++++++-
+ 1 files changed, 19 insertions(+), 1 deletions(-)
 
 diff --git a/include/configs/ls2080ardb.h b/include/configs/ls2080ardb.h
-index 4cacf6f0bd..4f62a0184f 100644
+index 4cacf6f..4f62a01 100644
 --- a/include/configs/ls2080ardb.h
 +++ b/include/configs/ls2080ardb.h
 @@ -395,12 +395,18 @@ unsigned long get_board_sys_clk(void);
@@ -68,5 +67,5 @@ index 4cacf6f0bd..4f62a0184f 100644
  /* Try to boot an on-NOR kernel first, then do normal distro boot */
  #define CONFIG_BOOTCOMMAND						\
 -- 
-2.14.1
+1.7.1
 

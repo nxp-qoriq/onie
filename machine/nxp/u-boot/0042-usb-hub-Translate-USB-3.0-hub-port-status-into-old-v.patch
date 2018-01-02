@@ -1,8 +1,7 @@
 From 0aa281d347ef94a200af55c6ac0cebf4bb823ca9 Mon Sep 17 00:00:00 2001
 From: Bin Meng <bmeng.cn@gmail.com>
 Date: Wed, 19 Jul 2017 21:51:12 +0800
-Subject: [PATCH 042/155] usb: hub: Translate USB 3.0 hub port status into old
- version
+Subject: [PATCH 042/211] usb: hub: Translate USB 3.0 hub port status into old version
 
 USB 3.0 hub port status field has different bit positions from 2.0
 hubs. Since U-Boot only understands the old version, translate the
@@ -14,11 +13,11 @@ available with driver model USB.
 Signed-off-by: Bin Meng <bmeng.cn@gmail.com>
 Reviewed-by: Simon Glass <sjg@chromium.org>
 ---
- common/usb_hub.c | 33 ++++++++++++++++++++++++++++++++-
- 1 file changed, 32 insertions(+), 1 deletion(-)
+ common/usb_hub.c |   33 ++++++++++++++++++++++++++++++++-
+ 1 files changed, 32 insertions(+), 1 deletions(-)
 
 diff --git a/common/usb_hub.c b/common/usb_hub.c
-index a8c2f56006..b0ff15977f 100644
+index a8c2f56..b0ff159 100644
 --- a/common/usb_hub.c
 +++ b/common/usb_hub.c
 @@ -112,9 +112,40 @@ static int usb_get_hub_status(struct usb_device *dev, void *data)
@@ -64,5 +63,5 @@ index a8c2f56006..b0ff15977f 100644
  
  
 -- 
-2.14.1
+1.7.1
 

@@ -1,16 +1,16 @@
 From b0da7d8a73caa3b9461d7f4f14cd6e887b07896f Mon Sep 17 00:00:00 2001
 From: Madalin Bucur <madalin.bucur@nxp.com>
 Date: Fri, 4 Aug 2017 09:14:53 +0300
-Subject: [PATCH 078/155] net: fman: add support RGMII_TXID to memac
+Subject: [PATCH 078/211] net: fman: add support RGMII_TXID to memac
 
 Signed-off-by: Madalin Bucur <madalin.bucur@nxp.com>
 Acked-by: Joe Hershberger <joe.hershberger@ni.com>
 ---
- drivers/net/fm/memac.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/net/fm/memac.c |    4 +++-
+ 1 files changed, 3 insertions(+), 1 deletions(-)
 
 diff --git a/drivers/net/fm/memac.c b/drivers/net/fm/memac.c
-index 1b5779cece..ea50ed38f4 100644
+index 1b5779c..ea50ed3 100644
 --- a/drivers/net/fm/memac.c
 +++ b/drivers/net/fm/memac.c
 @@ -84,6 +84,7 @@ static void memac_set_interface_mode(struct fsl_enet_mac *mac,
@@ -32,5 +32,5 @@ index 1b5779cece..ea50ed38f4 100644
  		if_mode &= ~IF_MODE_SETSP_MASK;
  		switch (speed) {
 -- 
-2.14.1
+1.7.1
 

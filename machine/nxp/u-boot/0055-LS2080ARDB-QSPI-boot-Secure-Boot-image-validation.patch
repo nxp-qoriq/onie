@@ -1,7 +1,7 @@
 From 18f66cbeb6515de281325145df92704e6ac80dde Mon Sep 17 00:00:00 2001
 From: Vinitha Pillai-B57223 <vinitha.pillai@nxp.com>
 Date: Wed, 2 Aug 2017 14:47:57 +0530
-Subject: [PATCH 055/155] LS2080ARDB: QSPI boot: Secure Boot image validation
+Subject: [PATCH 055/211] LS2080ARDB: QSPI boot: Secure Boot image validation
 
 Validates the images in the ESBC phase for LS2088ARDB platform
 and QSPI boot using esbc_validate command. Add images validation
@@ -16,14 +16,14 @@ be initialised before the PPA is initialised.
 Signed-off-by: Vinitha Pillai-B57223 <vinitha.pillai@nxp.com>
 Signed-off-by: Udit Agarwal <udit.agarwal@nxp.com>
 ---
- arch/arm/cpu/armv8/fsl-layerscape/Kconfig |  1 +
- arch/arm/include/asm/fsl_secure_boot.h    |  5 +++++
- board/freescale/ls2080ardb/ls2080ardb.c   |  9 +++++----
- include/configs/ls2080ardb.h              | 22 ++++++++++++++++++++++
+ arch/arm/cpu/armv8/fsl-layerscape/Kconfig |    1 +
+ arch/arm/include/asm/fsl_secure_boot.h    |    5 +++++
+ board/freescale/ls2080ardb/ls2080ardb.c   |    9 +++++----
+ include/configs/ls2080ardb.h              |   22 ++++++++++++++++++++++
  4 files changed, 33 insertions(+), 4 deletions(-)
 
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
-index 45bf3d8800..6c2ba4fc62 100644
+index 45bf3d8..6c2ba4f 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 @@ -195,6 +195,7 @@ config SYS_LS_PPA_ESBC_ADDR
@@ -35,7 +35,7 @@ index 45bf3d8800..6c2ba4fc62 100644
  	default 0x680000 if SYS_LS_PPA_FW_IN_MMC
  	default 0x680000 if SYS_LS_PPA_FW_IN_NAND
 diff --git a/arch/arm/include/asm/fsl_secure_boot.h b/arch/arm/include/asm/fsl_secure_boot.h
-index d9a3826fb7..5ebe0cf743 100644
+index d9a3826..5ebe0cf 100644
 --- a/arch/arm/include/asm/fsl_secure_boot.h
 +++ b/arch/arm/include/asm/fsl_secure_boot.h
 @@ -72,8 +72,13 @@
@@ -53,7 +53,7 @@ index d9a3826fb7..5ebe0cf743 100644
  #define CONFIG_BS_HDR_SIZE		0x00004000
  #define CONFIG_BS_ADDR_RAM		0xa0600000
 diff --git a/board/freescale/ls2080ardb/ls2080ardb.c b/board/freescale/ls2080ardb/ls2080ardb.c
-index f332b6ff5b..00d905fdb0 100644
+index f332b6f..00d905f 100644
 --- a/board/freescale/ls2080ardb/ls2080ardb.c
 +++ b/board/freescale/ls2080ardb/ls2080ardb.c
 @@ -1,5 +1,5 @@
@@ -85,7 +85,7 @@ index f332b6ff5b..00d905fdb0 100644
  	return 0;
  }
 diff --git a/include/configs/ls2080ardb.h b/include/configs/ls2080ardb.h
-index 0a4c90c5ac..50a907c485 100644
+index 0a4c90c..50a907c 100644
 --- a/include/configs/ls2080ardb.h
 +++ b/include/configs/ls2080ardb.h
 @@ -363,6 +363,27 @@ unsigned long get_board_sys_clk(void);
@@ -125,5 +125,5 @@ index 0a4c90c5ac..50a907c485 100644
  #ifdef CONFIG_QSPI_BOOT
  #define CONFIG_EXTRA_ENV_SETTINGS		\
 -- 
-2.14.1
+1.7.1
 

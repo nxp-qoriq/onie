@@ -1,8 +1,7 @@
 From ed130cc4cbd452fb4264261f1a31352b6234bb88 Mon Sep 17 00:00:00 2001
 From: Bin Meng <bmeng.cn@gmail.com>
 Date: Wed, 19 Jul 2017 21:49:53 +0800
-Subject: [PATCH 021/155] usb: xhci: Remove incorrect comments for struct
- xhci_container_ctx
+Subject: [PATCH 021/211] usb: xhci: Remove incorrect comments for struct xhci_container_ctx
 
 There is no member called 'dma' in struct xhci_container_ctx. Remove
 the comments that mentions it.
@@ -12,11 +11,11 @@ Reviewed-by: Simon Glass <sjg@chromium.org>
 Reviewed-by: Stefan Roese <sr@denx.de>
 Tested-by: Stefan Roese <sr@denx.de>
 ---
- drivers/usb/host/xhci.h | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/usb/host/xhci.h |    3 +--
+ 1 files changed, 1 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/usb/host/xhci.h b/drivers/usb/host/xhci.h
-index 2afa38694b..431afd864d 100644
+index 2afa386..431afd8 100644
 --- a/drivers/usb/host/xhci.h
 +++ b/drivers/usb/host/xhci.h
 @@ -482,10 +482,9 @@ struct xhci_protocol_caps {
@@ -32,5 +31,5 @@ index 2afa38694b..431afd864d 100644
  struct xhci_container_ctx {
  	unsigned type;
 -- 
-2.14.1
+1.7.1
 

@@ -1,8 +1,7 @@
 From 364000a9ae6d9fbeb64ff30f0e85ce900b5ff607 Mon Sep 17 00:00:00 2001
 From: Ashish Kumar <Ashish.Kumar@nxp.com>
 Date: Wed, 26 Jul 2017 10:01:09 +0530
-Subject: [PATCH 087/155] armv8: ls1088ardb: Add support for LS1088ARDB
- platform
+Subject: [PATCH 087/211] armv8: ls1088ardb: Add support for LS1088ARDB platform
 
 LS1088A is an ARMv8 implementation. The LS1088ARDB is an evaluatoin
 platform that supports the LS1088A family SoCs. This patch add basic
@@ -14,24 +13,24 @@ Signed-off-by: Ashish Kumar <Ashish.Kumar@nxp.com>
 Signed-off-by: Raghav Dogra <raghav.dogra@nxp.com>
 Signed-off-by: Shaohui Xie <Shaohui.Xie@nxp.com>
 ---
- arch/arm/Kconfig                          |  14 ++
- arch/arm/cpu/armv8/Kconfig                |   1 +
- arch/arm/cpu/armv8/fsl-layerscape/Kconfig |   1 +
- arch/arm/dts/Makefile                     |   3 +-
- arch/arm/dts/fsl-ls1088a-rdb.dts          |  40 ++++
- board/freescale/ls1088a/Kconfig           |  15 ++
- board/freescale/ls1088a/MAINTAINERS       |   7 +
- board/freescale/ls1088a/Makefile          |   9 +
- board/freescale/ls1088a/README            |  66 ++++++
- board/freescale/ls1088a/ddr.c             | 103 +++++++++
- board/freescale/ls1088a/ddr.h             |  44 ++++
- board/freescale/ls1088a/eth_ls1088ardb.c  | 102 +++++++++
- board/freescale/ls1088a/ls1088a.c         | 335 ++++++++++++++++++++++++++++++
- board/freescale/ls1088a/ls1088a_qixis.h   |  34 +++
- configs/ls1088ardb_qspi_defconfig         |  29 +++
- include/configs/ls1088a_common.h          | 200 ++++++++++++++++++
- include/configs/ls1088ardb.h              | 316 ++++++++++++++++++++++++++++
- 17 files changed, 1318 insertions(+), 1 deletion(-)
+ arch/arm/Kconfig                          |   14 ++
+ arch/arm/cpu/armv8/Kconfig                |    1 +
+ arch/arm/cpu/armv8/fsl-layerscape/Kconfig |    1 +
+ arch/arm/dts/Makefile                     |    3 +-
+ arch/arm/dts/fsl-ls1088a-rdb.dts          |   40 ++++
+ board/freescale/ls1088a/Kconfig           |   15 ++
+ board/freescale/ls1088a/MAINTAINERS       |    7 +
+ board/freescale/ls1088a/Makefile          |    9 +
+ board/freescale/ls1088a/README            |   66 ++++++
+ board/freescale/ls1088a/ddr.c             |  103 +++++++++
+ board/freescale/ls1088a/ddr.h             |   44 ++++
+ board/freescale/ls1088a/eth_ls1088ardb.c  |  102 +++++++++
+ board/freescale/ls1088a/ls1088a.c         |  335 +++++++++++++++++++++++++++++
+ board/freescale/ls1088a/ls1088a_qixis.h   |   34 +++
+ configs/ls1088ardb_qspi_defconfig         |   29 +++
+ include/configs/ls1088a_common.h          |  200 +++++++++++++++++
+ include/configs/ls1088ardb.h              |  316 +++++++++++++++++++++++++++
+ 17 files changed, 1318 insertions(+), 1 deletions(-)
  create mode 100644 arch/arm/dts/fsl-ls1088a-rdb.dts
  create mode 100644 board/freescale/ls1088a/Kconfig
  create mode 100644 board/freescale/ls1088a/MAINTAINERS
@@ -47,7 +46,7 @@ Signed-off-by: Shaohui Xie <Shaohui.Xie@nxp.com>
  create mode 100644 include/configs/ls1088ardb.h
 
 diff --git a/arch/arm/Kconfig b/arch/arm/Kconfig
-index 6c0422d144..dd75907a68 100644
+index 6c0422d..dd75907 100644
 --- a/arch/arm/Kconfig
 +++ b/arch/arm/Kconfig
 @@ -872,6 +872,19 @@ config TARGET_LS1012AFRDM
@@ -79,7 +78,7 @@ index 6c0422d144..dd75907a68 100644
  source "board/freescale/ls1043aqds/Kconfig"
  source "board/freescale/ls1021atwr/Kconfig"
 diff --git a/arch/arm/cpu/armv8/Kconfig b/arch/arm/cpu/armv8/Kconfig
-index 8e4c3dd8f2..aecdf814c8 100644
+index 8e4c3dd..aecdf81 100644
 --- a/arch/arm/cpu/armv8/Kconfig
 +++ b/arch/arm/cpu/armv8/Kconfig
 @@ -88,6 +88,7 @@ config PSCI_RESET
@@ -91,7 +90,7 @@ index 8e4c3dd8f2..aecdf814c8 100644
  		   !TARGET_LS1043ARDB && !TARGET_LS1043AQDS && \
  		   !TARGET_LS1046ARDB && !TARGET_LS1046AQDS && \
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
-index 086bcab8cc..3a26e88f5e 100644
+index 086bcab..3a26e88 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 @@ -228,6 +228,7 @@ config SYS_LS_PPA_FW_ADDR
@@ -103,7 +102,7 @@ index 086bcab8cc..3a26e88f5e 100644
  	default 0x400000 if SYS_LS_PPA_FW_IN_MMC
  	default 0x400000 if SYS_LS_PPA_FW_IN_NAND
 diff --git a/arch/arm/dts/Makefile b/arch/arm/dts/Makefile
-index 9cc5c1e0aa..2ea63228f8 100644
+index 9cc5c1e..2ea6322 100644
 --- a/arch/arm/dts/Makefile
 +++ b/arch/arm/dts/Makefile
 @@ -186,7 +186,8 @@ dtb-$(CONFIG_ARCH_LS1021A) += ls1021a-qds-duart.dtb \
@@ -118,7 +117,7 @@ index 9cc5c1e0aa..2ea63228f8 100644
  	fsl-ls1043a-rdb.dtb \
 diff --git a/arch/arm/dts/fsl-ls1088a-rdb.dts b/arch/arm/dts/fsl-ls1088a-rdb.dts
 new file mode 100644
-index 0000000000..30ceed8212
+index 0000000..30ceed8
 --- /dev/null
 +++ b/arch/arm/dts/fsl-ls1088a-rdb.dts
 @@ -0,0 +1,40 @@
@@ -164,7 +163,7 @@ index 0000000000..30ceed8212
 +};
 diff --git a/board/freescale/ls1088a/Kconfig b/board/freescale/ls1088a/Kconfig
 new file mode 100644
-index 0000000000..a4d8223471
+index 0000000..a4d8223
 --- /dev/null
 +++ b/board/freescale/ls1088a/Kconfig
 @@ -0,0 +1,15 @@
@@ -185,7 +184,7 @@ index 0000000000..a4d8223471
 +endif
 diff --git a/board/freescale/ls1088a/MAINTAINERS b/board/freescale/ls1088a/MAINTAINERS
 new file mode 100644
-index 0000000000..12834f63be
+index 0000000..12834f6
 --- /dev/null
 +++ b/board/freescale/ls1088a/MAINTAINERS
 @@ -0,0 +1,7 @@
@@ -198,7 +197,7 @@ index 0000000000..12834f63be
 +F:	configs/ls1088ardb_qspi_defconfig
 diff --git a/board/freescale/ls1088a/Makefile b/board/freescale/ls1088a/Makefile
 new file mode 100644
-index 0000000000..e997cf1adb
+index 0000000..e997cf1
 --- /dev/null
 +++ b/board/freescale/ls1088a/Makefile
 @@ -0,0 +1,9 @@
@@ -213,7 +212,7 @@ index 0000000000..e997cf1adb
 +obj-y += ddr.o
 diff --git a/board/freescale/ls1088a/README b/board/freescale/ls1088a/README
 new file mode 100644
-index 0000000000..3f4d987631
+index 0000000..3f4d987
 --- /dev/null
 +++ b/board/freescale/ls1088a/README
 @@ -0,0 +1,66 @@
@@ -285,7 +284,7 @@ index 0000000000..3f4d987631
 + - TDM riser support
 diff --git a/board/freescale/ls1088a/ddr.c b/board/freescale/ls1088a/ddr.c
 new file mode 100644
-index 0000000000..a87653deb3
+index 0000000..a87653d
 --- /dev/null
 +++ b/board/freescale/ls1088a/ddr.c
 @@ -0,0 +1,103 @@
@@ -394,7 +393,7 @@ index 0000000000..a87653deb3
 +}
 diff --git a/board/freescale/ls1088a/ddr.h b/board/freescale/ls1088a/ddr.h
 new file mode 100644
-index 0000000000..dfcfc1fae2
+index 0000000..dfcfc1f
 --- /dev/null
 +++ b/board/freescale/ls1088a/ddr.h
 @@ -0,0 +1,44 @@
@@ -444,7 +443,7 @@ index 0000000000..dfcfc1fae2
 +#endif
 diff --git a/board/freescale/ls1088a/eth_ls1088ardb.c b/board/freescale/ls1088a/eth_ls1088ardb.c
 new file mode 100644
-index 0000000000..91f1b45fb9
+index 0000000..91f1b45
 --- /dev/null
 +++ b/board/freescale/ls1088a/eth_ls1088ardb.c
 @@ -0,0 +1,102 @@
@@ -552,7 +551,7 @@ index 0000000000..91f1b45fb9
 +}
 diff --git a/board/freescale/ls1088a/ls1088a.c b/board/freescale/ls1088a/ls1088a.c
 new file mode 100644
-index 0000000000..04414a8ea5
+index 0000000..04414a8
 --- /dev/null
 +++ b/board/freescale/ls1088a/ls1088a.c
 @@ -0,0 +1,335 @@
@@ -893,7 +892,7 @@ index 0000000000..04414a8ea5
 +#endif
 diff --git a/board/freescale/ls1088a/ls1088a_qixis.h b/board/freescale/ls1088a/ls1088a_qixis.h
 new file mode 100644
-index 0000000000..9757d1b28c
+index 0000000..9757d1b
 --- /dev/null
 +++ b/board/freescale/ls1088a/ls1088a_qixis.h
 @@ -0,0 +1,34 @@
@@ -933,7 +932,7 @@ index 0000000000..9757d1b28c
 +#endif
 diff --git a/configs/ls1088ardb_qspi_defconfig b/configs/ls1088ardb_qspi_defconfig
 new file mode 100644
-index 0000000000..33e41247e6
+index 0000000..33e4124
 --- /dev/null
 +++ b/configs/ls1088ardb_qspi_defconfig
 @@ -0,0 +1,29 @@
@@ -968,7 +967,7 @@ index 0000000000..33e41247e6
 +CONFIG_FSL_LS_PPA=y
 diff --git a/include/configs/ls1088a_common.h b/include/configs/ls1088a_common.h
 new file mode 100644
-index 0000000000..d01095ef7a
+index 0000000..d01095e
 --- /dev/null
 +++ b/include/configs/ls1088a_common.h
 @@ -0,0 +1,200 @@
@@ -1174,7 +1173,7 @@ index 0000000000..d01095ef7a
 +#endif /* __LS1088_COMMON_H */
 diff --git a/include/configs/ls1088ardb.h b/include/configs/ls1088ardb.h
 new file mode 100644
-index 0000000000..d943fa4566
+index 0000000..d943fa4
 --- /dev/null
 +++ b/include/configs/ls1088ardb.h
 @@ -0,0 +1,316 @@
@@ -1495,5 +1494,5 @@ index 0000000000..d943fa4566
 +
 +#endif /* __LS1088A_RDB_H */
 -- 
-2.14.1
+1.7.1
 

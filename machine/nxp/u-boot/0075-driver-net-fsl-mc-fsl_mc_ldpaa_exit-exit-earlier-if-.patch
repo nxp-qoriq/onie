@@ -1,8 +1,7 @@
 From 69881ec591c5fe40742ad30f71df43783a3959e5 Mon Sep 17 00:00:00 2001
 From: Santan Kumar <santan.kumar@nxp.com>
 Date: Thu, 29 Jun 2017 11:19:34 +0530
-Subject: [PATCH 075/155] driver: net: fsl-mc: fsl_mc_ldpaa_exit exit earlier
- if dpl applied
+Subject: [PATCH 075/211] driver: net: fsl-mc: fsl_mc_ldpaa_exit exit earlier if dpl applied
 
 In fsl_mc_ldpaa_exit(), in case of mc is booted and
 dpl is applied, it should return earlier without executing
@@ -12,11 +11,11 @@ Signed-off-by: Santan Kumar <santan.kumar@nxp.com>
 Acked-by: Priyanka Jain <priyanka.jain@nxp.com>
 Acked-by: Yogesh Narayan Gaur <yogeshnarayan.gaur@nxp.com>
 ---
- drivers/net/fsl-mc/mc.c | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
+ drivers/net/fsl-mc/mc.c |   13 ++++++++++---
+ 1 files changed, 10 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/net/fsl-mc/mc.c b/drivers/net/fsl-mc/mc.c
-index 977c17d321..458c458f95 100644
+index 977c17d..458c458 100644
 --- a/drivers/net/fsl-mc/mc.c
 +++ b/drivers/net/fsl-mc/mc.c
 @@ -1,5 +1,5 @@
@@ -63,5 +62,5 @@ index 977c17d321..458c458f95 100644
  	if (err < 0) {
  		printf("dpbp_exit() failed: %d\n", err);
 -- 
-2.14.1
+1.7.1
 

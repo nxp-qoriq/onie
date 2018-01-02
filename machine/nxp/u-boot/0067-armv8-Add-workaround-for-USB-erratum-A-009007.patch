@@ -1,7 +1,7 @@
 From be78d71880d4ea88bc42d7ea654c8517f9057c9a Mon Sep 17 00:00:00 2001
 From: Suresh Gupta <suresh.gupta@freescale.com>
 Date: Fri, 14 Oct 2016 12:34:56 +0530
-Subject: [PATCH 067/155] armv8: Add workaround for USB erratum A-009007
+Subject: [PATCH 067/211] armv8: Add workaround for USB erratum A-009007
 
 USB3PHY Observing Intermittent Failure in Rx
 This patch is adding the erratum for LS1043 and LS2080 SoCs.
@@ -14,14 +14,14 @@ Signed-off-by: Rajesh Bhagat <rajesh.bhagat@nxp.com>
 Signed-off-by: yinbo.zhu <yinbo.zhu@nxp.com>
 Signed-off-by: ran.wang <ran.wang_1@nxp.com>
 ---
- arch/arm/cpu/armv8/fsl-layerscape/Kconfig          |  6 +++
- arch/arm/cpu/armv8/fsl-layerscape/soc.c            | 43 ++++++++++++++++++++++
- .../include/asm/arch-fsl-layerscape/immap_lsch2.h  | 12 ++++++
- .../include/asm/arch-fsl-layerscape/immap_lsch3.h  |  7 ++++
- 4 files changed, 68 insertions(+)
+ arch/arm/cpu/armv8/fsl-layerscape/Kconfig          |    6 +++
+ arch/arm/cpu/armv8/fsl-layerscape/soc.c            |   43 ++++++++++++++++++++
+ .../include/asm/arch-fsl-layerscape/immap_lsch2.h  |   12 +++++
+ .../include/asm/arch-fsl-layerscape/immap_lsch3.h  |    7 +++
+ 4 files changed, 68 insertions(+), 0 deletions(-)
 
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
-index ccc4ed40a6..096137cd81 100644
+index ccc4ed4..096137c 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 @@ -8,6 +8,7 @@ config ARCH_LS1012A
@@ -73,7 +73,7 @@ index ccc4ed40a6..096137cd81 100644
  config FSL_MC_ENET
  	bool "Management Complex network"
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/soc.c b/arch/arm/cpu/armv8/fsl-layerscape/soc.c
-index e73612a461..b6408cd666 100644
+index e73612a..b6408cd 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/soc.c
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/soc.c
 @@ -72,6 +72,47 @@ static void erratum_a008997(void)
@@ -141,7 +141,7 @@ index e73612a461..b6408cd666 100644
  #endif
  
 diff --git a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch2.h b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch2.h
-index 4fac4873e1..9fd347bd35 100644
+index 4fac487..9fd347b 100644
 --- a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch2.h
 +++ b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch2.h
 @@ -207,6 +207,18 @@ struct ccsr_gur {
@@ -164,7 +164,7 @@ index 4fac4873e1..9fd347bd35 100644
  	u32     devdisr2;       /* Device disable control 2 */
  	u32     devdisr3;       /* Device disable control 3 */
 diff --git a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
-index b6be6ab468..8bc4134c17 100644
+index b6be6ab..8bc4134 100644
 --- a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
 +++ b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
 @@ -123,6 +123,13 @@
@@ -182,5 +182,5 @@ index b6be6ab468..8bc4134c17 100644
  
  /* Interrupt Sampling Control */
 -- 
-2.14.1
+1.7.1
 

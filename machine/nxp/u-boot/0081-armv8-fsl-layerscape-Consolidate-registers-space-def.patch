@@ -1,8 +1,7 @@
 From 75f98d57107a571de852d0d383833ac2b1bda0cd Mon Sep 17 00:00:00 2001
 From: Ashish Kumar <Ashish.Kumar@nxp.com>
 Date: Thu, 10 Aug 2017 11:30:20 +0530
-Subject: [PATCH 081/155] armv8:fsl-layerscape: Consolidate registers space
- defination for CCI-400 bus
+Subject: [PATCH 081/211] armv8:fsl-layerscape: Consolidate registers space defination for CCI-400 bus
 
 CoreLink Cache Coherent Interconnect (CCI) is ARM BUS which
 provides full cache coherency between two clusters of multi-core
@@ -19,19 +18,19 @@ is introduced in Kconfig
 Signed-off-by: Ashish Kumar <Ashish.Kumar@nxp.com>
 Signed-off-by: Prabhakar Kushwaha <prabhakar.kushwaha@nxp.com>
 ---
- README                                             |  9 ++++
- arch/arm/cpu/armv8/fsl-layerscape/Kconfig          | 13 ++++++
- arch/arm/cpu/armv8/fsl-layerscape/cpu.c            |  1 +
- arch/arm/cpu/armv8/fsl-layerscape/soc.c            | 10 +++--
- .../include/asm/arch-fsl-layerscape/immap_lsch2.h  | 49 ---------------------
- board/freescale/ls1012afrdm/ls1012afrdm.c          |  4 +-
- board/freescale/ls1012aqds/ls1012aqds.c            |  4 +-
- board/freescale/ls1012ardb/ls1012ardb.c            |  3 +-
- include/fsl_immap.h                                | 51 ++++++++++++++++++++++
+ README                                             |    9 ++++
+ arch/arm/cpu/armv8/fsl-layerscape/Kconfig          |   13 +++++
+ arch/arm/cpu/armv8/fsl-layerscape/cpu.c            |    1 +
+ arch/arm/cpu/armv8/fsl-layerscape/soc.c            |   10 +++-
+ .../include/asm/arch-fsl-layerscape/immap_lsch2.h  |   49 -------------------
+ board/freescale/ls1012afrdm/ls1012afrdm.c          |    4 +-
+ board/freescale/ls1012aqds/ls1012aqds.c            |    4 +-
+ board/freescale/ls1012ardb/ls1012ardb.c            |    3 +-
+ include/fsl_immap.h                                |   51 ++++++++++++++++++++
  9 files changed, 88 insertions(+), 56 deletions(-)
 
 diff --git a/README b/README
-index ee35dec5b5..06f3b1a25a 100644
+index ee35dec..06f3b1a 100644
 --- a/README
 +++ b/README
 @@ -312,6 +312,15 @@ Many of the options are named exactly as the corresponding Linux
@@ -51,7 +50,7 @@ index ee35dec5b5..06f3b1a25a 100644
  The following options need to be configured:
  
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
-index 77ba041cde..c44b2c3ef9 100644
+index 77ba041..c44b2c3 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 @@ -99,6 +99,7 @@ config ARCH_LS2080A
@@ -89,7 +88,7 @@ index 77ba041cde..c44b2c3ef9 100644
  	bool
  
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/cpu.c b/arch/arm/cpu/armv8/fsl-layerscape/cpu.c
-index c6fede31ba..ec5806517a 100644
+index c6fede3..ec58065 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/cpu.c
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/cpu.c
 @@ -16,6 +16,7 @@
@@ -101,7 +100,7 @@ index c6fede31ba..ec5806517a 100644
  #include <efi_loader.h>
  #include <fm_eth.h>
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/soc.c b/arch/arm/cpu/armv8/fsl-layerscape/soc.c
-index 0a5c6b987a..2f3d1d4900 100644
+index 0a5c6b9..2f3d1d4 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/soc.c
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/soc.c
 @@ -5,6 +5,7 @@
@@ -143,7 +142,7 @@ index 0a5c6b987a..2f3d1d4900 100644
  
  #ifdef CONFIG_LAYERSCAPE_NS_ACCESS
 diff --git a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch2.h b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch2.h
-index e950a2a721..4e7dc46372 100644
+index e950a2a..4e7dc46 100644
 --- a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch2.h
 +++ b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch2.h
 @@ -15,7 +15,6 @@
@@ -210,7 +209,7 @@ index e950a2a721..4e7dc46372 100644
  #define SMMU_SCR0			(SMMU_BASE + 0x0)
  #define SMMU_SCR1			(SMMU_BASE + 0x4)
 diff --git a/board/freescale/ls1012afrdm/ls1012afrdm.c b/board/freescale/ls1012afrdm/ls1012afrdm.c
-index 25d22d25bf..9afd1c469e 100644
+index 25d22d2..9afd1c4 100644
 --- a/board/freescale/ls1012afrdm/ls1012afrdm.c
 +++ b/board/freescale/ls1012afrdm/ls1012afrdm.c
 @@ -71,7 +71,9 @@ int board_early_init_f(void)
@@ -225,7 +224,7 @@ index 25d22d25bf..9afd1c469e 100644
  	 * Set CCI-400 control override register to enable barrier
  	 * transaction
 diff --git a/board/freescale/ls1012aqds/ls1012aqds.c b/board/freescale/ls1012aqds/ls1012aqds.c
-index 97ab3400ad..406194da27 100644
+index 97ab340..406194d 100644
 --- a/board/freescale/ls1012aqds/ls1012aqds.c
 +++ b/board/freescale/ls1012aqds/ls1012aqds.c
 @@ -106,8 +106,8 @@ int misc_init_r(void)
@@ -240,7 +239,7 @@ index 97ab3400ad..406194da27 100644
  	/* Set CCI-400 control override register to enable barrier
  	 * transaction */
 diff --git a/board/freescale/ls1012ardb/ls1012ardb.c b/board/freescale/ls1012ardb/ls1012ardb.c
-index a21e4c4aeb..c6c1c71202 100644
+index a21e4c4..c6c1c71 100644
 --- a/board/freescale/ls1012ardb/ls1012ardb.c
 +++ b/board/freescale/ls1012ardb/ls1012ardb.c
 @@ -104,7 +104,8 @@ int board_early_init_f(void)
@@ -254,7 +253,7 @@ index a21e4c4aeb..c6c1c71202 100644
  	 * Set CCI-400 control override register to enable barrier
  	 * transaction
 diff --git a/include/fsl_immap.h b/include/fsl_immap.h
-index b1c4fe7969..4f5a19cdc1 100644
+index b1c4fe7..4f5a19c 100644
 --- a/include/fsl_immap.h
 +++ b/include/fsl_immap.h
 @@ -133,4 +133,55 @@ struct ccsr_ddr {
@@ -314,5 +313,5 @@ index b1c4fe7969..4f5a19cdc1 100644
 +
  #endif /* __FSL_IMMAP_H */
 -- 
-2.14.1
+1.7.1
 

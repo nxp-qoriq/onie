@@ -1,17 +1,16 @@
 From 7fc6f7e87ff4bd251757210b775d1e5875e50b69 Mon Sep 17 00:00:00 2001
 From: Ashish Kumar <Ashish.Kumar@nxp.com>
 Date: Wed, 23 Aug 2017 12:08:15 +0530
-Subject: [PATCH 103/155] ls1088aqds: Add SCSI related configs in header file
- for qds
+Subject: [PATCH 103/211] ls1088aqds: Add SCSI related configs in header file for qds
 
 Signed-off-by: Amrita Kumari <amrita.kumari@nxp.com>
 Signed-off-by: Ashish Kumar <Ashish.Kumar@nxp.com>
 ---
- include/configs/ls1088aqds.h | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ include/configs/ls1088aqds.h |   13 +++++++++++++
+ 1 files changed, 13 insertions(+), 0 deletions(-)
 
 diff --git a/include/configs/ls1088aqds.h b/include/configs/ls1088aqds.h
-index a694fc6faa..16a4708fed 100644
+index a694fc6..16a4708 100644
 --- a/include/configs/ls1088aqds.h
 +++ b/include/configs/ls1088aqds.h
 @@ -394,6 +394,19 @@ unsigned long get_board_ddr_clk(void);
@@ -35,5 +34,5 @@ index a694fc6faa..16a4708fed 100644
  #define CONFIG_FSL_MEMAC
  #define	CONFIG_PHYLIB
 -- 
-2.14.1
+1.7.1
 

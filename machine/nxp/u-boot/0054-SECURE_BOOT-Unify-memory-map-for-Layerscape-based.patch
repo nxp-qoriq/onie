@@ -1,7 +1,7 @@
 From f941eb54f34196d8999c91343284edfad8472b0b Mon Sep 17 00:00:00 2001
 From: Vinitha Pillai-B57223 <vinitha.pillai@nxp.com>
 Date: Fri, 28 Jul 2017 11:23:10 +0530
-Subject: [PATCH 054/155] SECURE_BOOT: Unify memory map for Layerscape based
+Subject: [PATCH 054/211] SECURE_BOOT: Unify memory map for Layerscape based
 
 Unify memory map for Layerscape based platforms as per DASH SDK
 memory map. This patch includes changes in bootscript, bootscript
@@ -10,12 +10,12 @@ header and PPA header addresses change as per unified memory map.
 Signed-off-by: Vinitha Pillai-B57223 <vinitha.pillai@nxp.com>
 Signed-off-by: Sumit Garg <sumit.garg@nxp.com>
 ---
- arch/arm/cpu/armv8/fsl-layerscape/Kconfig | 12 ++++----
- arch/arm/include/asm/fsl_secure_boot.h    | 50 +++++++++++++------------------
+ arch/arm/cpu/armv8/fsl-layerscape/Kconfig |   12 +++---
+ arch/arm/include/asm/fsl_secure_boot.h    |   50 +++++++++++-----------------
  2 files changed, 26 insertions(+), 36 deletions(-)
 
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
-index d8b285dcd7..45bf3d8800 100644
+index d8b285d..45bf3d8 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 @@ -192,12 +192,12 @@ config SYS_LS_PPA_FW_ADDR
@@ -38,7 +38,7 @@ index d8b285dcd7..45bf3d8800 100644
  	  If the PPA header firmware locate at XIP flash, such as NOR or
  	  QSPI flash, this address is a directly memory-mapped.
 diff --git a/arch/arm/include/asm/fsl_secure_boot.h b/arch/arm/include/asm/fsl_secure_boot.h
-index b0b3b9377e..d9a3826fb7 100644
+index b0b3b93..d9a3826 100644
 --- a/arch/arm/include/asm/fsl_secure_boot.h
 +++ b/arch/arm/include/asm/fsl_secure_boot.h
 @@ -1,5 +1,6 @@
@@ -124,5 +124,5 @@ index b0b3b9377e..d9a3826fb7 100644
  #define CONFIG_BOOTSCRIPT_HDR_ADDR	CONFIG_BS_HDR_ADDR_DEVICE
  /* BOOTSCRIPT_ADDR is not required */
 -- 
-2.14.1
+1.7.1
 

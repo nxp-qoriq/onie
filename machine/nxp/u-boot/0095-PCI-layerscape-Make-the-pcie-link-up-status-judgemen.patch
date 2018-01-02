@@ -1,8 +1,7 @@
 From a1ab389325578eb759ab0bcf4913d15c8b8ef0de Mon Sep 17 00:00:00 2001
 From: Bao Xiaowei <xiaowei.bao@nxp.com>
 Date: Wed, 2 Aug 2017 11:11:02 +0800
-Subject: [PATCH 095/155] PCI: layerscape: Make the pcie link up status
- judgement more specific
+Subject: [PATCH 095/211] PCI: layerscape: Make the pcie link up status judgement more specific
 
 For some special reset times for longer pcie devices, in this case, the
 pcie device may on polling compliance state, the RC considers the pcie
@@ -11,12 +10,12 @@ is link up state. So add the link up status judgement mechanisms.
 
 Signed-off-by: Bao Xiaowei <xiaowei.bao@nxp.com>
 ---
- drivers/pci/pcie_layerscape.c | 25 +++++++++++++++++++++----
- drivers/pci/pcie_layerscape.h |  3 +++
+ drivers/pci/pcie_layerscape.c |   25 +++++++++++++++++++++----
+ drivers/pci/pcie_layerscape.h |    3 +++
  2 files changed, 24 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/pci/pcie_layerscape.c b/drivers/pci/pcie_layerscape.c
-index 610f85c4e8..9a691075ad 100644
+index 610f85c..9a69107 100644
 --- a/drivers/pci/pcie_layerscape.c
 +++ b/drivers/pci/pcie_layerscape.c
 @@ -69,13 +69,30 @@ static int ls_pcie_ltssm(struct ls_pcie *pcie)
@@ -55,7 +54,7 @@ index 610f85c4e8..9a691075ad 100644
  
  static void ls_pcie_cfg0_set_busdev(struct ls_pcie *pcie, u32 busdev)
 diff --git a/drivers/pci/pcie_layerscape.h b/drivers/pci/pcie_layerscape.h
-index 782e3ab7ad..4313e85c03 100644
+index 782e3ab..4313e85 100644
 --- a/drivers/pci/pcie_layerscape.h
 +++ b/drivers/pci/pcie_layerscape.h
 @@ -70,6 +70,9 @@
@@ -69,5 +68,5 @@ index 782e3ab7ad..4313e85c03 100644
  #define PCIE_DBI_SIZE		0x100000 /* 1M */
  
 -- 
-2.14.1
+1.7.1
 
