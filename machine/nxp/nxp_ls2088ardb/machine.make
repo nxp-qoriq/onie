@@ -25,6 +25,9 @@ FDT_LOAD_ADDRESS = 0x90000000
 # http://www.iana.org/assignments/enterprise-numbers
 VENDOR_ID = 33118
 
+ONIE_PLATFORM	=	arm64-nxp-ls2088ardb-r0
+ONIE_MACHINE	=	nxp-ls2088ardb
+
 # Include kexec-tools
 KEXEC_ENABLE = yes
 
