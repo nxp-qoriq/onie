@@ -40,6 +40,9 @@ LSB_RELEASE_FILE = $(MBUILDDIR)/lsb-release
 OS_RELEASE_FILE	 = $(MBUILDDIR)/os-release
 MACHINE_CONF	 = $(MBUILDDIR)/machine-build.conf
 
+ONIE_PLATFORM	?=
+ONIE_MACHINE	?=
+
 INSTALLER_DIR	= $(abspath ../installer)
 
 # List the packages to install
@@ -280,6 +283,8 @@ $(SYSROOT_COMPLETE_STAMP): $(SYSROOT_CHECK_STAMP)
 	$(Q) rm -f $(MACHINE_CONF)
 	$(Q) echo "onie_version=$(LSB_RELEASE_TAG)" >> $(MACHINE_CONF)
 	$(Q) echo "onie_vendor_id=$(VENDOR_ID)" >> $(MACHINE_CONF)
+	$(Q) echo "onie_platform=$(ONIE_PLATFORM)" >> $(MACHINE_CONF)
+	$(Q) echo "onie_machine=$(ONIE_MACHINE)" >> $(MACHINE_CONF)
 	$(Q) echo "onie_build_machine=$(ONIE_BUILD_MACHINE)" >> $(MACHINE_CONF)
 	$(Q) echo "onie_machine_rev=$(MACHINE_REV)" >> $(MACHINE_CONF)
 	$(Q) echo "onie_arch=$(ARCH)" >> $(MACHINE_CONF)
