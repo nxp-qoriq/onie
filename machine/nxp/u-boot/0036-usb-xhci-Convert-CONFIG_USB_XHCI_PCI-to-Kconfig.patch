@@ -1,7 +1,7 @@
 From ae1c6db3e9b05df7e6ec4258f51ed6e147cfe44e Mon Sep 17 00:00:00 2001
 From: Bin Meng <bmeng.cn@gmail.com>
 Date: Wed, 19 Jul 2017 21:50:08 +0800
-Subject: [PATCH 036/155] usb: xhci: Convert CONFIG_USB_XHCI_PCI to Kconfig
+Subject: [PATCH 036/211] usb: xhci: Convert CONFIG_USB_XHCI_PCI to Kconfig
 
 Add CONFIG_USB_XHCI_PCI as a Kconfig option.
 
@@ -10,12 +10,12 @@ Reviewed-by: Simon Glass <sjg@chromium.org>
 Reviewed-by: Stefan Roese <sr@denx.de>
 Tested-by: Stefan Roese <sr@denx.de>
 ---
- drivers/usb/host/Kconfig     | 6 ++++++
- scripts/config_whitelist.txt | 1 -
- 2 files changed, 6 insertions(+), 1 deletion(-)
+ drivers/usb/host/Kconfig     |    6 ++++++
+ scripts/config_whitelist.txt |    1 -
+ 2 files changed, 6 insertions(+), 1 deletions(-)
 
 diff --git a/drivers/usb/host/Kconfig b/drivers/usb/host/Kconfig
-index b824eec41d..e054434a27 100644
+index b824eec..e054434 100644
 --- a/drivers/usb/host/Kconfig
 +++ b/drivers/usb/host/Kconfig
 @@ -31,6 +31,12 @@ config USB_XHCI_MVEBU
@@ -32,7 +32,7 @@ index b824eec41d..e054434a27 100644
  	bool "Support for Rockchip on-chip xHCI USB controller"
  	depends on ARCH_ROCKCHIP
 diff --git a/scripts/config_whitelist.txt b/scripts/config_whitelist.txt
-index 38ba0d076c..5d8aec0323 100644
+index 38ba0d0..5d8aec0 100644
 --- a/scripts/config_whitelist.txt
 +++ b/scripts/config_whitelist.txt
 @@ -5209,7 +5209,6 @@ CONFIG_USB_XHCI_EXYNOS
@@ -44,5 +44,5 @@ index 38ba0d076c..5d8aec0323 100644
  CONFIG_USE_FDT
  CONFIG_USE_INTERRUPT
 -- 
-2.14.1
+1.7.1
 

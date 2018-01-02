@@ -1,7 +1,7 @@
 From d0c4403453fa90c146e5209fe14d235444c9135f Mon Sep 17 00:00:00 2001
 From: Bin Meng <bmeng.cn@gmail.com>
 Date: Wed, 19 Jul 2017 21:51:19 +0800
-Subject: [PATCH 049/155] usb: xhci: Implement update_hub_device() operation
+Subject: [PATCH 049/211] usb: xhci: Implement update_hub_device() operation
 
 There is no way to know whether the attached device is a hub or
 not in advance before the device's descriptor is fetched. But
@@ -12,11 +12,11 @@ in the input slot context.
 Signed-off-by: Bin Meng <bmeng.cn@gmail.com>
 Reviewed-by: Simon Glass <sjg@chromium.org>
 ---
- drivers/usb/host/xhci.c | 59 +++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 59 insertions(+)
+ drivers/usb/host/xhci.c |   59 +++++++++++++++++++++++++++++++++++++++++++++++
+ 1 files changed, 59 insertions(+), 0 deletions(-)
 
 diff --git a/drivers/usb/host/xhci.c b/drivers/usb/host/xhci.c
-index 1148127ea5..e64637bb9e 100644
+index 1148127..e64637b 100644
 --- a/drivers/usb/host/xhci.c
 +++ b/drivers/usb/host/xhci.c
 @@ -1170,6 +1170,64 @@ static int xhci_alloc_device(struct udevice *dev, struct usb_device *udev)
@@ -93,5 +93,5 @@ index 1148127ea5..e64637bb9e 100644
  
  #endif
 -- 
-2.14.1
+1.7.1
 

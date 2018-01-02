@@ -1,15 +1,15 @@
 From bce0688369da7425a5ea8d150b140da378ccef10 Mon Sep 17 00:00:00 2001
 From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
 Date: Mon, 24 Apr 2017 19:13:30 +0800
-Subject: [PATCH 132/155] armv8: ls1088a: add PCIe dts node
+Subject: [PATCH 132/211] armv8: ls1088a: add PCIe dts node
 
 Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
 ---
- arch/arm/dts/fsl-ls1088a.dtsi | 48 +++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 48 insertions(+)
+ arch/arm/dts/fsl-ls1088a.dtsi |   48 +++++++++++++++++++++++++++++++++++++++++
+ 1 files changed, 48 insertions(+), 0 deletions(-)
 
 diff --git a/arch/arm/dts/fsl-ls1088a.dtsi b/arch/arm/dts/fsl-ls1088a.dtsi
-index d89f00dd97..64b4fcf12b 100644
+index d89f00d..64b4fcf 100644
 --- a/arch/arm/dts/fsl-ls1088a.dtsi
 +++ b/arch/arm/dts/fsl-ls1088a.dtsi
 @@ -89,4 +89,52 @@
@@ -66,5 +66,5 @@ index d89f00dd97..64b4fcf12b 100644
 +	};
  };
 -- 
-2.14.1
+1.7.1
 

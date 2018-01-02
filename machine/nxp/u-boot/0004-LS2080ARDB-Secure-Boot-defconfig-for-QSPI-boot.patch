@@ -1,20 +1,20 @@
 From ac6a6b21c4b3595cc9c32e0c5fe6466959a14365 Mon Sep 17 00:00:00 2001
 From: Udit Agarwal <udit.agarwal@nxp.com>
 Date: Mon, 1 May 2017 10:00:38 +0530
-Subject: [PATCH 004/155] LS2080ARDB: Secure Boot defconfig for QSPI boot.
+Subject: [PATCH 004/211] LS2080ARDB: Secure Boot defconfig for QSPI boot.
 
 Add the secure boot defconfig for QSPI boot on LS2088ARDB
 platform.
 
 Signed-off-by: Udit Agarwal <udit.agarwal@nxp.com>
 ---
- configs/ls2088ardb_qspi_SECURE_BOOT_defconfig | 50 +++++++++++++++++++++++++++
- 1 file changed, 50 insertions(+)
+ configs/ls2088ardb_qspi_SECURE_BOOT_defconfig |   50 +++++++++++++++++++++++++
+ 1 files changed, 50 insertions(+), 0 deletions(-)
  create mode 100644 configs/ls2088ardb_qspi_SECURE_BOOT_defconfig
 
 diff --git a/configs/ls2088ardb_qspi_SECURE_BOOT_defconfig b/configs/ls2088ardb_qspi_SECURE_BOOT_defconfig
 new file mode 100644
-index 0000000000..749ad1d15a
+index 0000000..749ad1d
 --- /dev/null
 +++ b/configs/ls2088ardb_qspi_SECURE_BOOT_defconfig
 @@ -0,0 +1,50 @@
@@ -69,5 +69,5 @@ index 0000000000..749ad1d15a
 +CONFIG_USB_STORAGE=y
 +CONFIG_EFI_LOADER_BOUNCE_BUFFER=y
 -- 
-2.14.1
+1.7.1
 

@@ -1,7 +1,7 @@
 From f683425faffdf8eee8d1bd5b45b928ef7c7beeb8 Mon Sep 17 00:00:00 2001
 From: Ran Wang <ran.wang_1@nxp.com>
 Date: Sun, 18 Jun 2017 16:32:33 +0800
-Subject: [PATCH 070/155] armv8: Correct errata related patch defect.
+Subject: [PATCH 070/211] armv8: Correct errata related patch defect.
 
 Let patch code apply correct SoC.
 1.A009007
@@ -11,11 +11,11 @@ Let patch code apply correct SoC.
 
 Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
 ---
- arch/arm/cpu/armv8/fsl-layerscape/soc.c | 43 +++++++++++++++++++++++++--------
- 1 file changed, 33 insertions(+), 10 deletions(-)
+ arch/arm/cpu/armv8/fsl-layerscape/soc.c |   43 +++++++++++++++++++++++-------
+ 1 files changed, 33 insertions(+), 10 deletions(-)
 
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/soc.c b/arch/arm/cpu/armv8/fsl-layerscape/soc.c
-index d66ee1aa0e..0a5c6b987a 100644
+index d66ee1a..0a5c6b9 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/soc.c
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/soc.c
 @@ -29,18 +29,24 @@ DECLARE_GLOBAL_DATA_PTR;
@@ -145,5 +145,5 @@ index d66ee1aa0e..0a5c6b987a 100644
  	erratum_a008997();
  	erratum_a009007();
 -- 
-2.14.1
+1.7.1
 

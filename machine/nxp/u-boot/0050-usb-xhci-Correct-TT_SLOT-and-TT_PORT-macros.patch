@@ -1,18 +1,18 @@
 From cc0bad97ab50cb1efdc57d0d2144cb3cf79d9601 Mon Sep 17 00:00:00 2001
 From: Bin Meng <bmeng.cn@gmail.com>
 Date: Wed, 19 Jul 2017 21:51:20 +0800
-Subject: [PATCH 050/155] usb: xhci: Correct TT_SLOT and TT_PORT macros
+Subject: [PATCH 050/211] usb: xhci: Correct TT_SLOT and TT_PORT macros
 
 These two macros really need a parameter to make them useful.
 
 Signed-off-by: Bin Meng <bmeng.cn@gmail.com>
 Reviewed-by: Simon Glass <sjg@chromium.org>
 ---
- drivers/usb/host/xhci.h | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/usb/host/xhci.h |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/usb/host/xhci.h b/drivers/usb/host/xhci.h
-index cdce67c1a0..a497d9d830 100644
+index cdce67c..a497d9d 100644
 --- a/drivers/usb/host/xhci.h
 +++ b/drivers/usb/host/xhci.h
 @@ -548,12 +548,12 @@ struct xhci_slot_ctx {
@@ -31,5 +31,5 @@ index cdce67c1a0..a497d9d830 100644
  
  /* dev_state bitmasks */
 -- 
-2.14.1
+1.7.1
 

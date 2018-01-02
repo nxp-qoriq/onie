@@ -1,8 +1,7 @@
 From 7071480a771853f1ddca05199da2d07e3fc0cb03 Mon Sep 17 00:00:00 2001
 From: Ashish Kumar <Ashish.Kumar@nxp.com>
 Date: Mon, 21 Aug 2017 11:36:51 +0530
-Subject: [PATCH 090/155] armv8: fsl-layerscape: Support to add RGMII for
- ls1088aqds
+Subject: [PATCH 090/211] armv8: fsl-layerscape: Support to add RGMII for ls1088aqds
 
 This patch adds support RGMII protocol
 
@@ -13,18 +12,18 @@ Signed-off-by: Prabhakar Kushwaha <prabhakar.kushwaha@nxp.com>
 Signed-off-by: Amrita Kumari <amrita.kumari@nxp.com>
 Signed-off-by: Ashish Kumar <Ashish.Kumar@nxp.com>
 ---
- arch/arm/cpu/armv8/fsl-layerscape/Kconfig          | 21 +++++++++++++++++
- arch/arm/cpu/armv8/fsl-layerscape/cpu.c            |  4 ++++
- .../include/asm/arch-fsl-layerscape/fsl_serdes.h   |  1 +
- .../include/asm/arch-fsl-layerscape/immap_lsch3.h  |  6 +++++
- board/freescale/ls1088a/eth_ls1088aqds.c           |  1 -
- drivers/net/ldpaa_eth/ldpaa_wriop.c                |  9 ++++++++
- drivers/net/ldpaa_eth/ls1088a.c                    | 27 ++++++++++++++++++++++
- include/fsl-mc/ldpaa_wriop.h                       |  2 ++
- 8 files changed, 70 insertions(+), 1 deletion(-)
+ arch/arm/cpu/armv8/fsl-layerscape/Kconfig          |   21 +++++++++++++++
+ arch/arm/cpu/armv8/fsl-layerscape/cpu.c            |    4 +++
+ .../include/asm/arch-fsl-layerscape/fsl_serdes.h   |    1 +
+ .../include/asm/arch-fsl-layerscape/immap_lsch3.h  |    6 ++++
+ board/freescale/ls1088a/eth_ls1088aqds.c           |    1 -
+ drivers/net/ldpaa_eth/ldpaa_wriop.c                |    9 ++++++
+ drivers/net/ldpaa_eth/ls1088a.c                    |   27 ++++++++++++++++++++
+ include/fsl-mc/ldpaa_wriop.h                       |    2 +
+ 8 files changed, 70 insertions(+), 1 deletions(-)
 
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
-index 3a26e88f5e..48812b93dd 100644
+index 3a26e88..48812b9 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 @@ -68,6 +68,8 @@ config ARCH_LS1088A
@@ -77,7 +76,7 @@ index 3a26e88f5e..48812b93dd 100644
  	hex "Management Complex reserved memory alignment"
  	depends on RESV_RAM
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/cpu.c b/arch/arm/cpu/armv8/fsl-layerscape/cpu.c
-index ec5806517a..3c9a5edc8b 100644
+index ec58065..3c9a5ed 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/cpu.c
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/cpu.c
 @@ -517,6 +517,10 @@ int arch_early_init_r(void)
@@ -92,7 +91,7 @@ index ec5806517a..3c9a5edc8b 100644
  	fsl_serdes_init();
  #endif
 diff --git a/arch/arm/include/asm/arch-fsl-layerscape/fsl_serdes.h b/arch/arm/include/asm/arch-fsl-layerscape/fsl_serdes.h
-index a2c7578311..12fd6b8bdf 100644
+index a2c7578..12fd6b8 100644
 --- a/arch/arm/include/asm/arch-fsl-layerscape/fsl_serdes.h
 +++ b/arch/arm/include/asm/arch-fsl-layerscape/fsl_serdes.h
 @@ -159,6 +159,7 @@ int serdes_get_first_lane(u32 sd, enum srds_prtcl device);
@@ -104,7 +103,7 @@ index a2c7578311..12fd6b8bdf 100644
  #ifdef CONFIG_FSL_LSCH2
  const char *serdes_clock_to_string(u32 clock);
 diff --git a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
-index 18e75dc415..647bc9c5f9 100644
+index 18e75dc..647bc9c 100644
 --- a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
 +++ b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
 @@ -260,6 +260,12 @@ struct ccsr_gur {
@@ -121,7 +120,7 @@ index 18e75dc415..647bc9c5f9 100644
  #define	FSL_CHASSIS3_RCWSR29_SRDS1_PRTCL_SHIFT	16
  #define	FSL_CHASSIS3_RCWSR30_SRDS2_PRTCL_MASK	0x0000FFFF
 diff --git a/board/freescale/ls1088a/eth_ls1088aqds.c b/board/freescale/ls1088a/eth_ls1088aqds.c
-index 3e78ac74c1..a73896d470 100644
+index 3e78ac7..a73896d 100644
 --- a/board/freescale/ls1088a/eth_ls1088aqds.c
 +++ b/board/freescale/ls1088a/eth_ls1088aqds.c
 @@ -597,7 +597,6 @@ int board_eth_init(bd_t *bis)
@@ -133,7 +132,7 @@ index 3e78ac74c1..a73896d470 100644
  	ls1088a_qds_mdio_init(DEFAULT_WRIOP_MDIO1_NAME, EMI1_RGMII1);
  	ls1088a_qds_mdio_init(DEFAULT_WRIOP_MDIO1_NAME, EMI1_RGMII2);
 diff --git a/drivers/net/ldpaa_eth/ldpaa_wriop.c b/drivers/net/ldpaa_eth/ldpaa_wriop.c
-index f7f26c275d..831a330070 100644
+index f7f26c2..831a330 100644
 --- a/drivers/net/ldpaa_eth/ldpaa_wriop.c
 +++ b/drivers/net/ldpaa_eth/ldpaa_wriop.c
 @@ -37,6 +37,15 @@ void wriop_init_dpmac(int sd, int dpmac_id, int lane_prtcl)
@@ -153,7 +152,7 @@ index f7f26c275d..831a330070 100644
  static int wriop_dpmac_to_index(int dpmac_id)
  {
 diff --git a/drivers/net/ldpaa_eth/ls1088a.c b/drivers/net/ldpaa_eth/ls1088a.c
-index 703945cec3..061935e51c 100644
+index 703945c..061935e 100644
 --- a/drivers/net/ldpaa_eth/ls1088a.c
 +++ b/drivers/net/ldpaa_eth/ls1088a.c
 @@ -8,6 +8,7 @@
@@ -195,7 +194,7 @@ index 703945cec3..061935e51c 100644
 +}
 +#endif
 diff --git a/include/fsl-mc/ldpaa_wriop.h b/include/fsl-mc/ldpaa_wriop.h
-index 8ae0fc071e..0ca49564a9 100644
+index 8ae0fc0..0ca4956 100644
 --- a/include/fsl-mc/ldpaa_wriop.h
 +++ b/include/fsl-mc/ldpaa_wriop.h
 @@ -69,4 +69,6 @@ void wriop_dpmac_disable(int);
@@ -206,5 +205,5 @@ index 8ae0fc071e..0ca49564a9 100644
 +void wriop_init_dpmac_enet_if(int , phy_interface_t);
  #endif	/* __LDPAA_WRIOP_H */
 -- 
-2.14.1
+1.7.1
 

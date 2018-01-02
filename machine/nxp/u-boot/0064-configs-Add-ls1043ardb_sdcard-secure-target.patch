@@ -1,20 +1,20 @@
 From aa837e87ddc0f1bdff4e740758136f4ecacb6832 Mon Sep 17 00:00:00 2001
 From: Sumit Garg <sumit.garg@nxp.com>
 Date: Fri, 11 Aug 2017 11:17:19 +0530
-Subject: [PATCH 064/155] configs: Add ls1043ardb_sdcard secure target
+Subject: [PATCH 064/211] configs: Add ls1043ardb_sdcard secure target
 
 This patch reverts 06a777ac2714 as patch 368264b98ab8 resolves
 ls1043ardb_sdcard secure boot target compilation issue.
 
 Signed-off-by: Sumit Garg <sumit.garg@nxp.com>
 ---
- configs/ls1043ardb_sdcard_SECURE_BOOT_defconfig | 57 +++++++++++++++++++++++++
- 1 file changed, 57 insertions(+)
+ configs/ls1043ardb_sdcard_SECURE_BOOT_defconfig |   57 +++++++++++++++++++++++
+ 1 files changed, 57 insertions(+), 0 deletions(-)
  create mode 100644 configs/ls1043ardb_sdcard_SECURE_BOOT_defconfig
 
 diff --git a/configs/ls1043ardb_sdcard_SECURE_BOOT_defconfig b/configs/ls1043ardb_sdcard_SECURE_BOOT_defconfig
 new file mode 100644
-index 0000000000..4e959bfe60
+index 0000000..4e959bf
 --- /dev/null
 +++ b/configs/ls1043ardb_sdcard_SECURE_BOOT_defconfig
 @@ -0,0 +1,57 @@
@@ -76,5 +76,5 @@ index 0000000000..4e959bfe60
 +CONFIG_RSA=y
 +CONFIG_SPL_RSA=y
 -- 
-2.14.1
+1.7.1
 

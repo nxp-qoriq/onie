@@ -1,16 +1,15 @@
 From 4a53a44e9ed8d29f2b68864108090a8a4bce05d8 Mon Sep 17 00:00:00 2001
 From: Ruchika Gupta <ruchika.gupta@nxp.com>
 Date: Thu, 17 Aug 2017 09:10:29 +0530
-Subject: [PATCH 077/155] armv8/fsl-layerscape: fdt Update kaslr_seed only if
- sec_firmware is available
+Subject: [PATCH 077/211] armv8/fsl-layerscape: fdt Update kaslr_seed only if sec_firmware is available
 
 Signed-off-by: Ruchika Gupta <ruchika.gupta@nxp.com>
 ---
- arch/arm/cpu/armv8/fsl-layerscape/fdt.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ arch/arm/cpu/armv8/fsl-layerscape/fdt.c |    5 ++++-
+ 1 files changed, 4 insertions(+), 1 deletions(-)
 
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/fdt.c b/arch/arm/cpu/armv8/fsl-layerscape/fdt.c
-index 7f58dbbd4f..cd0ea22736 100644
+index 7f58dbb..cd0ea22 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/fdt.c
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/fdt.c
 @@ -345,6 +345,7 @@ static void fdt_fixup_msi(void *blob)
@@ -42,5 +41,5 @@ index 7f58dbbd4f..cd0ea22736 100644
  		sec = (void __iomem *)CONFIG_SYS_FSL_SEC_ADDR;
  		fdt_fixup_crypto_node(blob, sec_in32(&sec->secvid_ms));
 -- 
-2.14.1
+1.7.1
 

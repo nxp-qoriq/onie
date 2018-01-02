@@ -1,16 +1,16 @@
 From 26aaf131a720ebe363c92ccff3e9f8ac67a91e36 Mon Sep 17 00:00:00 2001
 From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
 Date: Tue, 27 Jun 2017 16:05:13 +0800
-Subject: [PATCH 146/155] armv8/fsl-lsch2: correct QMAN clock
+Subject: [PATCH 146/211] armv8/fsl-lsch2: correct QMAN clock
 
 Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
 ---
- arch/arm/cpu/armv8/fsl-layerscape/Kconfig           | 8 ++++++++
- arch/arm/cpu/armv8/fsl-layerscape/fsl_lsch2_speed.c | 4 +++-
- 2 files changed, 11 insertions(+), 1 deletion(-)
+ arch/arm/cpu/armv8/fsl-layerscape/Kconfig          |    8 ++++++++
+ .../arm/cpu/armv8/fsl-layerscape/fsl_lsch2_speed.c |    4 +++-
+ 2 files changed, 11 insertions(+), 1 deletions(-)
 
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
-index 72e50798bb..290e566b85 100644
+index 72e5079..290e566 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 @@ -419,6 +419,14 @@ config SYS_FSL_SDHC_CLK_DIV
@@ -29,7 +29,7 @@ index 72e50798bb..290e566b85 100644
  
  config RESV_RAM
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/fsl_lsch2_speed.c b/arch/arm/cpu/armv8/fsl-layerscape/fsl_lsch2_speed.c
-index eaab948e67..8047dbe806 100644
+index eaab948..8047dbe 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/fsl_lsch2_speed.c
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/fsl_lsch2_speed.c
 @@ -156,7 +156,9 @@ void get_sys_info(struct sys_info *sys_info)
@@ -44,5 +44,5 @@ index eaab948e67..8047dbe806 100644
  }
  
 -- 
-2.14.1
+1.7.1
 

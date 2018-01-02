@@ -1,18 +1,18 @@
 From fad966616319465cb01d735ab30f218927351a0f Mon Sep 17 00:00:00 2001
 From: Udit Agarwal <udit.agarwal@nxp.com>
 Date: Mon, 28 Aug 2017 16:21:26 +0530
-Subject: [PATCH 112/155] LS2080AQDS: Move sec_init prior to ppa_init.
+Subject: [PATCH 112/211] LS2080AQDS: Move sec_init prior to ppa_init.
 
 SEC must be initialised before PPA is validated, so
 call sec_init() ahead of ppa_init().
 
 Signed-off-by: Udit Agarwal <udit.agarwal@nxp.com>
 ---
- board/freescale/ls2080aqds/ls2080aqds.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+ board/freescale/ls2080aqds/ls2080aqds.c |    7 +++----
+ 1 files changed, 3 insertions(+), 4 deletions(-)
 
 diff --git a/board/freescale/ls2080aqds/ls2080aqds.c b/board/freescale/ls2080aqds/ls2080aqds.c
-index f36fb9810b..6071077e94 100644
+index f36fb98..6071077 100644
 --- a/board/freescale/ls2080aqds/ls2080aqds.c
 +++ b/board/freescale/ls2080aqds/ls2080aqds.c
 @@ -227,13 +227,12 @@ int board_init(void)
@@ -33,5 +33,5 @@ index f36fb9810b..6071077e94 100644
  	return 0;
  }
 -- 
-2.14.1
+1.7.1
 

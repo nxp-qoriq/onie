@@ -1,8 +1,7 @@
 From a1bd924bc867f0d9a7da62638be934fae47ec5d4 Mon Sep 17 00:00:00 2001
 From: Ashish Kumar <Ashish.Kumar@nxp.com>
 Date: Mon, 21 Aug 2017 11:27:48 +0530
-Subject: [PATCH 085/155] armv8: fsl-layerscape: Put SATA code under SATA
- configs
+Subject: [PATCH 085/211] armv8: fsl-layerscape: Put SATA code under SATA configs
 
 It is not necessary for every SoC to have 2 SATA controller.
 So put SATA1, SATA2 code under respective defines.
@@ -10,11 +9,11 @@ So put SATA1, SATA2 code under respective defines.
 Signed-off-by: Prabhakar Kushwaha <prabhakar.kushwaha@nxp.com>
 Signed-off-by: Ashish Kumar <Ashish.Kumar@nxp.com>
 ---
- arch/arm/cpu/armv8/fsl-layerscape/soc.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ arch/arm/cpu/armv8/fsl-layerscape/soc.c |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
 
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/soc.c b/arch/arm/cpu/armv8/fsl-layerscape/soc.c
-index 2f3d1d4900..6acd1af421 100644
+index 2f3d1d4..6acd1af 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/soc.c
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/soc.c
 @@ -354,11 +354,14 @@ int sata_init(void)
@@ -41,5 +40,5 @@ index 2f3d1d4900..6acd1af421 100644
  	return 0;
  }
 -- 
-2.14.1
+1.7.1
 

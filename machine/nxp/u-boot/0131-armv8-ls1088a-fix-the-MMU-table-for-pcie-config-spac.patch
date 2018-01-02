@@ -1,18 +1,17 @@
 From ead5d46d818cdf29660b7939554201a49d5f5b4e Mon Sep 17 00:00:00 2001
 From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
 Date: Mon, 8 May 2017 22:33:03 +0800
-Subject: [PATCH 131/155] armv8: ls1088a: fix the MMU table for pcie config
- space
+Subject: [PATCH 131/211] armv8: ls1088a: fix the MMU table for pcie config space
 
 The pcie config space of ls1088a is different from ls2080a.
 
 Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
 ---
- arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h | 6 ++++++
- 1 file changed, 6 insertions(+)
+ .../include/asm/arch-fsl-layerscape/immap_lsch3.h  |    6 ++++++
+ 1 files changed, 6 insertions(+), 0 deletions(-)
 
 diff --git a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
-index d48484a723..0359b6c963 100644
+index d48484a..0359b6c 100644
 --- a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
 +++ b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
 @@ -107,10 +107,16 @@
@@ -33,5 +32,5 @@ index d48484a723..0359b6c963 100644
  /* Device Configuration */
  #define DCFG_BASE		0x01e00000
 -- 
-2.14.1
+1.7.1
 

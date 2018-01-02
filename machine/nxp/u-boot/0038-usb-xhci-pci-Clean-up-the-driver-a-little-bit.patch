@@ -1,18 +1,18 @@
 From 15e7bea5c420494c469cf80222961cf47baba872 Mon Sep 17 00:00:00 2001
 From: Bin Meng <bmeng.cn@gmail.com>
 Date: Wed, 19 Jul 2017 21:51:08 +0800
-Subject: [PATCH 038/155] usb: xhci-pci: Clean up the driver a little bit
+Subject: [PATCH 038/211] usb: xhci-pci: Clean up the driver a little bit
 
 This cleans up the driver a little bit.
 
 Signed-off-by: Bin Meng <bmeng.cn@gmail.com>
 Reviewed-by: Simon Glass <sjg@chromium.org>
 ---
- drivers/usb/host/xhci-pci.c | 21 ++-------------------
- 1 file changed, 2 insertions(+), 19 deletions(-)
+ drivers/usb/host/xhci-pci.c |   21 ++-------------------
+ 1 files changed, 2 insertions(+), 19 deletions(-)
 
 diff --git a/drivers/usb/host/xhci-pci.c b/drivers/usb/host/xhci-pci.c
-index 5ad8452384..e4a0ef4a1a 100644
+index 5ad8452..e4a0ef4 100644
 --- a/drivers/usb/host/xhci-pci.c
 +++ b/drivers/usb/host/xhci-pci.c
 @@ -8,16 +8,10 @@
@@ -65,5 +65,5 @@ index 5ad8452384..e4a0ef4a1a 100644
  };
  
 -- 
-2.14.1
+1.7.1
 

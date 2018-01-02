@@ -1,7 +1,7 @@
 From 2a489de86a909064e56f0bb6347ac3308306cf73 Mon Sep 17 00:00:00 2001
 From: Prabhakar Kushwaha <prabhakar.kushwaha@nxp.com>
 Date: Tue, 29 Aug 2017 16:08:47 +0530
-Subject: [PATCH 107/155] armv8: ls1088a: SPL size reduction
+Subject: [PATCH 107/211] armv8: ls1088a: SPL size reduction
 
 Using changes in this patch we were able to reduce approx 8k
 size of u-boot-spl.bin image. Following is breif description of
@@ -19,14 +19,14 @@ changes to reduce SPL size:
 
 Signed-off-by: Sumit Garg <sumit.garg@nxp.com
 ---
- board/freescale/ls1088a/Makefile  |  4 +++-
- board/freescale/ls1088a/ls1088a.c | 14 ++++++++------
- include/configs/ls1088a_common.h  | 20 ++++++++++++++++++++
- include/configs/ls1088ardb.h      | 20 ++++++++++++++++++++
+ board/freescale/ls1088a/Makefile  |    4 +++-
+ board/freescale/ls1088a/ls1088a.c |   14 ++++++++------
+ include/configs/ls1088a_common.h  |   20 ++++++++++++++++++++
+ include/configs/ls1088ardb.h      |   20 ++++++++++++++++++++
  4 files changed, 51 insertions(+), 7 deletions(-)
 
 diff --git a/board/freescale/ls1088a/Makefile b/board/freescale/ls1088a/Makefile
-index bdcce9e6bc..0e1503195b 100644
+index bdcce9e..0e15031 100644
 --- a/board/freescale/ls1088a/Makefile
 +++ b/board/freescale/ls1088a/Makefile
 @@ -5,6 +5,8 @@
@@ -40,7 +40,7 @@ index bdcce9e6bc..0e1503195b 100644
 -obj-y += ddr.o
 +endif
 diff --git a/board/freescale/ls1088a/ls1088a.c b/board/freescale/ls1088a/ls1088a.c
-index 96d9ae7f1d..ccf46943df 100644
+index 96d9ae7..ccf4694 100644
 --- a/board/freescale/ls1088a/ls1088a.c
 +++ b/board/freescale/ls1088a/ls1088a.c
 @@ -24,6 +24,13 @@
@@ -76,7 +76,7 @@ index 96d9ae7f1d..ccf46943df 100644
  #endif
 +#endif /* defined(CONFIG_SPL_BUILD) */
 diff --git a/include/configs/ls1088a_common.h b/include/configs/ls1088a_common.h
-index 3a31356baf..c195fc3411 100644
+index 3a31356..c195fc3 100644
 --- a/include/configs/ls1088a_common.h
 +++ b/include/configs/ls1088a_common.h
 @@ -7,6 +7,20 @@
@@ -138,7 +138,7 @@ index 3a31356baf..c195fc3411 100644
  #define CONFIG_SYS_MAXARGS		64	/* max command args */
  
 diff --git a/include/configs/ls1088ardb.h b/include/configs/ls1088ardb.h
-index 97ecafb19a..8b79648206 100644
+index 97ecafb..8b79648 100644
 --- a/include/configs/ls1088ardb.h
 +++ b/include/configs/ls1088ardb.h
 @@ -9,7 +9,9 @@
@@ -250,5 +250,5 @@ index 97ecafb19a..8b79648206 100644
  #include <asm/fsl_secure_boot.h>
  
 -- 
-2.14.1
+1.7.1
 

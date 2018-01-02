@@ -1,8 +1,7 @@
 From 9fe1793d2733330403ddf0d929e0433e34069dcf Mon Sep 17 00:00:00 2001
 From: Bin Meng <bmeng.cn@gmail.com>
 Date: Wed, 19 Jul 2017 21:50:07 +0800
-Subject: [PATCH 035/155] usb: cmd: Print actual packet size for super speed
- devices
+Subject: [PATCH 035/211] usb: cmd: Print actual packet size for super speed devices
 
 USB 3.0 defines bMaxPacketSize0 field in the device descriptor as
 the exponent of 2, so let's print the calculated actual size.
@@ -12,11 +11,11 @@ Reviewed-by: Simon Glass <sjg@chromium.org>
 Reviewed-by: Stefan Roese <sr@denx.de>
 Tested-by: Stefan Roese <sr@denx.de>
 ---
- cmd/usb.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ cmd/usb.c |    7 +++++--
+ 1 files changed, 5 insertions(+), 2 deletions(-)
 
 diff --git a/cmd/usb.c b/cmd/usb.c
-index 4fa456e318..992d414081 100644
+index 4fa456e..992d414 100644
 --- a/cmd/usb.c
 +++ b/cmd/usb.c
 @@ -150,6 +150,8 @@ static void usb_display_string(struct usb_device *dev, int index)
@@ -42,5 +41,5 @@ index 4fa456e318..992d414081 100644
  			dev->descriptor.idVendor, dev->descriptor.idProduct,
  			(dev->descriptor.bcdDevice>>8) & 0xff,
 -- 
-2.14.1
+1.7.1
 

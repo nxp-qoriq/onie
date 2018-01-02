@@ -1,7 +1,7 @@
 From 39aba2257d019528a9c05085634ac50981862bc5 Mon Sep 17 00:00:00 2001
 From: Suresh Gupta <suresh.gupta@freescale.com>
 Date: Fri, 14 Oct 2016 12:11:59 +0530
-Subject: [PATCH 068/155] armv8: Add workaround for USB erratum A-009008
+Subject: [PATCH 068/211] armv8: Add workaround for USB erratum A-009008
 
 USB High Speed (HS) EYE Height Adjustment
 This patch is adding the erratum for LS1043 and LS2080 SoCs.
@@ -14,13 +14,13 @@ Signed-off-by: Rajesh Bhagat <rajesh.bhagat@nxp.com>
 Signed-off-by: yinbo.zhu <yinbo.zhu@nxp.com>
 Signed-off-by: ran.wang <ran.wang_1@nxp.com>
 ---
- arch/arm/cpu/armv8/fsl-layerscape/Kconfig          |  5 +++++
- arch/arm/cpu/armv8/fsl-layerscape/soc.c            | 26 ++++++++++++++++++++++
- .../include/asm/arch-fsl-layerscape/immap_lsch3.h  |  1 +
- 3 files changed, 32 insertions(+)
+ arch/arm/cpu/armv8/fsl-layerscape/Kconfig          |    5 ++++
+ arch/arm/cpu/armv8/fsl-layerscape/soc.c            |   26 ++++++++++++++++++++
+ .../include/asm/arch-fsl-layerscape/immap_lsch3.h  |    1 +
+ 3 files changed, 32 insertions(+), 0 deletions(-)
 
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
-index 096137cd81..a14708d86a 100644
+index 096137c..a14708d 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 @@ -9,6 +9,7 @@ config ARCH_LS1012A
@@ -64,7 +64,7 @@ index 096137cd81..a14708d86a 100644
  config FSL_MC_ENET
  	bool "Management Complex network"
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/soc.c b/arch/arm/cpu/armv8/fsl-layerscape/soc.c
-index b6408cd666..c5ea47d9b8 100644
+index b6408cd..c5ea47d 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/soc.c
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/soc.c
 @@ -26,6 +26,30 @@
@@ -115,7 +115,7 @@ index b6408cd666..c5ea47d9b8 100644
  	erratum_a008997();
  	erratum_a009007();
 diff --git a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
-index 8bc4134c17..2409879013 100644
+index 8bc4134..2409879 100644
 --- a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
 +++ b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
 @@ -142,6 +142,7 @@
@@ -127,5 +127,5 @@ index 8bc4134c17..2409879013 100644
  #define USB_PCSTXSWINGFULL             0x47
  #define SCFG_QSPICLKCTLR	0x10
 -- 
-2.14.1
+1.7.1
 

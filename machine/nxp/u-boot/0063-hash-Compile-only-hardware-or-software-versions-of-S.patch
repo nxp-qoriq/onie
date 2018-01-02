@@ -1,8 +1,7 @@
 From 638b27354cfb46518044619c34766ce7dcacb61b Mon Sep 17 00:00:00 2001
 From: Tom Rini <trini@konsulko.com>
 Date: Mon, 14 Aug 2017 16:38:07 -0400
-Subject: [PATCH 063/155] hash: Compile only hardware or software versions of
- SHA algorithms
+Subject: [PATCH 063/211] hash: Compile only hardware or software versions of SHA algorithms
 
 Commit 089df18bfe9d ("lib: move hash CONFIG options to Kconfig") moved
 CONFIG_SHA1, CONFIG_SHA256, CONFIG_SHA_HW_ACCEL, and
@@ -19,11 +18,11 @@ Reported-by: Sumit Garg <sumit.garg@nxp.com>
 Cc: Sumit Garg <sumit.garg@nxp.com>
 Signed-off-by: Tom Rini <trini@konsulko.com>
 ---
- common/hash.c | 95 +++++++++++++++++++++++++++--------------------------------
- 1 file changed, 44 insertions(+), 51 deletions(-)
+ common/hash.c |   95 ++++++++++++++++++++++++++------------------------------
+ 1 files changed, 44 insertions(+), 51 deletions(-)
 
 diff --git a/common/hash.c b/common/hash.c
-index 771d8fa87f..756e445424 100644
+index 771d8fa..756e445 100644
 --- a/common/hash.c
 +++ b/common/hash.c
 @@ -30,7 +30,7 @@
@@ -156,5 +155,5 @@ index 771d8fa87f..756e445424 100644
  };
  
 -- 
-2.14.1
+1.7.1
 

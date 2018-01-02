@@ -1,8 +1,7 @@
 From a4166f256d4bfbbeb162d78866d12ade4ab2b841 Mon Sep 17 00:00:00 2001
 From: Bin Meng <bmeng.cn@gmail.com>
 Date: Wed, 19 Jul 2017 21:51:13 +0800
-Subject: [PATCH 043/155] usb: hub: Support 'set hub depth' request for USB 3.0
- hubs
+Subject: [PATCH 043/211] usb: hub: Support 'set hub depth' request for USB 3.0 hubs
 
 USB 3.0 hub uses a hub depth value multiplied by four as an offset
 into the 'route string' to locate the bits it uses to determine the
@@ -12,13 +11,13 @@ downstream port number. We shall set the hub depth value of a USB
 Signed-off-by: Bin Meng <bmeng.cn@gmail.com>
 Reviewed-by: Simon Glass <sjg@chromium.org>
 ---
- common/usb_hub.c   | 52 ++++++++++++++++++++++++++++++++++++++++++++++++++++
- include/usb.h      |  1 +
- include/usb_defs.h |  3 +++
- 3 files changed, 56 insertions(+)
+ common/usb_hub.c   |   52 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ include/usb.h      |    1 +
+ include/usb_defs.h |    3 +++
+ 3 files changed, 56 insertions(+), 0 deletions(-)
 
 diff --git a/common/usb_hub.c b/common/usb_hub.c
-index b0ff15977f..18c366ab7e 100644
+index b0ff159..18c366a 100644
 --- a/common/usb_hub.c
 +++ b/common/usb_hub.c
 @@ -75,6 +75,16 @@ bool usb_hub_is_root_hub(struct udevice *hub)
@@ -88,7 +87,7 @@ index b0ff15977f..18c366ab7e 100644
  
  	/*
 diff --git a/include/usb.h b/include/usb.h
-index 64dfa84a9b..f71da52b55 100644
+index 64dfa84..f71da52 100644
 --- a/include/usb.h
 +++ b/include/usb.h
 @@ -570,6 +570,7 @@ struct usb_hub_device {
@@ -100,7 +99,7 @@ index 64dfa84a9b..f71da52b55 100644
  
  #ifdef CONFIG_DM_USB
 diff --git a/include/usb_defs.h b/include/usb_defs.h
-index 6b4385a2d8..273337f46a 100644
+index 6b4385a..273337f 100644
 --- a/include/usb_defs.h
 +++ b/include/usb_defs.h
 @@ -306,6 +306,9 @@
@@ -114,5 +113,5 @@ index 6b4385a2d8..273337f46a 100644
   * CBI style
   */
 -- 
-2.14.1
+1.7.1
 

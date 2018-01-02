@@ -1,7 +1,7 @@
 From 30c050936824c62bd0afbee089a559109606292f Mon Sep 17 00:00:00 2001
 From: Zhang Ying-22455 <ying.zhang22455@nxp.com>
 Date: Fri, 25 Aug 2017 16:23:02 +0800
-Subject: [PATCH 113/155] armv8/ls1088a: configure PMU's PCTBENR to enable WDT
+Subject: [PATCH 113/211] armv8/ls1088a: configure PMU's PCTBENR to enable WDT
 
 The SP805-WDT module on LS1088A requires configuration of PMU's
 PCTBENR register to enable watchdog counter decrement and reset
@@ -9,11 +9,11 @@ signal generation. The watchdog clock needs to be enabled first.
 
 Signed-off-by: Zhang Ying-22455 <ying.zhang22455@nxp.com>
 ---
- arch/arm/cpu/armv8/fsl-layerscape/cpu.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm/cpu/armv8/fsl-layerscape/cpu.c |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/cpu.c b/arch/arm/cpu/armv8/fsl-layerscape/cpu.c
-index 3ce51af104..86ac793dc9 100644
+index 3ce51af..86ac793 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/cpu.c
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/cpu.c
 @@ -538,7 +538,7 @@ int timer_init(void)
@@ -35,5 +35,5 @@ index 3ce51af104..86ac793dc9 100644
  	 * In certain Layerscape SoCs, the clock for each core's
  	 * has an enable bit in the PMU Physical Core Time Base Enable
 -- 
-2.14.1
+1.7.1
 

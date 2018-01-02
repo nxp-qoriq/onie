@@ -1,7 +1,7 @@
 From 836e9d24ad833594fca1677dbe476abb65aff60b Mon Sep 17 00:00:00 2001
 From: Rajesh Bhagat <rajesh.bhagat@nxp.com>
 Date: Fri, 25 Aug 2017 12:22:39 +0530
-Subject: [PATCH 117/155] armv8: lsch3: Add serdes and DDR voltage setup
+Subject: [PATCH 117/211] armv8: lsch3: Add serdes and DDR voltage setup
 
 Adds SERDES voltage and reset SERDES lanes API and makes
 enable/disable DDR controller support 0.9V API common.
@@ -9,15 +9,15 @@ enable/disable DDR controller support 0.9V API common.
 Signed-off-by: Ashish Kumar <Ashish.Kumar@nxp.com>
 Signed-off-by: Rajesh Bhagat <rajesh.bhagat@nxp.com>
 ---
- .../cpu/armv8/fsl-layerscape/fsl_lsch3_serdes.c    | 274 +++++++++++++++++++++
- arch/arm/cpu/armv8/fsl-layerscape/soc.c            |  34 +--
- .../include/asm/arch-fsl-layerscape/fsl_serdes.h   |   2 +-
- .../include/asm/arch-fsl-layerscape/immap_lsch3.h  |  34 +++
- arch/arm/include/asm/arch-fsl-layerscape/soc.h     |   1 +
+ .../cpu/armv8/fsl-layerscape/fsl_lsch3_serdes.c    |  274 ++++++++++++++++++++
+ arch/arm/cpu/armv8/fsl-layerscape/soc.c            |   34 ++--
+ .../include/asm/arch-fsl-layerscape/fsl_serdes.h   |    2 +-
+ .../include/asm/arch-fsl-layerscape/immap_lsch3.h  |   34 +++
+ arch/arm/include/asm/arch-fsl-layerscape/soc.h     |    1 +
  5 files changed, 327 insertions(+), 18 deletions(-)
 
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/fsl_lsch3_serdes.c b/arch/arm/cpu/armv8/fsl-layerscape/fsl_lsch3_serdes.c
-index 179cac6e49..39f2cdf03e 100644
+index 179cac6..39f2cdf 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/fsl_lsch3_serdes.c
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/fsl_lsch3_serdes.c
 @@ -158,6 +158,280 @@ void serdes_init(u32 sd, u32 sd_addr, u32 rcwsr, u32 sd_prctl_mask,
@@ -302,7 +302,7 @@ index 179cac6e49..39f2cdf03e 100644
  {
  #if defined(CONFIG_FSL_MC_ENET) && !defined(CONFIG_SPL_BUILD)
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/soc.c b/arch/arm/cpu/armv8/fsl-layerscape/soc.c
-index 7c2695319f..42d6ad63b1 100644
+index 7c26953..42d6ad6 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/soc.c
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/soc.c
 @@ -545,23 +545,6 @@ static int setup_core_volt(u32 vdd)
@@ -354,7 +354,7 @@ index 7c2695319f..42d6ad63b1 100644
  /* Enable 4bytes address support and fast read */
  int qspi_ahb_init(void)
 diff --git a/arch/arm/include/asm/arch-fsl-layerscape/fsl_serdes.h b/arch/arm/include/asm/arch-fsl-layerscape/fsl_serdes.h
-index 12fd6b8bdf..9becdf305d 100644
+index 12fd6b8..9becdf3 100644
 --- a/arch/arm/include/asm/arch-fsl-layerscape/fsl_serdes.h
 +++ b/arch/arm/include/asm/arch-fsl-layerscape/fsl_serdes.h
 @@ -164,6 +164,7 @@ void fsl_rgmii_init(void);
@@ -373,7 +373,7 @@ index 12fd6b8bdf..9becdf305d 100644
  
  #endif /* __FSL_SERDES_H__ */
 diff --git a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
-index 647bc9c5f9..fec8fcd32d 100644
+index 647bc9c..fec8fcd 100644
 --- a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
 +++ b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
 @@ -383,5 +383,39 @@ struct ccsr_reset {
@@ -417,7 +417,7 @@ index 647bc9c5f9..fec8fcd32d 100644
  #endif /*__ASSEMBLY__*/
  #endif /* __ARCH_FSL_LSCH3_IMMAP_H_ */
 diff --git a/arch/arm/include/asm/arch-fsl-layerscape/soc.h b/arch/arm/include/asm/arch-fsl-layerscape/soc.h
-index ea8acedaa1..697f072c1c 100644
+index ea8aced..697f072 100644
 --- a/arch/arm/include/asm/arch-fsl-layerscape/soc.h
 +++ b/arch/arm/include/asm/arch-fsl-layerscape/soc.h
 @@ -121,6 +121,7 @@ int setup_chip_volt(void);
@@ -429,5 +429,5 @@ index ea8acedaa1..697f072c1c 100644
  void cpu_name(char *name);
  #ifdef CONFIG_SYS_FSL_ERRATUM_A009635
 -- 
-2.14.1
+1.7.1
 

@@ -1,7 +1,7 @@
 From 2bed40ed32609f9c880b9f31bd571b032ae749f9 Mon Sep 17 00:00:00 2001
 From: Rajesh Bhagat <rajesh.bhagat@nxp.com>
 Date: Tue, 5 Sep 2017 09:30:22 +0530
-Subject: [PATCH 143/155] arm64: ls1012ardb: Add distro boot support
+Subject: [PATCH 143/211] arm64: ls1012ardb: Add distro boot support
 
 Include common config_distro_defaults.h and config_distro_bootcmd.h
 for u-boot enviroments to support automatical distro boot which
@@ -11,13 +11,13 @@ and execute autoboot script.
 Signed-off-by: Bhaskar Upadhaya <Bhaskar.Upadhaya@nxp.com>
 Signed-off-by: Rajesh Bhagat <rajesh.bhagat@nxp.com>
 ---
- configs/ls1012ardb_qspi_defconfig |  1 +
- include/configs/ls1012a_common.h  | 10 ++++++++-
- include/configs/ls1012ardb.h      | 45 +++++++++++++++++++++++++++++++++++++++
- 3 files changed, 55 insertions(+), 1 deletion(-)
+ configs/ls1012ardb_qspi_defconfig |    1 +
+ include/configs/ls1012a_common.h  |   10 +++++++-
+ include/configs/ls1012ardb.h      |   45 +++++++++++++++++++++++++++++++++++++
+ 3 files changed, 55 insertions(+), 1 deletions(-)
 
 diff --git a/configs/ls1012ardb_qspi_defconfig b/configs/ls1012ardb_qspi_defconfig
-index acf0a90c29..40349cec52 100644
+index acf0a90..40349ce 100644
 --- a/configs/ls1012ardb_qspi_defconfig
 +++ b/configs/ls1012ardb_qspi_defconfig
 @@ -47,3 +47,4 @@ CONFIG_DM_USB=y
@@ -26,7 +26,7 @@ index acf0a90c29..40349cec52 100644
  CONFIG_USB_STORAGE=y
 +CONFIG_DISTRO_DEFAULTS=y
 diff --git a/include/configs/ls1012a_common.h b/include/configs/ls1012a_common.h
-index 1f18b27d26..52c2c3a5d9 100644
+index 1f18b27..52c2c3a 100644
 --- a/include/configs/ls1012a_common.h
 +++ b/include/configs/ls1012a_common.h
 @@ -91,6 +91,14 @@
@@ -61,7 +61,7 @@ index 1f18b27d26..52c2c3a5d9 100644
  #define CONFIG_SYS_MAXARGS		64	/* max command args */
  
 diff --git a/include/configs/ls1012ardb.h b/include/configs/ls1012ardb.h
-index a6ca3300af..dbfc5404e0 100644
+index a6ca330..dbfc540 100644
 --- a/include/configs/ls1012ardb.h
 +++ b/include/configs/ls1012ardb.h
 @@ -73,6 +73,51 @@
@@ -117,5 +117,5 @@ index a6ca3300af..dbfc5404e0 100644
  #include <asm/fsl_secure_boot.h>
  
 -- 
-2.14.1
+1.7.1
 

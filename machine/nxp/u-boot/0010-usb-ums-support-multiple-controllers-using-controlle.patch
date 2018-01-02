@@ -1,8 +1,7 @@
 From e1b1fc55b529b121c3b94843d0388f79e536c909 Mon Sep 17 00:00:00 2001
 From: Rajesh Bhagat <rajesh.bhagat@nxp.com>
 Date: Thu, 4 Aug 2016 14:56:53 +0530
-Subject: [PATCH 010/155] usb: ums: support multiple controllers using
- controller_index
+Subject: [PATCH 010/211] usb: ums: support multiple controllers using controller_index
 
 Adds a new field in fsg_common namely controller_index to support
 multiple controllers usb gadget support.
@@ -11,13 +10,13 @@ Signed-off-by: Rajat Srivastava <rajat.srivastava@nxp.com>
 Signed-off-by: Rajesh Bhagat <rajesh.bhagat@nxp.com>
 Acked-by: Lukasz Majewski <l.majewski@samsung.com>
 ---
- cmd/usb_mass_storage.c              |  2 +-
- drivers/usb/gadget/f_mass_storage.c | 11 +++++++++--
- include/usb_mass_storage.h          |  2 +-
+ cmd/usb_mass_storage.c              |    2 +-
+ drivers/usb/gadget/f_mass_storage.c |   11 +++++++++--
+ include/usb_mass_storage.h          |    2 +-
  3 files changed, 11 insertions(+), 4 deletions(-)
 
 diff --git a/cmd/usb_mass_storage.c b/cmd/usb_mass_storage.c
-index 3353f95c74..3dc42fd696 100644
+index 3353f95..3dc42fd 100644
 --- a/cmd/usb_mass_storage.c
 +++ b/cmd/usb_mass_storage.c
 @@ -214,7 +214,7 @@ static int do_usb_mass_storage(cmd_tbl_t *cmdtp, int flag,
@@ -30,7 +29,7 @@ index 3353f95c74..3dc42fd696 100644
  			/* Check I/O error */
  			if (rc == -EIO)
 diff --git a/drivers/usb/gadget/f_mass_storage.c b/drivers/usb/gadget/f_mass_storage.c
-index 1ecb92ac6b..27ca5fe103 100644
+index 1ecb92a..27ca5fe 100644
 --- a/drivers/usb/gadget/f_mass_storage.c
 +++ b/drivers/usb/gadget/f_mass_storage.c
 @@ -362,6 +362,7 @@ struct fsg_common {
@@ -83,7 +82,7 @@ index 1ecb92ac6b..27ca5fe103 100644
  	the_fsg_common = fsg_common;
  
 diff --git a/include/usb_mass_storage.h b/include/usb_mass_storage.h
-index 8229f62b97..f21cc7af7b 100644
+index 8229f62..f21cc7a 100644
 --- a/include/usb_mass_storage.h
 +++ b/include/usb_mass_storage.h
 @@ -28,6 +28,6 @@ struct ums {
@@ -95,5 +94,5 @@ index 8229f62b97..f21cc7af7b 100644
  int fsg_add(struct usb_configuration *c);
  #endif /* __USB_MASS_STORAGE_H__ */
 -- 
-2.14.1
+1.7.1
 

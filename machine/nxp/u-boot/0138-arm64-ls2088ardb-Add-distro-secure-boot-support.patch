@@ -1,7 +1,7 @@
 From 7f1843cb87f2a9797bb3a24232c350987584531d Mon Sep 17 00:00:00 2001
 From: Vinitha Pillai-B57223 <vinitha.pillai@nxp.com>
 Date: Sun, 3 Sep 2017 18:17:46 +0530
-Subject: [PATCH 138/155] arm64: ls2088ardb: Add distro secure boot support
+Subject: [PATCH 138/211] arm64: ls2088ardb: Add distro secure boot support
 
 Enable validation of boot.scr script prior to its execution dependent
 on "secureboot" flag in environment. Also enable "secureboot=y"
@@ -9,11 +9,11 @@ flag in environment for ARM based platforms instead of bootcmd.
 
 Signed-off-by: Vinitha Pillai-B57223 <vinitha.pillai@nxp.com>
 ---
- include/configs/ls2080ardb.h | 99 +++++++++++++++++---------------------------
- 1 file changed, 39 insertions(+), 60 deletions(-)
+ include/configs/ls2080ardb.h |   99 ++++++++++++++++-------------------------
+ 1 files changed, 39 insertions(+), 60 deletions(-)
 
 diff --git a/include/configs/ls2080ardb.h b/include/configs/ls2080ardb.h
-index 4f62a0184f..fb7c7946e4 100644
+index 4f62a01..fb7c794 100644
 --- a/include/configs/ls2080ardb.h
 +++ b/include/configs/ls2080ardb.h
 @@ -357,59 +357,6 @@ unsigned long get_board_sys_clk(void);
@@ -176,5 +176,5 @@ index 4f62a0184f..fb7c7946e4 100644
  
  #undef CONFIG_BOOTARGS
 -- 
-2.14.1
+1.7.1
 

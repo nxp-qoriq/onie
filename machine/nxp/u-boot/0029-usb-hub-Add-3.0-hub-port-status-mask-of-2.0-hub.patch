@@ -1,7 +1,7 @@
 From 0d4f4a0ba13d00ae906ebc010964db4ca0ed36f4 Mon Sep 17 00:00:00 2001
 From: Bin Meng <bmeng.cn@gmail.com>
 Date: Wed, 19 Jul 2017 21:50:01 +0800
-Subject: [PATCH 029/155] usb: hub: Add 3.0 hub port status mask of 2.0 hub
+Subject: [PATCH 029/211] usb: hub: Add 3.0 hub port status mask of 2.0 hub
 
 USB 3.0 hub port status has different bit position regarding to
 port power, port speed, etc. But others are the same as 2.0 hubs.
@@ -11,11 +11,11 @@ Reviewed-by: Simon Glass <sjg@chromium.org>
 Reviewed-by: Stefan Roese <sr@denx.de>
 Tested-by: Stefan Roese <sr@denx.de>
 ---
- include/usb_defs.h | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ include/usb_defs.h |    7 ++++++-
+ 1 files changed, 6 insertions(+), 1 deletions(-)
 
 diff --git a/include/usb_defs.h b/include/usb_defs.h
-index 608a0ca568..6b4385a2d8 100644
+index 608a0ca..6b4385a 100644
 --- a/include/usb_defs.h
 +++ b/include/usb_defs.h
 @@ -262,12 +262,17 @@
@@ -38,5 +38,5 @@ index 608a0ca568..6b4385a2d8 100644
  /* wPortChange bits */
  #define USB_PORT_STAT_C_CONNECTION  0x0001
 -- 
-2.14.1
+1.7.1
 

@@ -1,7 +1,7 @@
 From 2a6040b1d9bcafe7ceb81aff914a611289f94511 Mon Sep 17 00:00:00 2001
 From: Sumit Garg <sumit.garg@nxp.com>
 Date: Fri, 25 Aug 2017 15:10:16 +0530
-Subject: [PATCH 104/155] configs: SECURE_BOOT: Enable CONFIG_CMD_EXT4_WRITE
+Subject: [PATCH 104/211] configs: SECURE_BOOT: Enable CONFIG_CMD_EXT4_WRITE
 
 As part of chain of trust with confidentiality along with distro
 boot, linux kernel image needs to be stored in encrypted form on
@@ -10,11 +10,11 @@ Secure boot.
 
 Signed-off-by: Sumit Garg <sumit.garg@nxp.com>
 ---
- board/freescale/common/Kconfig | 2 ++
- 1 file changed, 2 insertions(+)
+ board/freescale/common/Kconfig |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
 
 diff --git a/board/freescale/common/Kconfig b/board/freescale/common/Kconfig
-index 53b606ebb5..3496eeda31 100644
+index 53b606e..3496eed 100644
 --- a/board/freescale/common/Kconfig
 +++ b/board/freescale/common/Kconfig
 @@ -6,6 +6,8 @@ config CHAIN_OF_TRUST
@@ -27,5 +27,5 @@ index 53b606ebb5..3496eeda31 100644
  	default y
  
 -- 
-2.14.1
+1.7.1
 

@@ -1,8 +1,7 @@
 From 2c24a13fd65cdde4fea5be513b718ae504fdd64d Mon Sep 17 00:00:00 2001
 From: Bin Meng <bmeng.cn@gmail.com>
 Date: Wed, 19 Jul 2017 21:50:04 +0800
-Subject: [PATCH 032/155] configs: Remove CONFIG_SYS_USB_XHCI_MAX_ROOT_PORTS in
- all boards
+Subject: [PATCH 032/211] configs: Remove CONFIG_SYS_USB_XHCI_MAX_ROOT_PORTS in all boards
 
 Now that xHCD does not use CONFIG_SYS_USB_XHCI_MAX_ROOT_PORTS,
 remove it in all boards' config files.
@@ -12,37 +11,37 @@ Reviewed-by: Simon Glass <sjg@chromium.org>
 Reviewed-by: Stefan Roese <sr@denx.de>
 Tested-by: Stefan Roese <sr@denx.de>
 ---
- include/configs/am43xx_evm.h         | 1 -
- include/configs/am57xx_evm.h         | 1 -
- include/configs/cl-som-am57x.h       | 1 -
- include/configs/cm_t43.h             | 1 -
- include/configs/dra7xx_evm.h         | 1 -
- include/configs/ds414.h              | 1 -
- include/configs/exynos5-common.h     | 1 -
- include/configs/ls1012afrdm.h        | 1 -
- include/configs/ls1012aqds.h         | 1 -
- include/configs/ls1012ardb.h         | 1 -
- include/configs/ls1021aiot.h         | 1 -
- include/configs/ls1021aqds.h         | 1 -
- include/configs/ls1021atwr.h         | 1 -
- include/configs/ls1043aqds.h         | 1 -
- include/configs/ls1043ardb.h         | 1 -
- include/configs/ls1046aqds.h         | 1 -
- include/configs/ls1046ardb.h         | 1 -
- include/configs/ls2080aqds.h         | 1 -
- include/configs/ls2080ardb.h         | 1 -
- include/configs/mvebu_armada-37xx.h  | 4 +---
- include/configs/mvebu_armada-8k.h    | 4 +---
- include/configs/rk3328_common.h      | 2 --
- include/configs/rk3399_common.h      | 3 ---
- include/configs/ti_armv7_keystone2.h | 1 -
- include/configs/uniphier.h           | 3 ---
- include/configs/xilinx_zynqmp.h      | 2 --
- scripts/config_whitelist.txt         | 1 -
+ include/configs/am43xx_evm.h         |    1 -
+ include/configs/am57xx_evm.h         |    1 -
+ include/configs/cl-som-am57x.h       |    1 -
+ include/configs/cm_t43.h             |    1 -
+ include/configs/dra7xx_evm.h         |    1 -
+ include/configs/ds414.h              |    1 -
+ include/configs/exynos5-common.h     |    1 -
+ include/configs/ls1012afrdm.h        |    1 -
+ include/configs/ls1012aqds.h         |    1 -
+ include/configs/ls1012ardb.h         |    1 -
+ include/configs/ls1021aiot.h         |    1 -
+ include/configs/ls1021aqds.h         |    1 -
+ include/configs/ls1021atwr.h         |    1 -
+ include/configs/ls1043aqds.h         |    1 -
+ include/configs/ls1043ardb.h         |    1 -
+ include/configs/ls1046aqds.h         |    1 -
+ include/configs/ls1046ardb.h         |    1 -
+ include/configs/ls2080aqds.h         |    1 -
+ include/configs/ls2080ardb.h         |    1 -
+ include/configs/mvebu_armada-37xx.h  |    4 +---
+ include/configs/mvebu_armada-8k.h    |    4 +---
+ include/configs/rk3328_common.h      |    2 --
+ include/configs/rk3399_common.h      |    3 ---
+ include/configs/ti_armv7_keystone2.h |    1 -
+ include/configs/uniphier.h           |    3 ---
+ include/configs/xilinx_zynqmp.h      |    2 --
+ scripts/config_whitelist.txt         |    1 -
  27 files changed, 2 insertions(+), 37 deletions(-)
 
 diff --git a/include/configs/am43xx_evm.h b/include/configs/am43xx_evm.h
-index 1d8e39c203..4278878506 100644
+index 1d8e39c..4278878 100644
 --- a/include/configs/am43xx_evm.h
 +++ b/include/configs/am43xx_evm.h
 @@ -83,7 +83,6 @@
@@ -54,7 +53,7 @@ index 1d8e39c203..4278878506 100644
  #define CONFIG_OMAP_USB_PHY
  #define CONFIG_AM437X_USB2PHY2_HOST
 diff --git a/include/configs/am57xx_evm.h b/include/configs/am57xx_evm.h
-index 7a42d79647..a88164e3dd 100644
+index 7a42d79..a88164e 100644
 --- a/include/configs/am57xx_evm.h
 +++ b/include/configs/am57xx_evm.h
 @@ -93,7 +93,6 @@
@@ -66,7 +65,7 @@ index 7a42d79647..a88164e3dd 100644
  #define CONFIG_OMAP_USB_PHY
  #define CONFIG_OMAP_USB3PHY1_HOST
 diff --git a/include/configs/cl-som-am57x.h b/include/configs/cl-som-am57x.h
-index a04f4cd23d..02adac58a1 100644
+index a04f4cd..02adac5 100644
 --- a/include/configs/cl-som-am57x.h
 +++ b/include/configs/cl-som-am57x.h
 @@ -84,7 +84,6 @@
@@ -78,7 +77,7 @@ index a04f4cd23d..02adac58a1 100644
  #define CONFIG_OMAP_USB_PHY
  #define CONFIG_OMAP_USB3PHY1_HOST
 diff --git a/include/configs/cm_t43.h b/include/configs/cm_t43.h
-index 7b5ca0db0f..ad6f6ce594 100644
+index 7b5ca0d..ad6f6ce 100644
 --- a/include/configs/cm_t43.h
 +++ b/include/configs/cm_t43.h
 @@ -60,7 +60,6 @@
@@ -90,7 +89,7 @@ index 7b5ca0db0f..ad6f6ce594 100644
  #define CONFIG_AM437X_USB2PHY2_HOST
  
 diff --git a/include/configs/dra7xx_evm.h b/include/configs/dra7xx_evm.h
-index d6c4a71ab2..b97a34bac1 100644
+index d6c4a71..b97a34b 100644
 --- a/include/configs/dra7xx_evm.h
 +++ b/include/configs/dra7xx_evm.h
 @@ -156,7 +156,6 @@
@@ -102,7 +101,7 @@ index d6c4a71ab2..b97a34bac1 100644
  #define CONFIG_OMAP_USB_PHY
  #define CONFIG_OMAP_USB2PHY2_HOST
 diff --git a/include/configs/ds414.h b/include/configs/ds414.h
-index aaba5d8eab..b0846ef1cf 100644
+index aaba5d8..b0846ef 100644
 --- a/include/configs/ds414.h
 +++ b/include/configs/ds414.h
 @@ -69,7 +69,6 @@
@@ -114,7 +113,7 @@ index aaba5d8eab..b0846ef1cf 100644
  
  #if !defined(CONFIG_USB_XHCI_HCD)
 diff --git a/include/configs/exynos5-common.h b/include/configs/exynos5-common.h
-index 378219d83a..7cb32783e6 100644
+index 378219d..7cb3278 100644
 --- a/include/configs/exynos5-common.h
 +++ b/include/configs/exynos5-common.h
 @@ -135,7 +135,6 @@
@@ -126,7 +125,7 @@ index 378219d83a..7cb32783e6 100644
  #define CONFIG_USB_HOST_ETHER
  #define CONFIG_USB_ETHER_ASIX
 diff --git a/include/configs/ls1012afrdm.h b/include/configs/ls1012afrdm.h
-index f6f88e84c7..6b1ba578e9 100644
+index f6f88e8..6b1ba57 100644
 --- a/include/configs/ls1012afrdm.h
 +++ b/include/configs/ls1012afrdm.h
 @@ -39,7 +39,6 @@
@@ -138,7 +137,7 @@ index f6f88e84c7..6b1ba578e9 100644
  
  #define CONFIG_CMD_MEMINFO
 diff --git a/include/configs/ls1012aqds.h b/include/configs/ls1012aqds.h
-index 5b8500b91b..e7d1cd5250 100644
+index 5b8500b..e7d1cd5 100644
 --- a/include/configs/ls1012aqds.h
 +++ b/include/configs/ls1012aqds.h
 @@ -124,7 +124,6 @@
@@ -150,7 +149,7 @@ index 5b8500b91b..e7d1cd5250 100644
  
  /*  MMC  */
 diff --git a/include/configs/ls1012ardb.h b/include/configs/ls1012ardb.h
-index 276fe1050c..a6ca3300af 100644
+index 276fe10..a6ca330 100644
 --- a/include/configs/ls1012ardb.h
 +++ b/include/configs/ls1012ardb.h
 @@ -27,7 +27,6 @@
@@ -162,7 +161,7 @@ index 276fe1050c..a6ca3300af 100644
  
  /*
 diff --git a/include/configs/ls1021aiot.h b/include/configs/ls1021aiot.h
-index c1ec2d440c..26fbb09cb6 100644
+index c1ec2d4..26fbb09 100644
 --- a/include/configs/ls1021aiot.h
 +++ b/include/configs/ls1021aiot.h
 @@ -26,7 +26,6 @@
@@ -174,7 +173,7 @@ index c1ec2d440c..26fbb09cb6 100644
  
  #if defined(CONFIG_HAS_FSL_DR_USB) || defined(CONFIG_HAS_FSL_XHCI_USB)
 diff --git a/include/configs/ls1021aqds.h b/include/configs/ls1021aqds.h
-index 152954165c..101e2e5756 100644
+index 1529541..101e2e5 100644
 --- a/include/configs/ls1021aqds.h
 +++ b/include/configs/ls1021aqds.h
 @@ -413,7 +413,6 @@ unsigned long get_board_ddr_clk(void);
@@ -186,7 +185,7 @@ index 152954165c..101e2e5756 100644
  
  /*
 diff --git a/include/configs/ls1021atwr.h b/include/configs/ls1021atwr.h
-index c4cf0c2c60..509337645c 100644
+index c4cf0c2..5093376 100644
 --- a/include/configs/ls1021atwr.h
 +++ b/include/configs/ls1021atwr.h
 @@ -50,7 +50,6 @@
@@ -198,7 +197,7 @@ index c4cf0c2c60..509337645c 100644
  
  #define CONFIG_SYS_CLK_FREQ		100000000
 diff --git a/include/configs/ls1043aqds.h b/include/configs/ls1043aqds.h
-index 04d74acdeb..ddfe75477f 100644
+index 04d74ac..ddfe754 100644
 --- a/include/configs/ls1043aqds.h
 +++ b/include/configs/ls1043aqds.h
 @@ -378,7 +378,6 @@ unsigned long get_board_ddr_clk(void);
@@ -210,7 +209,7 @@ index 04d74acdeb..ddfe75477f 100644
  
  /*
 diff --git a/include/configs/ls1043ardb.h b/include/configs/ls1043ardb.h
-index deae787358..f87fce695b 100644
+index deae787..f87fce6 100644
 --- a/include/configs/ls1043ardb.h
 +++ b/include/configs/ls1043ardb.h
 @@ -291,7 +291,6 @@
@@ -222,7 +221,7 @@ index deae787358..f87fce695b 100644
  #endif
  
 diff --git a/include/configs/ls1046aqds.h b/include/configs/ls1046aqds.h
-index 1b66c94722..dcf2b684d9 100644
+index 1b66c94..dcf2b68 100644
 --- a/include/configs/ls1046aqds.h
 +++ b/include/configs/ls1046aqds.h
 @@ -144,7 +144,6 @@ unsigned long get_board_ddr_clk(void);
@@ -234,7 +233,7 @@ index 1b66c94722..dcf2b684d9 100644
  #endif
  
 diff --git a/include/configs/ls1046ardb.h b/include/configs/ls1046ardb.h
-index b29fbadedc..e007d18eee 100644
+index b29fbad..e007d18 100644
 --- a/include/configs/ls1046ardb.h
 +++ b/include/configs/ls1046ardb.h
 @@ -222,7 +222,6 @@
@@ -246,7 +245,7 @@ index b29fbadedc..e007d18eee 100644
  #endif
  #endif
 diff --git a/include/configs/ls2080aqds.h b/include/configs/ls2080aqds.h
-index 8a8ee9d351..666634d8be 100644
+index 8a8ee9d..666634d 100644
 --- a/include/configs/ls2080aqds.h
 +++ b/include/configs/ls2080aqds.h
 @@ -450,7 +450,6 @@ unsigned long get_board_ddr_clk(void);
@@ -258,7 +257,7 @@ index 8a8ee9d351..666634d8be 100644
  #include <asm/fsl_secure_boot.h>
  
 diff --git a/include/configs/ls2080ardb.h b/include/configs/ls2080ardb.h
-index 2dab065be1..0a4c90c5ac 100644
+index 2dab065..0a4c90c 100644
 --- a/include/configs/ls2080ardb.h
 +++ b/include/configs/ls2080ardb.h
 @@ -349,7 +349,6 @@ unsigned long get_board_sys_clk(void);
@@ -270,7 +269,7 @@ index 2dab065be1..0a4c90c5ac 100644
  #undef CONFIG_CMDLINE_EDITING
  #include <config_distro_defaults.h>
 diff --git a/include/configs/mvebu_armada-37xx.h b/include/configs/mvebu_armada-37xx.h
-index 5408490dc6..7a255a1d83 100644
+index 5408490..7a255a1 100644
 --- a/include/configs/mvebu_armada-37xx.h
 +++ b/include/configs/mvebu_armada-37xx.h
 @@ -98,10 +98,8 @@
@@ -286,7 +285,7 @@ index 5408490dc6..7a255a1d83 100644
  /* USB ethernet */
  #define CONFIG_USB_HOST_ETHER
 diff --git a/include/configs/mvebu_armada-8k.h b/include/configs/mvebu_armada-8k.h
-index 9d3aeefcd0..c29d7f9880 100644
+index 9d3aeef..c29d7f9 100644
 --- a/include/configs/mvebu_armada-8k.h
 +++ b/include/configs/mvebu_armada-8k.h
 @@ -104,10 +104,8 @@
@@ -302,7 +301,7 @@ index 9d3aeefcd0..c29d7f9880 100644
  /* USB ethernet */
  #define CONFIG_USB_HOST_ETHER
 diff --git a/include/configs/rk3328_common.h b/include/configs/rk3328_common.h
-index 5a06244594..bc89fd64b7 100644
+index 5a06244..bc89fd6 100644
 --- a/include/configs/rk3328_common.h
 +++ b/include/configs/rk3328_common.h
 @@ -63,6 +63,4 @@
@@ -313,7 +312,7 @@ index 5a06244594..bc89fd64b7 100644
 -#define CONFIG_SYS_USB_XHCI_MAX_ROOT_PORTS	2
  #endif
 diff --git a/include/configs/rk3399_common.h b/include/configs/rk3399_common.h
-index 44dad570d3..536da895bf 100644
+index 44dad57..536da89 100644
 --- a/include/configs/rk3399_common.h
 +++ b/include/configs/rk3399_common.h
 @@ -81,7 +81,4 @@
@@ -325,7 +324,7 @@ index 44dad570d3..536da895bf 100644
 -
  #endif
 diff --git a/include/configs/ti_armv7_keystone2.h b/include/configs/ti_armv7_keystone2.h
-index ac8dabd9ca..ea93b0531a 100644
+index ac8dabd..ea93b05 100644
 --- a/include/configs/ti_armv7_keystone2.h
 +++ b/include/configs/ti_armv7_keystone2.h
 @@ -195,7 +195,6 @@
@@ -337,7 +336,7 @@ index ac8dabd9ca..ea93b0531a 100644
  #define CONFIG_USB_HOST_XHCI_BASE		KS2_USB_HOST_XHCI_BASE
  #define CONFIG_DEV_USB_PHY_BASE			KS2_DEV_USB_PHY_BASE
 diff --git a/include/configs/uniphier.h b/include/configs/uniphier.h
-index e45b506eba..aa6900ebc2 100644
+index e45b506..aa6900e 100644
 --- a/include/configs/uniphier.h
 +++ b/include/configs/uniphier.h
 @@ -114,9 +114,6 @@
@@ -351,7 +350,7 @@ index e45b506eba..aa6900ebc2 100644
  #define CONFIG_SUPPORT_EMMC_BOOT
  
 diff --git a/include/configs/xilinx_zynqmp.h b/include/configs/xilinx_zynqmp.h
-index 86a4579fbd..1213c49323 100644
+index 86a4579..1213c49 100644
 --- a/include/configs/xilinx_zynqmp.h
 +++ b/include/configs/xilinx_zynqmp.h
 @@ -91,8 +91,6 @@
@@ -364,7 +363,7 @@ index 86a4579fbd..1213c49323 100644
  #define DFU_DEFAULT_POLL_TIMEOUT	300
  #define CONFIG_USB_CABLE_CHECK
 diff --git a/scripts/config_whitelist.txt b/scripts/config_whitelist.txt
-index 54eee53572..37be9efd27 100644
+index 54eee53..37be9ef 100644
 --- a/scripts/config_whitelist.txt
 +++ b/scripts/config_whitelist.txt
 @@ -4891,7 +4891,6 @@ CONFIG_SYS_USB_OHCI_CPU_INIT
@@ -376,5 +375,5 @@ index 54eee53572..37be9efd27 100644
  CONFIG_SYS_USE_BOOT_NORFLASH
  CONFIG_SYS_USE_DATAFLASH
 -- 
-2.14.1
+1.7.1
 

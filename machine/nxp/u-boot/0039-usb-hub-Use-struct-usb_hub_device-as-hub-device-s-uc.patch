@@ -1,8 +1,7 @@
 From 456a8eeb6f501350dc5557cf906ac422d0dfcdca Mon Sep 17 00:00:00 2001
 From: Bin Meng <bmeng.cn@gmail.com>
 Date: Wed, 19 Jul 2017 21:51:09 +0800
-Subject: [PATCH 039/155] usb: hub: Use 'struct usb_hub_device' as hub device's
- uclass_priv
+Subject: [PATCH 039/211] usb: hub: Use 'struct usb_hub_device' as hub device's uclass_priv
 
 Use USB hub device's dev->uclass_priv to point to 'usb_hub_device'
 so that with driver model usb_hub_reset() and usb_hub_allocate()
@@ -11,12 +10,12 @@ are no longer needed.
 Signed-off-by: Bin Meng <bmeng.cn@gmail.com>
 Reviewed-by: Simon Glass <sjg@chromium.org>
 ---
- common/usb_hub.c              | 27 ++++++++++++++++++++++-----
- drivers/usb/host/usb-uclass.c |  2 --
+ common/usb_hub.c              |   27 ++++++++++++++++++++++-----
+ drivers/usb/host/usb-uclass.c |    2 --
  2 files changed, 22 insertions(+), 7 deletions(-)
 
 diff --git a/common/usb_hub.c b/common/usb_hub.c
-index a46d26a69e..37b358bbbb 100644
+index a46d26a..37b358b 100644
 --- a/common/usb_hub.c
 +++ b/common/usb_hub.c
 @@ -55,9 +55,6 @@ struct usb_device_scan {
@@ -92,7 +91,7 @@ index a46d26a69e..37b358bbbb 100644
  
  static const struct usb_device_id hub_id_table[] = {
 diff --git a/drivers/usb/host/usb-uclass.c b/drivers/usb/host/usb-uclass.c
-index 110ddc92fa..9bb84778de 100644
+index 110ddc9..9bb8477 100644
 --- a/drivers/usb/host/usb-uclass.c
 +++ b/drivers/usb/host/usb-uclass.c
 @@ -177,7 +177,6 @@ int usb_stop(void)
@@ -112,5 +111,5 @@ index 110ddc92fa..9bb84778de 100644
  	ret = uclass_get(UCLASS_USB, &uc);
  	if (ret)
 -- 
-2.14.1
+1.7.1
 

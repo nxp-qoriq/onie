@@ -1,20 +1,20 @@
 From 0ef4a4c61258577b36e875eb7bab63fcdbfbc1bd Mon Sep 17 00:00:00 2001
 From: Sumit Garg <sumit.garg@nxp.com>
 Date: Fri, 25 Aug 2017 13:30:30 +0530
-Subject: [PATCH 108/155] ls1088ardb: Add SD Secure boot target support
+Subject: [PATCH 108/211] ls1088ardb: Add SD Secure boot target support
 
 Signed-off-by: Udit Agarwal <udit.agarwal@nxp.com>
 Signed-off-by: Sumit Garg <sumit.garg@nxp.com>
 ---
- arch/arm/include/asm/fsl_secure_boot.h             | 16 ++++-----
- board/freescale/ls1088a/MAINTAINERS                |  5 +++
- .../ls1088ardb_sdcard_qspi_SECURE_BOOT_defconfig   | 39 ++++++++++++++++++++++
- include/configs/ls1088a_common.h                   | 15 ++++++++-
+ arch/arm/include/asm/fsl_secure_boot.h             |   16 ++++----
+ board/freescale/ls1088a/MAINTAINERS                |    5 +++
+ .../ls1088ardb_sdcard_qspi_SECURE_BOOT_defconfig   |   39 ++++++++++++++++++++
+ include/configs/ls1088a_common.h                   |   15 +++++++-
  4 files changed, 66 insertions(+), 9 deletions(-)
  create mode 100644 configs/ls1088ardb_sdcard_qspi_SECURE_BOOT_defconfig
 
 diff --git a/arch/arm/include/asm/fsl_secure_boot.h b/arch/arm/include/asm/fsl_secure_boot.h
-index 5ebe0cf743..aa48024b26 100644
+index 5ebe0cf..aa48024 100644
 --- a/arch/arm/include/asm/fsl_secure_boot.h
 +++ b/arch/arm/include/asm/fsl_secure_boot.h
 @@ -26,6 +26,14 @@
@@ -48,7 +48,7 @@ index 5ebe0cf743..aa48024b26 100644
  #define CONFIG_EXTRA_ENV \
  	"setenv fdt_high 0xa0000000;"	\
 diff --git a/board/freescale/ls1088a/MAINTAINERS b/board/freescale/ls1088a/MAINTAINERS
-index b3d5c388eb..de8a7703c5 100644
+index b3d5c38..de8a770 100644
 --- a/board/freescale/ls1088a/MAINTAINERS
 +++ b/board/freescale/ls1088a/MAINTAINERS
 @@ -15,3 +15,8 @@ F:	board/freescale/ls1088a/
@@ -62,7 +62,7 @@ index b3d5c388eb..de8a7703c5 100644
 +F:	configs/ls1088ardb_sdcard_qspi_SECURE_BOOT_defconfig
 diff --git a/configs/ls1088ardb_sdcard_qspi_SECURE_BOOT_defconfig b/configs/ls1088ardb_sdcard_qspi_SECURE_BOOT_defconfig
 new file mode 100644
-index 0000000000..746637d864
+index 0000000..746637d
 --- /dev/null
 +++ b/configs/ls1088ardb_sdcard_qspi_SECURE_BOOT_defconfig
 @@ -0,0 +1,39 @@
@@ -106,7 +106,7 @@ index 0000000000..746637d864
 +CONFIG_SPL_HASH_SUPPORT=y
 +# CONFIG_DISPLAY_BOARDINFO is not set
 diff --git a/include/configs/ls1088a_common.h b/include/configs/ls1088a_common.h
-index c195fc3411..05de5cca9b 100644
+index c195fc3..05de5cc 100644
 --- a/include/configs/ls1088a_common.h
 +++ b/include/configs/ls1088a_common.h
 @@ -248,7 +248,20 @@ unsigned long long get_qixis_addr(void);
@@ -132,5 +132,5 @@ index c195fc3411..05de5cca9b 100644
  #define CONFIG_SYS_BOOTM_LEN   (64 << 20)      /* Increase max gunzip size */
  
 -- 
-2.14.1
+1.7.1
 

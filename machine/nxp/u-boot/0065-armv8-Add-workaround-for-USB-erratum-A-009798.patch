@@ -1,7 +1,7 @@
 From cd4115df53c54552b01730c046a7a55df2847720 Mon Sep 17 00:00:00 2001
 From: Ran Wang <ran.wang_1@nxp.com>
 Date: Fri, 4 Aug 2017 14:15:05 +0800
-Subject: [PATCH 065/155] armv8: Add workaround for USB erratum A-009798
+Subject: [PATCH 065/211] armv8: Add workaround for USB erratum A-009798
 
 USB High Speed Squelch Threshold Adjustment
 This patch is adding the erratum for LS1043 and LS2080 SoCs.
@@ -14,14 +14,14 @@ Signed-off-by: Rajesh Bhagat <rajesh.bhagat@nxp.com>
 Signed-off-by: yinbo.zhu <yinbo.zhu@nxp.com>
 Signed-off-by: ran.wang <ran.wang_1@nxp.com>
 ---
- arch/arm/cpu/armv8/fsl-layerscape/Kconfig          |  4 ++++
- arch/arm/cpu/armv8/fsl-layerscape/soc.c            | 24 +++++++++++++++++++++-
- .../include/asm/arch-fsl-layerscape/immap_lsch2.h  |  7 ++++++-
- .../include/asm/arch-fsl-layerscape/immap_lsch3.h  |  4 +++-
+ arch/arm/cpu/armv8/fsl-layerscape/Kconfig          |    4 +++
+ arch/arm/cpu/armv8/fsl-layerscape/soc.c            |   24 +++++++++++++++++++-
+ .../include/asm/arch-fsl-layerscape/immap_lsch2.h  |    7 +++++-
+ .../include/asm/arch-fsl-layerscape/immap_lsch3.h  |    4 ++-
  4 files changed, 36 insertions(+), 3 deletions(-)
 
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
-index 5dd455c7c2..465976f851 100644
+index 5dd455c..465976f 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 @@ -6,6 +6,7 @@ config ARCH_LS1012A
@@ -57,7 +57,7 @@ index 5dd455c7c2..465976f851 100644
  	select SYS_FSL_ERRATUM_A009801
  	select SYS_FSL_ERRATUM_A009803
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/soc.c b/arch/arm/cpu/armv8/fsl-layerscape/soc.c
-index 0943e833d7..c4aaa1a15e 100644
+index 0943e83..c4aaa1a 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/soc.c
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/soc.c
 @@ -1,5 +1,5 @@
@@ -111,7 +111,7 @@ index 0943e833d7..c4aaa1a15e 100644
  #endif
  
 diff --git a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch2.h b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch2.h
-index 4afc338b8e..0cd0d30835 100644
+index 4afc338..0cd0d30 100644
 --- a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch2.h
 +++ b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch2.h
 @@ -1,5 +1,5 @@
@@ -134,7 +134,7 @@ index 4afc338b8e..0cd0d30835 100644
  	u32     devdisr3;       /* Device disable control 3 */
  	u32     devdisr4;       /* Device disable control 4 */
 diff --git a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
-index 59410aa7e7..62113e52b5 100644
+index 59410aa..62113e5 100644
 --- a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
 +++ b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
 @@ -1,7 +1,7 @@
@@ -156,5 +156,5 @@ index 59410aa7e7..62113e52b5 100644
  
  #define TP_ITYP_AV		0x00000001	/* Initiator available */
 -- 
-2.14.1
+1.7.1
 

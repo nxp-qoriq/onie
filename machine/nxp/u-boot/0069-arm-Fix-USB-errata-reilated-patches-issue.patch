@@ -1,21 +1,21 @@
 From 7b13b78d9592d1811b8775f0fd4cebebdf1973df Mon Sep 17 00:00:00 2001
 From: Ran Wang <ran.wang_1@nxp.com>
 Date: Sat, 17 Jun 2017 17:28:42 +0800
-Subject: [PATCH 069/155] arm: Fix USB errata reilated patches issue.
+Subject: [PATCH 069/211] arm: Fix USB errata reilated patches issue.
 
 1.Miss definition in Kconfig.
 2.Compile switch should be CONFIG_ARCH_LSxxx.
 3.Miss some register define.
 Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
 ---
- arch/arm/cpu/armv7/ls102xa/Kconfig                     | 12 ++++++++++++
- arch/arm/cpu/armv8/fsl-layerscape/Kconfig              | 12 ++++++++++++
- arch/arm/cpu/armv8/fsl-layerscape/soc.c                | 14 +++++++-------
- arch/arm/include/asm/arch-fsl-layerscape/immap_lsch2.h |  1 +
+ arch/arm/cpu/armv7/ls102xa/Kconfig                 |   12 ++++++++++++
+ arch/arm/cpu/armv8/fsl-layerscape/Kconfig          |   12 ++++++++++++
+ arch/arm/cpu/armv8/fsl-layerscape/soc.c            |   14 +++++++-------
+ .../include/asm/arch-fsl-layerscape/immap_lsch2.h  |    1 +
  4 files changed, 32 insertions(+), 7 deletions(-)
 
 diff --git a/arch/arm/cpu/armv7/ls102xa/Kconfig b/arch/arm/cpu/armv7/ls102xa/Kconfig
-index 926903bf2d..78b6ada08b 100644
+index 926903b..78b6ada 100644
 --- a/arch/arm/cpu/armv7/ls102xa/Kconfig
 +++ b/arch/arm/cpu/armv7/ls102xa/Kconfig
 @@ -72,4 +72,16 @@ config SYS_FSL_IFC_BANK_COUNT
@@ -36,7 +36,7 @@ index 926903bf2d..78b6ada08b 100644
 +
  endmenu
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
-index a14708d86a..77ba041cde 100644
+index a14708d..77ba041 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 @@ -407,6 +407,18 @@ config SYS_FSL_ERRATUM_A009660
@@ -59,7 +59,7 @@ index a14708d86a..77ba041cde 100644
  	hex "Management Complex reserved memory alignment"
  	depends on RESV_RAM
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/soc.c b/arch/arm/cpu/armv8/fsl-layerscape/soc.c
-index c5ea47d9b8..d66ee1aa0e 100644
+index c5ea47d..d66ee1a 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/soc.c
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/soc.c
 @@ -29,7 +29,7 @@ DECLARE_GLOBAL_DATA_PTR;
@@ -126,7 +126,7 @@ index c5ea47d9b8..d66ee1aa0e 100644
  	writew(USB_PHY_RX_EQ_VAL_1,
  	       (u8 *)(dcsr) + DCSR_USB_PHY1 + DCSR_USB_PHY_RX_OVRD_IN_HI);
 diff --git a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch2.h b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch2.h
-index 9fd347bd35..e950a2a721 100644
+index 9fd347b..e950a2a 100644
 --- a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch2.h
 +++ b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch2.h
 @@ -203,6 +203,7 @@ struct ccsr_gur {
@@ -138,5 +138,5 @@ index 9fd347bd35..e950a2a721 100644
  #define SCFG_USB3PRM2CR_USB3           0x08c
  #define USB_TXVREFTUNE                 0x9
 -- 
-2.14.1
+1.7.1
 

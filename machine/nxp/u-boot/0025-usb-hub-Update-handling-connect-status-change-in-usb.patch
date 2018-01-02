@@ -1,8 +1,7 @@
 From 5d57ff86dbcb8ab144d0bc8fd4a81da52a853fff Mon Sep 17 00:00:00 2001
 From: Bin Meng <bmeng.cn@gmail.com>
 Date: Wed, 19 Jul 2017 21:49:57 +0800
-Subject: [PATCH 025/155] usb: hub: Update handling connect status/change in
- usb_scan_port()
+Subject: [PATCH 025/211] usb: hub: Update handling connect status/change in usb_scan_port()
 
 It was observed that on Intel MinnowMax board, when xHCI is enabled
 in the BayTrail SoC, with a USB 3.0 device connected to the bottom
@@ -25,11 +24,11 @@ Reviewed-by: Stefan Roese <sr@denx.de>
 Tested-by: Stefan Roese <sr@denx.de>
 Tested-by: Dinh Nguyen <dinguyen@kernel.org>
 ---
- common/usb_hub.c | 15 +++++++++------
- 1 file changed, 9 insertions(+), 6 deletions(-)
+ common/usb_hub.c |   15 +++++++++------
+ 1 files changed, 9 insertions(+), 6 deletions(-)
 
 diff --git a/common/usb_hub.c b/common/usb_hub.c
-index d135526e4f..4fe0daa3e3 100644
+index d135526..4fe0daa 100644
 --- a/common/usb_hub.c
 +++ b/common/usb_hub.c
 @@ -405,8 +405,15 @@ static int usb_scan_port(struct usb_device_scan *usb_scan)
@@ -62,5 +61,5 @@ index d135526e4f..4fe0daa3e3 100644
  	debug("devnum=%d port=%d: USB dev found\n", dev->devnum, i + 1);
  
 -- 
-2.14.1
+1.7.1
 

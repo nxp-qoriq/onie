@@ -1,8 +1,7 @@
 From c4a5c1226b2b84f3a0d5b40cebb15393e8f39589 Mon Sep 17 00:00:00 2001
 From: Bin Meng <bmeng.cn@gmail.com>
 Date: Wed, 19 Jul 2017 21:51:17 +0800
-Subject: [PATCH 047/155] dm: usb: Add a new USB controller operation
- 'update_hub_device'
+Subject: [PATCH 047/211] dm: usb: Add a new USB controller operation 'update_hub_device'
 
 For USB host controllers like xHC, its internal representation of
 hub needs to be updated after the hub descriptor is fetched. This
@@ -11,12 +10,12 @@ adds a new op that does this.
 Signed-off-by: Bin Meng <bmeng.cn@gmail.com>
 Reviewed-by: Simon Glass <sjg@chromium.org>
 ---
- drivers/usb/host/usb-uclass.c | 11 +++++++++++
- include/usb.h                 | 21 ++++++++++++++++++++-
- 2 files changed, 31 insertions(+), 1 deletion(-)
+ drivers/usb/host/usb-uclass.c |   11 +++++++++++
+ include/usb.h                 |   21 ++++++++++++++++++++-
+ 2 files changed, 31 insertions(+), 1 deletions(-)
 
 diff --git a/drivers/usb/host/usb-uclass.c b/drivers/usb/host/usb-uclass.c
-index 9bb84778de..1078b8ce96 100644
+index 9bb8477..1078b8c 100644
 --- a/drivers/usb/host/usb-uclass.c
 +++ b/drivers/usb/host/usb-uclass.c
 @@ -139,6 +139,17 @@ int usb_reset_root_port(struct usb_device *udev)
@@ -38,7 +37,7 @@ index 9bb84778de..1078b8ce96 100644
  {
  	struct udevice *bus;
 diff --git a/include/usb.h b/include/usb.h
-index 58b4549065..fad04016a3 100644
+index 58b4549..fad0401 100644
 --- a/include/usb.h
 +++ b/include/usb.h
 @@ -758,6 +758,14 @@ struct dm_usb_ops {
@@ -56,11 +55,10 @@ index 58b4549065..fad04016a3 100644
  };
  
  #define usb_get_ops(dev)	((struct dm_usb_ops *)(dev)->driver->ops)
-@@ -930,6 +938,17 @@ int usb_new_device(struct usb_device *dev);
- 
+@@ -931,6 +939,17 @@ int usb_new_device(struct usb_device *dev);
  int usb_alloc_device(struct usb_device *dev);
  
-+/**
+ /**
 + * update_hub_device() - Update HCD's internal representation of hub
 + *
 + * After a hub descriptor is fetched, notify HCD so that its internal
@@ -71,9 +69,10 @@ index 58b4549065..fad04016a3 100644
 + */
 +int usb_update_hub_device(struct usb_device *dev);
 +
- /**
++/**
   * usb_emul_setup_device() - Set up a new USB device emulation
   *
+  * This is normally called when a new emulation device is bound. It tells
 @@ -943,7 +962,7 @@ int usb_alloc_device(struct usb_device *dev);
   * @desc_list:		List of points or USB descriptors, terminated by NULL.
   *			The first entry must be struct usb_device_descriptor,
@@ -84,5 +83,5 @@ index 58b4549065..fad04016a3 100644
  int usb_emul_setup_device(struct udevice *dev, int maxpacketsize,
  			  struct usb_string *strings, void **desc_list);
 -- 
-2.14.1
+1.7.1
 

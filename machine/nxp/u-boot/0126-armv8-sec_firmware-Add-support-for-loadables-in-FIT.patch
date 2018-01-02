@@ -1,7 +1,7 @@
 From 1dfc472c93070be70eb00835d836070a8095b201 Mon Sep 17 00:00:00 2001
 From: Sumit Garg <sumit.garg@nxp.com>
 Date: Tue, 29 Aug 2017 21:31:00 +0530
-Subject: [PATCH 126/155] armv8: sec_firmware: Add support for loadables in FIT
+Subject: [PATCH 126/211] armv8: sec_firmware: Add support for loadables in FIT
 
 Enable support for loadables in SEC firmware FIT image. Currently support
 is added for single loadable image.
@@ -20,13 +20,13 @@ firmware FIT image.
 
 Signed-off-by: Sumit Garg <sumit.garg@nxp.com>
 ---
- arch/arm/cpu/armv8/fsl-layerscape/ppa.c   | 16 +++++-
- arch/arm/cpu/armv8/sec_firmware.c         | 94 +++++++++++++++++++++++++++++--
- arch/arm/include/asm/armv8/sec_firmware.h |  2 +-
+ arch/arm/cpu/armv8/fsl-layerscape/ppa.c   |   16 ++++-
+ arch/arm/cpu/armv8/sec_firmware.c         |   94 +++++++++++++++++++++++++++-
+ arch/arm/include/asm/armv8/sec_firmware.h |    2 +-
  3 files changed, 104 insertions(+), 8 deletions(-)
 
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/ppa.c b/arch/arm/cpu/armv8/fsl-layerscape/ppa.c
-index 35c612df05..87a0885372 100644
+index 35c612d..87a0885 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/ppa.c
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/ppa.c
 @@ -35,6 +35,7 @@ int ppa_init(void)
@@ -76,7 +76,7 @@ index 35c612df05..87a0885372 100644
  #if defined(CONFIG_SYS_LS_PPA_FW_IN_MMC) || \
  	defined(CONFIG_SYS_LS_PPA_FW_IN_NAND)
 diff --git a/arch/arm/cpu/armv8/sec_firmware.c b/arch/arm/cpu/armv8/sec_firmware.c
-index 0e7483437a..1ffffe68c9 100644
+index 0e74834..1ffffe6 100644
 --- a/arch/arm/cpu/armv8/sec_firmware.c
 +++ b/arch/arm/cpu/armv8/sec_firmware.c
 @@ -105,6 +105,76 @@ static int sec_firmware_parse_image(const void *sec_firmware_img,
@@ -212,7 +212,7 @@ index 0e7483437a..1ffffe68c9 100644
  		printf("SEC Firmware: Failed to load image\n");
  		return ret;
 diff --git a/arch/arm/include/asm/armv8/sec_firmware.h b/arch/arm/include/asm/armv8/sec_firmware.h
-index 6d42a7111f..26bc6636e8 100644
+index 6d42a71..26bc663 100644
 --- a/arch/arm/include/asm/armv8/sec_firmware.h
 +++ b/arch/arm/include/asm/armv8/sec_firmware.h
 @@ -10,7 +10,7 @@
@@ -225,5 +225,5 @@ index 6d42a7111f..26bc6636e8 100644
  bool sec_firmware_is_valid(const void *);
  bool sec_firmware_support_hwrng(void);
 -- 
-2.14.1
+1.7.1
 

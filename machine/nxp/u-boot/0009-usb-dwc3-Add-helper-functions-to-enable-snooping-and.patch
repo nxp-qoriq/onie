@@ -1,8 +1,7 @@
 From a836ef446fe14fc61526e7300994f978e21cec43 Mon Sep 17 00:00:00 2001
 From: Rajat Srivastava <rajat.srivastava@nxp.com>
 Date: Thu, 4 Aug 2016 14:56:54 +0530
-Subject: [PATCH 009/155] usb: dwc3: Add helper functions to enable snooping
- and burst settings
+Subject: [PATCH 009/211] usb: dwc3: Add helper functions to enable snooping and burst settings
 
 Adds helper functions to enable snooping and outstanding burst beat
 settings.
@@ -10,12 +9,12 @@ settings.
 Signed-off-by: Rajat Srivastava <rajat.srivastava@nxp.com>
 Signed-off-by: Rajesh Bhagat <rajesh.bhagat@nxp.com>
 ---
- drivers/usb/dwc3/core.c | 45 +++++++++++++++++++++++++++++++++++++++++++++
- drivers/usb/dwc3/core.h |  7 +++++++
- 2 files changed, 52 insertions(+)
+ drivers/usb/dwc3/core.c |   45 +++++++++++++++++++++++++++++++++++++++++++++
+ drivers/usb/dwc3/core.h |    7 +++++++
+ 2 files changed, 52 insertions(+), 0 deletions(-)
 
 diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-index 87b9c87edf..0b56a8173b 100644
+index 87b9c87..0b56a81 100644
 --- a/drivers/usb/dwc3/core.c
 +++ b/drivers/usb/dwc3/core.c
 @@ -601,6 +601,51 @@ static void dwc3_core_exit_mode(struct dwc3 *dwc)
@@ -71,7 +70,7 @@ index 87b9c87edf..0b56a8173b 100644
   * dwc3_uboot_init - dwc3 core uboot initialization code
   * @dwc3_dev: struct dwc3_device containing initialization data
 diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
-index 72d2fcdd3f..455e7fa01b 100644
+index 72d2fcd..455e7fa 100644
 --- a/drivers/usb/dwc3/core.h
 +++ b/drivers/usb/dwc3/core.h
 @@ -593,6 +593,13 @@ struct dwc3_hwparams {
@@ -89,5 +88,5 @@ index 72d2fcdd3f..455e7fa01b 100644
  	struct usb_request	request;
  	struct list_head	list;
 -- 
-2.14.1
+1.7.1
 

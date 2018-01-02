@@ -1,7 +1,7 @@
 From c888e5be2f3e2bc47f2b00765a29161cea241a76 Mon Sep 17 00:00:00 2001
 From: Santan Kumar <santan.kumar@nxp.com>
 Date: Mon, 14 Aug 2017 13:16:02 +0530
-Subject: [PATCH 062/155] arm64: ls2088ardb: Add distro boot support
+Subject: [PATCH 062/211] arm64: ls2088ardb: Add distro boot support
 
 Include common config_distro_defaults.h and config_distro_bootcmd.h
 for u-boot enviroments to support automatical distro boot which
@@ -13,13 +13,13 @@ storage disk, fall back to nor/qspi boot.
 Signed-off-by: Santan Kumar <santan.kumar@nxp.com>
 Signed-off-by: Zhang Ying-22455 <ying.zhang22455@nxp.com>
 ---
- configs/ls2080ardb_defconfig      |  1 +
- configs/ls2088ardb_qspi_defconfig |  1 +
- include/configs/ls2080ardb.h      | 93 +++++++++++++++++++--------------------
+ configs/ls2080ardb_defconfig      |    1 +
+ configs/ls2088ardb_qspi_defconfig |    1 +
+ include/configs/ls2080ardb.h      |   93 ++++++++++++++++++-------------------
  3 files changed, 47 insertions(+), 48 deletions(-)
 
 diff --git a/configs/ls2080ardb_defconfig b/configs/ls2080ardb_defconfig
-index ed79c97121..26aca0da76 100644
+index ed79c97..26aca0d 100644
 --- a/configs/ls2080ardb_defconfig
 +++ b/configs/ls2080ardb_defconfig
 @@ -38,3 +38,4 @@ CONFIG_USB_XHCI_HCD=y
@@ -28,7 +28,7 @@ index ed79c97121..26aca0da76 100644
  CONFIG_EFI_LOADER_BOUNCE_BUFFER=y
 +CONFIG_DISTRO_DEFAULTS=y
 diff --git a/configs/ls2088ardb_qspi_defconfig b/configs/ls2088ardb_qspi_defconfig
-index 76b2f32677..7e5ed84948 100644
+index 76b2f32..7e5ed84 100644
 --- a/configs/ls2088ardb_qspi_defconfig
 +++ b/configs/ls2088ardb_qspi_defconfig
 @@ -39,3 +39,4 @@ CONFIG_USB_XHCI_HCD=y
@@ -37,7 +37,7 @@ index 76b2f32677..7e5ed84948 100644
  CONFIG_EFI_LOADER_BOUNCE_BUFFER=y
 +CONFIG_DISTRO_DEFAULTS=y
 diff --git a/include/configs/ls2080ardb.h b/include/configs/ls2080ardb.h
-index 50a907c485..7819a87663 100644
+index 50a907c..7819a87 100644
 --- a/include/configs/ls2080ardb.h
 +++ b/include/configs/ls2080ardb.h
 @@ -409,70 +409,67 @@ unsigned long get_board_sys_clk(void);
@@ -157,5 +157,5 @@ index 50a907c485..7819a87663 100644
  #ifdef CONFIG_FSL_MC_ENET
  #define CONFIG_PHYLIB_10G
 -- 
-2.14.1
+1.7.1
 

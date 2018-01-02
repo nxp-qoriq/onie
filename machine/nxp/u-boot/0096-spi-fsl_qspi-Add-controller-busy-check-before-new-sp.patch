@@ -1,8 +1,7 @@
 From 5608c0d38387a087ea926eea178ed6d5068bb676 Mon Sep 17 00:00:00 2001
 From: Suresh Gupta <suresh.gupta@nxp.com>
 Date: Thu, 17 Aug 2017 15:51:09 +0530
-Subject: [PATCH 096/155] spi: fsl_qspi: Add controller busy check before new
- spi operation
+Subject: [PATCH 096/211] spi: fsl_qspi: Add controller busy check before new spi operation
 
 It is recommended to check either controller is free to take
 new spi action. The IP_ACC and AHB_ACC bits indicates that
@@ -12,12 +11,12 @@ busy handling a transaction to an external flash device
 
 Signed-off-by: Suresh Gupta <suresh.gupta@nxp.com>
 ---
- drivers/spi/fsl_qspi.c | 25 +++++++++++++++++++++++++
- drivers/spi/fsl_qspi.h |  4 ++++
- 2 files changed, 29 insertions(+)
+ drivers/spi/fsl_qspi.c |   25 +++++++++++++++++++++++++
+ drivers/spi/fsl_qspi.h |    4 ++++
+ 2 files changed, 29 insertions(+), 0 deletions(-)
 
 diff --git a/drivers/spi/fsl_qspi.c b/drivers/spi/fsl_qspi.c
-index 117f3fa61f..6e5c3b0341 100644
+index 117f3fa..6e5c3b0 100644
 --- a/drivers/spi/fsl_qspi.c
 +++ b/drivers/spi/fsl_qspi.c
 @@ -166,6 +166,26 @@ static inline u32 qspi_endian_xchg(u32 data)
@@ -60,7 +59,7 @@ index 117f3fa61f..6e5c3b0341 100644
  		if (flags & SPI_XFER_BEGIN) {
  			priv->cur_seqid = *(u8 *)dout;
 diff --git a/drivers/spi/fsl_qspi.h b/drivers/spi/fsl_qspi.h
-index 6cb361018b..e468eb2529 100644
+index 6cb3610..e468eb2 100644
 --- a/drivers/spi/fsl_qspi.h
 +++ b/drivers/spi/fsl_qspi.h
 @@ -105,6 +105,10 @@ struct fsl_qspi_regs {
@@ -75,5 +74,5 @@ index 6cb361018b..e468eb2529 100644
  #define QSPI_SR_BUSY_MASK		(1 << QSPI_SR_BUSY_SHIFT)
  
 -- 
-2.14.1
+1.7.1
 

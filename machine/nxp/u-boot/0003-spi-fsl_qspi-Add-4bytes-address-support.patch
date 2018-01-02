@@ -1,7 +1,7 @@
 From 9e38f605ce31100940db5b67bf39a8a9b4ee4264 Mon Sep 17 00:00:00 2001
 From: Suresh Gupta <suresh.gupta@nxp.com>
 Date: Tue, 25 Apr 2017 13:08:48 +0530
-Subject: [PATCH 003/155] spi: fsl_qspi: Add 4bytes address support
+Subject: [PATCH 003/211] spi: fsl_qspi: Add 4bytes address support
 
 The QSPI support the direct 4bytes address command for flash
 read/write/erase.
@@ -9,11 +9,11 @@ And the address can cover the whole QSPI memory space.
 
 signed-off-by: Yuan Yao <yao.yuan@nxp.com>
 ---
- drivers/spi/fsl_qspi.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+ drivers/spi/fsl_qspi.c |    9 +++++++--
+ 1 files changed, 7 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/spi/fsl_qspi.c b/drivers/spi/fsl_qspi.c
-index e61c67b088..117f3fa61f 100644
+index e61c67b..117f3fa 100644
 --- a/drivers/spi/fsl_qspi.c
 +++ b/drivers/spi/fsl_qspi.c
 @@ -25,7 +25,9 @@ DECLARE_GLOBAL_DATA_PTR;
@@ -40,5 +40,5 @@ index e61c67b088..117f3fa61f 100644
  
  		if (flags == SPI_XFER_END) {
 -- 
-2.14.1
+1.7.1
 

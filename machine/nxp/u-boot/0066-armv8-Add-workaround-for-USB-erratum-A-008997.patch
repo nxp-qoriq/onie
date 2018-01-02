@@ -1,7 +1,7 @@
 From e0ebd4c63c3dc48172d39fb03a1f0e4cdf86a4d3 Mon Sep 17 00:00:00 2001
 From: Suresh Gupta <suresh.gupta@freescale.com>
 Date: Fri, 14 Oct 2016 12:26:24 +0530
-Subject: [PATCH 066/155] armv8: Add workaround for USB erratum A-008997
+Subject: [PATCH 066/211] armv8: Add workaround for USB erratum A-008997
 
 USB3 LFPS Peak-Peak Differential Output Voltage Adjustment
 This patch is adding the erratum for LS1043 and LS2080 SoCs.
@@ -14,14 +14,14 @@ Signed-off-by: Rajesh Bhagat <rajesh.bhagat@nxp.com>
 Signed-off-by: yinbo.zhu <yinbo.zhu@nxp.com>
 Signed-off-by: ran.wang <ran.wang_1@nxp.com>
 ---
- arch/arm/cpu/armv8/fsl-layerscape/Kconfig          |  6 +++++
- arch/arm/cpu/armv8/fsl-layerscape/soc.c            | 29 ++++++++++++++++++++++
- .../include/asm/arch-fsl-layerscape/immap_lsch2.h  |  4 +++
- .../include/asm/arch-fsl-layerscape/immap_lsch3.h  |  2 ++
- 4 files changed, 41 insertions(+)
+ arch/arm/cpu/armv8/fsl-layerscape/Kconfig          |    6 ++++
+ arch/arm/cpu/armv8/fsl-layerscape/soc.c            |   29 ++++++++++++++++++++
+ .../include/asm/arch-fsl-layerscape/immap_lsch2.h  |    4 +++
+ .../include/asm/arch-fsl-layerscape/immap_lsch3.h  |    2 +
+ 4 files changed, 41 insertions(+), 0 deletions(-)
 
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
-index 465976f851..ccc4ed40a6 100644
+index 465976f..ccc4ed4 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 @@ -7,6 +7,7 @@ config ARCH_LS1012A
@@ -73,7 +73,7 @@ index 465976f851..ccc4ed40a6 100644
  config FSL_MC_ENET
  	bool "Management Complex network"
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/soc.c b/arch/arm/cpu/armv8/fsl-layerscape/soc.c
-index c4aaa1a15e..e73612a461 100644
+index c4aaa1a..e73612a 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/soc.c
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/soc.c
 @@ -45,6 +45,33 @@ scfg_out32(scfg + SCFG_USB3PRM1CR / 4, val & USB_SQRXTUNE);
@@ -127,7 +127,7 @@ index c4aaa1a15e..e73612a461 100644
  #endif
  
 diff --git a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch2.h b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch2.h
-index 0cd0d30835..4fac4873e1 100644
+index 0cd0d30..4fac487 100644
 --- a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch2.h
 +++ b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch2.h
 @@ -199,8 +199,12 @@ struct ccsr_gur {
@@ -144,7 +144,7 @@ index 0cd0d30835..4fac4873e1 100644
  #define USB_SQRXTUNE                   0xFC7FFFFF
  
 diff --git a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
-index 62113e52b5..b6be6ab468 100644
+index 62113e5..b6be6ab 100644
 --- a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
 +++ b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
 @@ -132,9 +132,11 @@
@@ -160,5 +160,5 @@ index 62113e52b5..b6be6ab468 100644
  
  #define TP_ITYP_AV		0x00000001	/* Initiator available */
 -- 
-2.14.1
+1.7.1
 

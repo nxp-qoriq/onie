@@ -1,8 +1,7 @@
 From 0510801fc0a9e459a4512b6abac9fc6891879f59 Mon Sep 17 00:00:00 2001
 From: Bin Meng <bmeng.cn@gmail.com>
 Date: Wed, 19 Jul 2017 21:51:15 +0800
-Subject: [PATCH 045/155] usb: xhci: Program 'route string' in the input slot
- context
+Subject: [PATCH 045/211] usb: xhci: Program 'route string' in the input slot context
 
 xHCI spec says: the values of the 'route string' field shall be
 initialized by the first 'Address Device' command issued to a
@@ -22,11 +21,11 @@ As usual, this new feature is only available when DM is on.
 Signed-off-by: Bin Meng <bmeng.cn@gmail.com>
 Reviewed-by: Simon Glass <sjg@chromium.org>
 ---
- drivers/usb/host/xhci-mem.c | 32 +++++++++++++++++++++++++++++++-
- 1 file changed, 31 insertions(+), 1 deletion(-)
+ drivers/usb/host/xhci-mem.c |   32 +++++++++++++++++++++++++++++++-
+ 1 files changed, 31 insertions(+), 1 deletions(-)
 
 diff --git a/drivers/usb/host/xhci-mem.c b/drivers/usb/host/xhci-mem.c
-index 9aa309237e..c02059ee0a 100644
+index 9aa3092..c02059e 100644
 --- a/drivers/usb/host/xhci-mem.c
 +++ b/drivers/usb/host/xhci-mem.c
 @@ -723,6 +723,11 @@ void xhci_setup_addressable_virt_dev(struct xhci_ctrl *ctrl,
@@ -76,5 +75,5 @@ index 9aa309237e..c02059ee0a 100644
  	switch (speed) {
  	case USB_SPEED_SUPER:
 -- 
-2.14.1
+1.7.1
 

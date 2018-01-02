@@ -1,19 +1,19 @@
 From fcb2a5678907968fd4b786d9f9e6d415aa05f537 Mon Sep 17 00:00:00 2001
 From: Ashish Kumar <Ashish.Kumar@nxp.com>
 Date: Wed, 23 Aug 2017 11:40:57 +0530
-Subject: [PATCH 098/155] ls1088ardb: Enable USB command RDB qspi-boot
+Subject: [PATCH 098/211] ls1088ardb: Enable USB command RDB qspi-boot
 
 Signed-off-by: Ashish Kumar <Ashish.Kumar@nxp.com>
 Signed-off-by: Amrita Kumari <amrita.kumari@nxp.com>
 ---
- arch/arm/dts/fsl-ls1088a.dtsi     | 14 ++++++++++++++
- configs/ls1088ardb_qspi_defconfig |  8 ++++++++
- include/configs/ls1088ardb.h      |  5 +++++
- include/linux/usb/xhci-fsl.h      |  2 +-
- 4 files changed, 28 insertions(+), 1 deletion(-)
+ arch/arm/dts/fsl-ls1088a.dtsi     |   14 ++++++++++++++
+ configs/ls1088ardb_qspi_defconfig |    8 ++++++++
+ include/configs/ls1088ardb.h      |    5 +++++
+ include/linux/usb/xhci-fsl.h      |    2 +-
+ 4 files changed, 28 insertions(+), 1 deletions(-)
 
 diff --git a/arch/arm/dts/fsl-ls1088a.dtsi b/arch/arm/dts/fsl-ls1088a.dtsi
-index 421d2de799..d89f00dd97 100644
+index 421d2de..d89f00d 100644
 --- a/arch/arm/dts/fsl-ls1088a.dtsi
 +++ b/arch/arm/dts/fsl-ls1088a.dtsi
 @@ -75,4 +75,18 @@
@@ -36,7 +36,7 @@ index 421d2de799..d89f00dd97 100644
 +	};
  };
 diff --git a/configs/ls1088ardb_qspi_defconfig b/configs/ls1088ardb_qspi_defconfig
-index 33e41247e6..028604300e 100644
+index 33e4124..0286043 100644
 --- a/configs/ls1088ardb_qspi_defconfig
 +++ b/configs/ls1088ardb_qspi_defconfig
 @@ -27,3 +27,11 @@ CONFIG_FSL_DSPI=y
@@ -52,7 +52,7 @@ index 33e41247e6..028604300e 100644
 +CONFIG_USB_DWC3=y
 +CONFIG_USB_STORAGE=y
 diff --git a/include/configs/ls1088ardb.h b/include/configs/ls1088ardb.h
-index 300aa2bb35..620e92a1eb 100644
+index 300aa2b..620e92a 100644
 --- a/include/configs/ls1088ardb.h
 +++ b/include/configs/ls1088ardb.h
 @@ -323,6 +323,11 @@
@@ -68,7 +68,7 @@ index 300aa2bb35..620e92a1eb 100644
  #ifdef CONFIG_MMC
  #define CONFIG_FSL_ESDHC
 diff --git a/include/linux/usb/xhci-fsl.h b/include/linux/usb/xhci-fsl.h
-index bd54089722..a916afb885 100644
+index bd54089..a916afb 100644
 --- a/include/linux/usb/xhci-fsl.h
 +++ b/include/linux/usb/xhci-fsl.h
 @@ -58,7 +58,7 @@ struct fsl_xhci {
@@ -81,5 +81,5 @@ index bd54089722..a916afb885 100644
  #define CONFIG_SYS_FSL_XHCI_USB2_ADDR CONFIG_SYS_XHCI_USB2_ADDR
  #define CONFIG_SYS_FSL_XHCI_USB3_ADDR 0
 -- 
-2.14.1
+1.7.1
 

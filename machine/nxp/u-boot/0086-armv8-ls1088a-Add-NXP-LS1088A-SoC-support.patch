@@ -1,7 +1,7 @@
 From d7bab3b090942d838369f06b6012647e0f5ef228 Mon Sep 17 00:00:00 2001
 From: Ashish Kumar <Ashish.Kumar@nxp.com>
 Date: Mon, 21 Aug 2017 11:32:04 +0530
-Subject: [PATCH 086/155] armv8: ls1088a: Add NXP LS1088A SoC support
+Subject: [PATCH 086/211] armv8: ls1088a: Add NXP LS1088A SoC support
 
 The QorIQ LS1088A processor is built on the Layerscape
 architecture combining eight ARM A53 processor cores
@@ -27,29 +27,29 @@ Signed-off-by: Ashish Kumar <Ashish.Kumar@nxp.com>
 Signed-off-by: Raghav Dogra <raghav.dogra@nxp.com>
 Signed-off-by: Shaohui Xie <Shaohui.Xie@nxp.com>
 ---
- arch/arm/cpu/armv8/fsl-layerscape/Kconfig          |  35 +++++-
- arch/arm/cpu/armv8/fsl-layerscape/Makefile         |   4 +
- arch/arm/cpu/armv8/fsl-layerscape/doc/README.soc   |  43 ++++++-
- .../cpu/armv8/fsl-layerscape/fsl_lsch3_serdes.c    |  19 ++++
- arch/arm/cpu/armv8/fsl-layerscape/ls1088a_serdes.c | 126 +++++++++++++++++++++
- arch/arm/cpu/armv8/fsl-layerscape/soc.c            |   1 +
- arch/arm/dts/fsl-ls1088a.dtsi                      |  78 +++++++++++++
- arch/arm/include/asm/arch-fsl-layerscape/config.h  |  62 +++++++++-
- arch/arm/include/asm/arch-fsl-layerscape/cpu.h     |   4 +
- .../include/asm/arch-fsl-layerscape/fsl_serdes.h   |   3 +-
- .../include/asm/arch-fsl-layerscape/immap_lsch3.h  |  11 ++
- arch/arm/include/asm/arch-fsl-layerscape/soc.h     |   4 +
- .../asm/arch-fsl-layerscape/stream_id_lsch3.h      |  14 +++
- drivers/ddr/fsl/util.c                             |   2 +-
- drivers/net/ldpaa_eth/Makefile                     |   1 +
- drivers/net/ldpaa_eth/ls1088a.c                    |  87 ++++++++++++++
+ arch/arm/cpu/armv8/fsl-layerscape/Kconfig          |   35 +++++-
+ arch/arm/cpu/armv8/fsl-layerscape/Makefile         |    4 +
+ arch/arm/cpu/armv8/fsl-layerscape/doc/README.soc   |   43 ++++++-
+ .../cpu/armv8/fsl-layerscape/fsl_lsch3_serdes.c    |   19 +++
+ arch/arm/cpu/armv8/fsl-layerscape/ls1088a_serdes.c |  126 ++++++++++++++++++++
+ arch/arm/cpu/armv8/fsl-layerscape/soc.c            |    1 +
+ arch/arm/dts/fsl-ls1088a.dtsi                      |   78 ++++++++++++
+ arch/arm/include/asm/arch-fsl-layerscape/config.h  |   62 ++++++++++-
+ arch/arm/include/asm/arch-fsl-layerscape/cpu.h     |    4 +
+ .../include/asm/arch-fsl-layerscape/fsl_serdes.h   |    3 +-
+ .../include/asm/arch-fsl-layerscape/immap_lsch3.h  |   11 ++
+ arch/arm/include/asm/arch-fsl-layerscape/soc.h     |    4 +
+ .../asm/arch-fsl-layerscape/stream_id_lsch3.h      |   14 ++
+ drivers/ddr/fsl/util.c                             |    2 +-
+ drivers/net/ldpaa_eth/Makefile                     |    1 +
+ drivers/net/ldpaa_eth/ls1088a.c                    |   87 ++++++++++++++
  16 files changed, 482 insertions(+), 12 deletions(-)
  create mode 100644 arch/arm/cpu/armv8/fsl-layerscape/ls1088a_serdes.c
  create mode 100644 arch/arm/dts/fsl-ls1088a.dtsi
  create mode 100644 drivers/net/ldpaa_eth/ls1088a.c
 
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
-index 2f8d9da7dd..086bcab8cc 100644
+index 2f8d9da..086bcab 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/Kconfig
 @@ -61,6 +61,29 @@ config ARCH_LS1046A
@@ -139,7 +139,7 @@ index 2f8d9da7dd..086bcab8cc 100644
  	  Reserved memory needs to be aligned for MC to use. Default value
  	  is 512MB.
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/Makefile b/arch/arm/cpu/armv8/fsl-layerscape/Makefile
-index e3ce0184d8..115c3fc1d1 100644
+index e3ce018..115c3fc 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/Makefile
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/Makefile
 @@ -38,3 +38,7 @@ endif
@@ -151,7 +151,7 @@ index e3ce0184d8..115c3fc1d1 100644
 +obj-$(CONFIG_SYS_HAS_SERDES) += ls1088a_serdes.o
 +endif
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/doc/README.soc b/arch/arm/cpu/armv8/fsl-layerscape/doc/README.soc
-index 3ae16ae7ad..276ab9052d 100644
+index 3ae16ae..276ab90 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/doc/README.soc
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/doc/README.soc
 @@ -1,11 +1,12 @@
@@ -212,7 +212,7 @@ index 3ae16ae7ad..276ab9052d 100644
  --------
  The LS2080A integrated multicore processor combines eight ARM Cortex-A57
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/fsl_lsch3_serdes.c b/arch/arm/cpu/armv8/fsl-layerscape/fsl_lsch3_serdes.c
-index ef97556367..179cac6e49 100644
+index ef97556..179cac6 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/fsl_lsch3_serdes.c
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/fsl_lsch3_serdes.c
 @@ -28,6 +28,20 @@ __weak void wriop_init_dpmac_qsgmii(int sd, int lane_prtcl)
@@ -257,7 +257,7 @@ index ef97556367..179cac6e49 100644
  	if (!is_serdes_prtcl_valid(sd, cfg))
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/ls1088a_serdes.c b/arch/arm/cpu/armv8/fsl-layerscape/ls1088a_serdes.c
 new file mode 100644
-index 0000000000..9f5cdd5710
+index 0000000..9f5cdd5
 --- /dev/null
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/ls1088a_serdes.c
 @@ -0,0 +1,126 @@
@@ -388,7 +388,7 @@ index 0000000000..9f5cdd5710
 +	return 0;
 +}
 diff --git a/arch/arm/cpu/armv8/fsl-layerscape/soc.c b/arch/arm/cpu/armv8/fsl-layerscape/soc.c
-index 6acd1af421..2075c96cbc 100644
+index 6acd1af..2075c96 100644
 --- a/arch/arm/cpu/armv8/fsl-layerscape/soc.c
 +++ b/arch/arm/cpu/armv8/fsl-layerscape/soc.c
 @@ -24,6 +24,7 @@
@@ -401,7 +401,7 @@ index 6acd1af421..2075c96cbc 100644
  
 diff --git a/arch/arm/dts/fsl-ls1088a.dtsi b/arch/arm/dts/fsl-ls1088a.dtsi
 new file mode 100644
-index 0000000000..421d2de799
+index 0000000..421d2de
 --- /dev/null
 +++ b/arch/arm/dts/fsl-ls1088a.dtsi
 @@ -0,0 +1,78 @@
@@ -484,7 +484,7 @@ index 0000000000..421d2de799
 +	};
 +};
 diff --git a/arch/arm/include/asm/arch-fsl-layerscape/config.h b/arch/arm/include/asm/arch-fsl-layerscape/config.h
-index 79e94f9f2c..a7098be846 100644
+index 79e94f9..a7098be 100644
 --- a/arch/arm/include/asm/arch-fsl-layerscape/config.h
 +++ b/arch/arm/include/asm/arch-fsl-layerscape/config.h
 @@ -116,6 +116,67 @@
@@ -564,7 +564,7 @@ index 79e94f9f2c..a7098be846 100644
  #error SoC not defined
  #endif
 diff --git a/arch/arm/include/asm/arch-fsl-layerscape/cpu.h b/arch/arm/include/asm/arch-fsl-layerscape/cpu.h
-index c4e5eccd77..01267830a3 100644
+index c4e5ecc..0126783 100644
 --- a/arch/arm/include/asm/arch-fsl-layerscape/cpu.h
 +++ b/arch/arm/include/asm/arch-fsl-layerscape/cpu.h
 @@ -24,6 +24,10 @@ static struct cpu_type cpu_type_list[] = {
@@ -579,7 +579,7 @@ index c4e5eccd77..01267830a3 100644
  
  #ifndef CONFIG_SYS_DCACHE_OFF
 diff --git a/arch/arm/include/asm/arch-fsl-layerscape/fsl_serdes.h b/arch/arm/include/asm/arch-fsl-layerscape/fsl_serdes.h
-index a8f9a50501..a2c7578311 100644
+index a8f9a50..a2c7578 100644
 --- a/arch/arm/include/asm/arch-fsl-layerscape/fsl_serdes.h
 +++ b/arch/arm/include/asm/arch-fsl-layerscape/fsl_serdes.h
 @@ -9,7 +9,7 @@
@@ -600,7 +600,7 @@ index a8f9a50501..a2c7578311 100644
  #ifdef CONFIG_FSL_LSCH2
  const char *serdes_clock_to_string(u32 clock);
 diff --git a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
-index b037aeff09..18e75dc415 100644
+index b037aef..18e75dc 100644
 --- a/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
 +++ b/arch/arm/include/asm/arch-fsl-layerscape/immap_lsch3.h
 @@ -259,6 +259,17 @@ struct ccsr_gur {
@@ -622,7 +622,7 @@ index b037aeff09..18e75dc415 100644
  #define RCW_SB_EN_REG_INDEX	9
  #define RCW_SB_EN_MASK		0x00000400
 diff --git a/arch/arm/include/asm/arch-fsl-layerscape/soc.h b/arch/arm/include/asm/arch-fsl-layerscape/soc.h
-index aeb12739aa..ea8acedaa1 100644
+index aeb1273..ea8aced 100644
 --- a/arch/arm/include/asm/arch-fsl-layerscape/soc.h
 +++ b/arch/arm/include/asm/arch-fsl-layerscape/soc.h
 @@ -57,6 +57,10 @@ struct cpu_type {
@@ -637,7 +637,7 @@ index aeb12739aa..ea8acedaa1 100644
  #define SVR_LS2080A		0x870110
  #define SVR_LS2085A		0x870100
 diff --git a/arch/arm/include/asm/arch-fsl-layerscape/stream_id_lsch3.h b/arch/arm/include/asm/arch-fsl-layerscape/stream_id_lsch3.h
-index d7d527d8f4..d1891c4bd6 100644
+index d7d527d..d1891c4 100644
 --- a/arch/arm/include/asm/arch-fsl-layerscape/stream_id_lsch3.h
 +++ b/arch/arm/include/asm/arch-fsl-layerscape/stream_id_lsch3.h
 @@ -66,12 +66,26 @@
@@ -668,7 +668,7 @@ index d7d527d8f4..d1891c4bd6 100644
  /* DPAA2 - set in MC DPC and alloced by MC */
  #define FSL_DPAA2_STREAM_ID_START	23
 diff --git a/drivers/ddr/fsl/util.c b/drivers/ddr/fsl/util.c
-index 0a305b36b8..d6e6e78de3 100644
+index 0a305b3..d6e6e78 100644
 --- a/drivers/ddr/fsl/util.c
 +++ b/drivers/ddr/fsl/util.c
 @@ -390,7 +390,7 @@ void fsl_ddr_sync_memctl_refresh(unsigned int first_ctrl,
@@ -681,7 +681,7 @@ index 0a305b36b8..d6e6e78de3 100644
  	u64 nodeid;
  	void *hnf_sam_ctrl = (void *)(CCI_HN_F_0_BASE + CCN_HN_F_SAM_CTL);
 diff --git a/drivers/net/ldpaa_eth/Makefile b/drivers/net/ldpaa_eth/Makefile
-index 08675ec641..13ecd381ea 100644
+index 08675ec..13ecd38 100644
 --- a/drivers/net/ldpaa_eth/Makefile
 +++ b/drivers/net/ldpaa_eth/Makefile
 @@ -7,3 +7,4 @@
@@ -691,7 +691,7 @@ index 08675ec641..13ecd381ea 100644
 +obj-$(CONFIG_ARCH_LS1088A) += ls1088a.o
 diff --git a/drivers/net/ldpaa_eth/ls1088a.c b/drivers/net/ldpaa_eth/ls1088a.c
 new file mode 100644
-index 0000000000..703945cec3
+index 0000000..703945c
 --- /dev/null
 +++ b/drivers/net/ldpaa_eth/ls1088a.c
 @@ -0,0 +1,87 @@
@@ -783,5 +783,5 @@ index 0000000000..703945cec3
 +	}
 +}
 -- 
-2.14.1
+1.7.1
 

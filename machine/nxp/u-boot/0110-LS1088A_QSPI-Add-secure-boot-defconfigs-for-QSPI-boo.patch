@@ -1,23 +1,22 @@
 From cd737a6abc28838843b08516b5e0eb8f015af53a Mon Sep 17 00:00:00 2001
 From: Udit Agarwal <udit.agarwal@nxp.com>
 Date: Fri, 25 Aug 2017 11:31:35 +0530
-Subject: [PATCH 110/155] LS1088A_QSPI: Add secure boot defconfigs for QSPI
- boot.
+Subject: [PATCH 110/211] LS1088A_QSPI: Add secure boot defconfigs for QSPI boot.
 
 Add the secure boot defconfigs for QSPI boot on LS1088ARDB
 and LS1088AQDS platforms.
 
 Signed-off-by: Udit Agarwal <udit.agarwal@nxp.com>
 ---
- configs/ls1088aqds_qspi_SECURE_BOOT_defconfig | 32 +++++++++++++++++++++++++++
- configs/ls1088ardb_qspi_SECURE_BOOT_defconfig | 32 +++++++++++++++++++++++++++
- 2 files changed, 64 insertions(+)
+ configs/ls1088aqds_qspi_SECURE_BOOT_defconfig |   32 +++++++++++++++++++++++++
+ configs/ls1088ardb_qspi_SECURE_BOOT_defconfig |   32 +++++++++++++++++++++++++
+ 2 files changed, 64 insertions(+), 0 deletions(-)
  create mode 100644 configs/ls1088aqds_qspi_SECURE_BOOT_defconfig
  create mode 100644 configs/ls1088ardb_qspi_SECURE_BOOT_defconfig
 
 diff --git a/configs/ls1088aqds_qspi_SECURE_BOOT_defconfig b/configs/ls1088aqds_qspi_SECURE_BOOT_defconfig
 new file mode 100644
-index 0000000000..65653b87db
+index 0000000..65653b8
 --- /dev/null
 +++ b/configs/ls1088aqds_qspi_SECURE_BOOT_defconfig
 @@ -0,0 +1,32 @@
@@ -55,7 +54,7 @@ index 0000000000..65653b87db
 +CONFIG_RSA_SOFTWARE_EXP=y
 diff --git a/configs/ls1088ardb_qspi_SECURE_BOOT_defconfig b/configs/ls1088ardb_qspi_SECURE_BOOT_defconfig
 new file mode 100644
-index 0000000000..5afd559048
+index 0000000..5afd559
 --- /dev/null
 +++ b/configs/ls1088ardb_qspi_SECURE_BOOT_defconfig
 @@ -0,0 +1,32 @@
@@ -92,5 +91,5 @@ index 0000000000..5afd559048
 +CONFIG_RSA=y
 +CONFIG_RSA_SOFTWARE_EXP=y
 -- 
-2.14.1
+1.7.1
 
