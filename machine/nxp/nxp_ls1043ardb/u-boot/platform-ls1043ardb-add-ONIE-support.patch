@@ -89,7 +89,7 @@ index f87fce6..8c99daa 100644
 +
 +/* Platform environment variables needed by the common env infrastructure */
 +#define CONFIG_PLATFORM_ENV    \
-+	"consoledev=ttyS0,115200 root=/dev/ram0\0" \
++	"consoledev=ttyS0\0baudrate=115200\0" \
 +	"onie_start=0x61000000\0" \
 +	"onie_sz.b=0x1000000\0"  \
 +	"hwconfig=fsl_ddr:bank_intlv=auto\0"	\
