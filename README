@@ -18,5 +18,6 @@ after get installer, ONIE will run it to install ONL automatically.
 
 ===================================
 notes:
-1. SD card is needed, Sandisk is recommended
+1. SD/MMC card is needed on LS1043ARDB, LS1046ARDB and LS1088ARDB due to ONL intalling on SD/MMC card, Sandisk is recommended
+   USB flash disk is needed on LS2088ARDB due to ONL intalling on USB flash disk
 2. If get onie-installer locally, storage is needed.
