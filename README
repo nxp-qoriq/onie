@@ -1,0 +1,24 @@
+===================================
+How to build and install ONIE
+===================================
+
+Please refer to machine/nxp/nxp_<machine>/INSTALL for details
+For LS1088ARDBPB, refer to machine/nxp/nxp_ls1088ardb/INSTALL
+
+========================
+How to install ONL
+========================
+Two options can be selected:
+	- Put ONL installer under the root directory of the TFTP server
+	- Put ONL installer to /dev/sda1, /dev/sda2 or /dev/sda3 under the root directory
+with name onie-installer-arm64.bin or onie-installer.bin
+e.g. /dev/sdb1/onie-installer-arm64-nxp_ls1046ardb.bin
+
+ONIE will search the installer from /dev/sda(1/2/3) or download from TFTP server automatically,
+after get installer, ONIE will run it to install ONL automatically.
+
+===================================
+notes:
+1. SD/MMC card is needed on LS1043ARDB, LS1046ARDB and LS1088ARDB due to ONL intalling on SD/MMC card, Sandisk is recommended
+   USB flash disk is needed on LS2088ARDB due to ONL intalling on USB flash disk
+2. If get onie-installer locally, storage is needed.
